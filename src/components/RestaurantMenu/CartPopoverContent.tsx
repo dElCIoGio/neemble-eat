@@ -1,0 +1,57 @@
+import {CartItem} from "@/schema";
+import {useMenuContext} from "@/context/menuContext";
+import {Button} from "@/components/ui/button";
+import {Link} from "react-router-dom";
+import {URL_PATH_PREFIX} from "@/lib/constants.ts";
+
+interface PopUpButtonParams {
+	cart: CartItem[]
+	productAdded: boolean
+}
+
+export const CartPopoverContent = ({cart, productAdded}: PopUpButtonParams) => {
+
+	const {restaurant, menu, tableNumber, selectedItem} = useMenuContext()
+
+	return (
+		<div
+			className="">
+			{
+				cart.length > 0 ?
+					<div className=''>
+                        <div className='divide-y-[0.2px] divide-gray-300 space-y-2'>
+                            {cart.reverse().map((item, index) => (
+	                            <div key={index} className='pt-2'>
+                                    <h1 className='truncate text-base'>
+                                        {item.name} <span
+	                                    className={`font-semibold`}>{productAdded && selectedItem && selectedItem.id === item.id && "- Novo"}</span>
+                                    </h1>
+                                    <div className='text-sm flex text-gray-700 space-x-1'>
+                                        <p>
+                                            {item.price} Kz
+                                        </p>
+                                        <p className='font-poppins-semibold'>
+                                            x{item.quantity}
+                                        </p>
+
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+							<Button asChild className={"w-full mt-4 rounded-lg"}>
+								<Link to={`${URL_PATH_PREFIX}/c/${restaurant.id}/${menu.id}/${tableNumber}`}>
+									Carrinho
+								</Link>
+							</Button>
+                    </div> :
+					<div className='flex justify-center items-center'>
+                        <p className='text-gray-600 italic text-sm py-5'>
+                            Carrinho Vazio
+                        </p>
+                    </div>
+			}
+
+
+        </div>
+	);
+};
