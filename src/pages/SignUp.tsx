@@ -13,16 +13,16 @@ export function SignUp() {
 	return (
 		<div className={"flex items-center"}>
 			<Background className={"bg-gradient-to-r from-neutral-100 to-neutral-200"}/>
-			<div
-				className={"flex justify-center items-center px-12 w-full h-full"}>
+				<div
+					className={"flex justify-center items-center laptop:px-12 w-full h-full"}>
 				<div className={"absolute top-0 left-0 mx-4 my-8"}>
 					<Link to={"/home"}>
 						<ChevronLeft/>
 					</Link>
 				</div>
 				<div className={"w-full"}>
-					<div className={"text-center space-y-1 my-6"}>
-						<h1 className={"text-xl font-semibold tracking-tight"}>
+					<div className={"text-center space-y-1 my-8"}>
+						<h1 className={"text-lg font-semibold tracking-tight"}>
 							Seja bem-vindo(a)
 						</h1>
 						<p className={"text-zinc-500 text-sm"}>

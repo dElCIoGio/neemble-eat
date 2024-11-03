@@ -54,7 +54,7 @@ export function SignUpForm() {
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)}
 			      className={`flex justify-center items-center`}>
-				<Tabs defaultValue="person" className="laptop:w-[500px] px-8">
+				<Tabs defaultValue="person" className="w-[100%] tablet:w-[80%] laptop:w-[500px] px-8">
 					<TabsList className="grid w-full grid-cols-2 gap-2 bg-zinc-100 border shadow-sm">
 						<TabsTrigger className="" value="person">Pessoal</TabsTrigger>
 						<TabsTrigger className="" value="account">Conta</TabsTrigger>
@@ -64,9 +64,10 @@ export function SignUpForm() {
 							<CardHeader>
 							<div className="flex items-center space-x-2">
 								<User size={20}/>
-								<CardTitle>Informação pessoal</CardTitle>
+								<CardTitle className="text-lg">Informação pessoal</CardTitle>
 							</div>
-								<CardDescription>Indique abaixo os seus dados pessoais</CardDescription>
+								<CardDescription
+									className="text-sm">Indique abaixo os seus dados pessoais</CardDescription>
 							</CardHeader>
 							<CardContent className="space-y-3">
 								<FormField
@@ -115,8 +116,9 @@ export function SignUpForm() {
 					<TabsContent value="account">
 						<Card>
 							<CardHeader>
-								<CardTitle>Informação da conta</CardTitle>
-								<CardDescription>Preencha os campos para a sua conta</CardDescription>
+								<CardTitle className="text-lg">Informação da conta</CardTitle>
+								<CardDescription
+									className="text-sm">Preencha os campos para a sua conta</CardDescription>
 							</CardHeader>
 							<CardContent className="space-y-3">
 								<FormField name="email"

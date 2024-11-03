@@ -2,7 +2,7 @@ import {Input} from "@/components/ui/input.tsx";
 import {Upload} from "lucide-react"
 import {ChangeEvent, useState} from "react";
 import {Button} from "../ui/button";
-import {Label} from "@radix-ui/react-label";
+import {TypographyMuted} from "@/components/ui/Typography.tsx";
 
 export function RestaurantConfig() {
 
@@ -20,9 +20,9 @@ export function RestaurantConfig() {
 
 	return (
 		<div>
-			<Label>Escolha uma imagem para o deu restaurante. Não se preocupe, poderá alterar à qualquer momento</Label>
+			<TypographyMuted>Escolha uma imagem para o deu restaurante. Não se preocupe, poderá alterar à qualquer momento</TypographyMuted>
 			{selectedImageURL ?
-				<div className={"w-fit"}>
+				<div className={"my-8 w-fit"}>
 					<div
 						className='flex items-center justify-center border w-fit border-gray-300 rounded-lg p-4 mb-4 bg-gray-100'>
 						<div
@@ -38,7 +38,7 @@ export function RestaurantConfig() {
 					</Button>
 				</div> :
 				<label
-					className={`border border-gray-200 w-40 h-24 flex flex-col items-center justify-center px-4 py-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase cursor-pointer hover:bg-gray-100 transition-colors duration-300`}>
+					className={`my-8 border border-gray-200 w-40 h-24 flex flex-col items-center justify-center px-4 py-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase cursor-pointer hover:bg-gray-100 transition-colors duration-300`}>
 					<Upload/>
 					<Input type="file"
 					       placeholder={""}

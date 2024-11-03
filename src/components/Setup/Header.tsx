@@ -12,9 +12,9 @@ export function Header({tab, name}: HeaderProps) {
 
 
 	return (
-		<div className="container text-center font-poppins py-8">
+		<div className="w-full text-center font-poppins py-8">
 			<TypographyH3>
-				Bem vindo(a), &nbsp;
+				Seja bem vindo(a)!
 				<span className='font-poppins-semibold text-stone-500'>{name}</span>!
 			</TypographyH3>
             <TypographyMuted>

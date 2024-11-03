@@ -8,7 +8,7 @@ export function Footer() {
 	const {restaurant} = useMenuContext()
 
 	return (
-		<div className='bg-gray-200  rounded-t-xl'>
+		<div className='bg-gray-200 rounded-t-xl'>
             <div className='pt-5 pb-10 border-b border-gray-300 px-5 laptop:px-9'>
                 <h1 className={`text-2xl font-poppins-semibold`}>
                     {restaurant.name}
