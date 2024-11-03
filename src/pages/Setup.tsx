@@ -10,6 +10,8 @@ import {SetupContext} from "@/context/setupContext.ts";
 
 function Setup() {
 
+	document.title = "Bem Vindo | Neemble Eat"
+
 	const {nextTab, currentTab, prevTab} = useTabSwitcher()
 	const {name,} = useParams() as { name: string, representantID: string }
 

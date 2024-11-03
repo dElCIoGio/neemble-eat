@@ -14,8 +14,8 @@ export function Header({tab, name}: HeaderProps) {
 	return (
 		<div className="w-full text-center font-poppins py-8">
 			<TypographyH3>
-				Seja bem vindo(a)!
-				<span className='font-poppins-semibold text-stone-500'>{name}</span>!
+				Seja bem vindo(a)
+				<span className='font-poppins-semibold text-stone-500'>{name}</span>
 			</TypographyH3>
             <TypographyMuted>
 	            {
