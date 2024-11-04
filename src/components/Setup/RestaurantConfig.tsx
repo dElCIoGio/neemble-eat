@@ -73,7 +73,7 @@ export function RestaurantConfig() {
 											className={`hidden ${!!selectedImageURL && "cursor-not-allowed"}`}
 											onChange={(event) => {
 												event.preventDefault()
-												console.log(value.name)
+												console.log(value)
 												const files = event.target.files
 												if (files) {
 													onChange(files[0])
