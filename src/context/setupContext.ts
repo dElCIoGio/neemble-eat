@@ -3,7 +3,9 @@ import {createContext, useContext} from "react";
 
 
 interface SetupProps {
-	currentTab: SetUpTab
+	currentTab: SetUpTab;
+	prevTab: () => void;
+	nextTab: () => void;
 }
 
 export const SetupContext = createContext<SetupProps | undefined>(undefined)

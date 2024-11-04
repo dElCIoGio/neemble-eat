@@ -18,14 +18,16 @@ function Setup() {
 
 	return (
 		<SetupContext.Provider value={{
-			currentTab
+			currentTab,
+			nextTab,
+			prevTab
 		}}>
 			<div className="max-w-[1080px] w-[90%] h-dvh mx-auto">
 			<Header tab={currentTab} name={name}/>
 			<div className={"flex justify-center"}>
 				<Steps/>
 			</div>
-			<div className="">
+			<div className="pb-8">
 				<Tabs className="py-4" defaultValue="restaurant" value={currentTab}>
 					<TabsContent className="" value="restaurant">
 						<RestaurantConfig/>
@@ -37,11 +39,17 @@ function Setup() {
 						menu
 					</TabsContent>
 				</Tabs>
-				<div className="fixed bottom-0 my-4 space-x-4">
-					<Button onClick={prevTab} type="button">
+				<div className="hidden my-4 space-x-4">
+					<Button disabled={currentTab === "restaurant"}
+					        onClick={currentTab === "restaurant" ? () => {
+					        } : prevTab}
+					        type="button">
 						Previous
 					</Button>
-					<Button onClick={nextTab} type="button">
+					<Button disabled={currentTab === "menu"}
+					        onClick={currentTab === "menu" ? () => {
+					        } : nextTab}
+					        type="button">
 						Next
 					</Button>
 				</div>
