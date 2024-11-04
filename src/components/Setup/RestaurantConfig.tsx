@@ -39,7 +39,7 @@ export function RestaurantConfig() {
 	})
 
 	function onSubmit(data: RestaurantConfigValues) {
-		console.log(data.restaurantName)
+		console.log(data.image)
 		// Got to finish setting up the submit function nd direct the user to the next tab
 	}
 
@@ -73,7 +73,7 @@ export function RestaurantConfig() {
 											className={`hidden ${!!selectedImageURL && "cursor-not-allowed"}`}
 											onChange={(event) => {
 												event.preventDefault()
-												console.log(value)
+												console.log(value instanceof File)
 												const files = event.target.files
 												if (files) {
 													onChange(files[0])
