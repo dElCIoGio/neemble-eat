@@ -6,6 +6,8 @@ import {useParams} from "react-router-dom";
 import {RestaurantConfig} from "@/components/Setup/RestaurantConfig.tsx";
 import {useTabSwitcher} from "@/hooks/useTabSwitcher.ts";
 import {SetupContext} from "@/context/setupContext.ts";
+import {TablesConfig} from "@/components/Setup/TablesConfig.tsx";
+import {MenuConfig} from "@/components/Setup/MenuConfig.tsx";
 
 
 function Setup() {
@@ -33,10 +35,10 @@ function Setup() {
 						<RestaurantConfig/>
 					</TabsContent>
 					<TabsContent className="" value="tables">
-						tables
+						<TablesConfig/>
 					</TabsContent>
 					<TabsContent className="" value="menu">
-						menu
+						<MenuConfig/>
 					</TabsContent>
 				</Tabs>
 				<div className="hidden my-4 space-x-4">

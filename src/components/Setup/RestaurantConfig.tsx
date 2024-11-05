@@ -12,6 +12,7 @@ import {Textarea} from "@/components/ui/textarea.tsx";
 import {RestaurantBannerDisplay} from "@/components/Setup/RestaurantBannerDisplay.tsx";
 import {PinIcon, PhoneIcon} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
+import {useSetupContext} from "@/context/setupContext.ts";
 
 
 type RestaurantConfigValues = z.infer<typeof RestaurantConfigSchema>;
@@ -20,12 +21,13 @@ export function RestaurantConfig() {
 
 	const [selectedFile, setSelectedImageFile] = useState<File | null>(null);
 	const [selectedImageURL, setSelectedImageURL] = useState<string | null>(null);
+	const {nextTab} = useSetupContext()
+
 
 	useEffect(() => {
 		const url = selectedFile ? URL.createObjectURL(selectedFile) : null
 		setSelectedImageURL(url)
 	}, [selectedFile]);
-
 
 	const form = useForm<RestaurantConfigValues>({
 		resolver: zodResolver(RestaurantConfigSchema),
@@ -40,11 +42,13 @@ export function RestaurantConfig() {
 
 	function onSubmit(data: RestaurantConfigValues) {
 		console.log(data.image)
+		nextTab()
 		// Got to finish setting up the submit function nd direct the user to the next tab
 	}
 
 	function removeimage() {
 		setSelectedImageFile(null)
+
 	}
 
 	return (

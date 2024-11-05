@@ -1,4 +1,4 @@
-import * as z from 'zod'
+import {z} from "zod";
 
 export const LogInSchema = z.object({
 	email: z.string().email({
@@ -67,3 +67,15 @@ export const RestaurantConfigSchema = z.object({
 		message: `O tamanho máximo da descrição são ${DESCRIPTION_MAX_SIZE} caracteres.`
 	}),
 });
+
+export const MAX_NUMBER_OF_TABLES = 40
+
+export const TablesConfigSchema = z.object({
+	numberOfTables: z.number().int().positive({
+		message: "Insira um número válido de mesas"
+	}).min(1, {
+		message: "Insira pelo menos uma mesa."
+	}).max(MAX_NUMBER_OF_TABLES, {
+		message: `O número máximo de mesas permitido é ${MAX_NUMBER_OF_TABLES}`
+	}),
+})
