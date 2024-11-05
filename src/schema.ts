@@ -312,6 +312,8 @@ interface Route {
 
 type SetUpTab = "restaurant" | "tables" | "menu"
 
+export type DashboardPage = "dashboard" | "menu" | "settings"
+
 
 export type {
 	SetUpTab,

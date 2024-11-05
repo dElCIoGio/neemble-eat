@@ -10,6 +10,7 @@ import {SignUp} from "@/pages/SignUp";
 import {URL_PATH_PREFIX} from "@/lib/constants";
 import AuthError from "@/pages/AuthError.tsx";
 import Setup from "@/pages/Setup.tsx";
+import {Dashboard} from "@/pages/Dashboard.tsx";
 
 export const ROUTES: Route[] = [
 	{
@@ -55,6 +56,11 @@ export const ROUTES: Route[] = [
 	{
 		path: `${URL_PATH_PREFIX}/setup`,
 		element: <Setup/>,
+		requiresAuth: false
+	},
+	{
+		path: `${URL_PATH_PREFIX}/user`,
+		element: <Dashboard/>,
 		requiresAuth: false
 	}
 
