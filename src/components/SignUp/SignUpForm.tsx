@@ -61,14 +61,12 @@ export function SignUpForm() {
 					</TabsList>
 					<TabsContent value="person">
 						<Card className={""}>
-							<CardHeader>
 							<div className="flex items-center space-x-2">
 								<User size={20}/>
-								<CardTitle className="text-lg">Informação pessoal</CardTitle>
+								<h1 className="text-lg">Informação pessoal</h1>
 							</div>
-								<CardDescription
-									className="text-sm">Indique abaixo os seus dados pessoais</CardDescription>
-							</CardHeader>
+								<p
+									className="text-sm">Indique abaixo os seus dados pessoais</p>
 							<CardContent className="space-y-3">
 								<FormField
 									name="firstName"
@@ -78,6 +76,7 @@ export function SignUpForm() {
 										<FormLabel>Primeiro Nome</FormLabel>
 										<FormControl>
 											<Input {...field} placeholder="Digite o seu primeiro nome"
+											       variant="brand"
 											       className={"hover:bg-zinc-100 transition-all duration-150"}/>
 										</FormControl>
 										<FormMessage/>
@@ -91,6 +90,7 @@ export function SignUpForm() {
 											<FormLabel>Último Nome</FormLabel>
 											<FormControl>
 												<Input {...field}
+												       variant="brand"
 												       placeholder="Digite o seu último nome"
 												       className={"hover:bg-zinc-100 transition-all duration-150"}/>
 											</FormControl>

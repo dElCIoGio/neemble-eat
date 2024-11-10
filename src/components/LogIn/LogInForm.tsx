@@ -13,7 +13,6 @@ import {Button} from "@/components/ui/button.tsx";
 import {Eye, EyeClosed} from 'lucide-react'
 import {useState} from "react";
 import {z} from "zod"
-import {Required} from "@/components/ui/required.tsx";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from '@/service/firebase/firebase'
 import {URL_PATH_PREFIX} from "@/lib/constants.ts";
@@ -48,7 +47,7 @@ export function LogInForm() {
 
 
 	return (
-		<div>
+		<div className="">
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}
 				      className="">
@@ -56,27 +55,29 @@ export function LogInForm() {
 						<FormField control={form.control}
 						           name="email"
 						           render={({field}) => (
-							           <FormItem>
-											<FormLabel>Email <Required/></FormLabel>
-								           <FormControl>
+							           <FormItem className="space-y-1">
+											<FormLabel className="mb-1">Email</FormLabel>
+								            <FormControl>
 									           <Input {...field}
+									                  variant="brand"
 									                  type="email"
 									                  placeholder={"exemplo@mail.com"}
-									                  className={"hover:bg-zinc-100 transition-all duration-150"}/>
+									                  className={"hover:bg-zinc-100 transition-all duration-150 "}/>
 								           </FormControl>
-								           <FormMessage/>
+								            <FormMessage className="mt-2"/>
 							           </FormItem>
 						           )}/>
 						<FormField control={form.control}
 						           name="password"
 						           render={({field}) => (
-							           <FormItem>
-										   <FormLabel>
-												Palavra-passe <Required/>
+							           <FormItem className="space-y-0">
+										   <FormLabel className="mb-1">
+												Palavra-passe
 										   </FormLabel>
-									           <div className={"flex items-center space-x-2"}>
+								           <div className={"flex items-center space-x-2"}>
 										            <FormControl>
 									                    <Input {...field}
+									                           variant="brand"
 									                           type={passwordShowing ? "text" : "password"}
 									                           placeholder={"******"}
 									                           className={"hover:bg-zinc-100 transition-all duration-150"}/>
@@ -91,17 +92,17 @@ export function LogInForm() {
 														}
 													</Button>
 									           </div>
-								           <FormMessage/>
+								           <FormMessage className="mt-2"/>
 									   </FormItem>
 						           )}/>
 					</div>
 					<div className={"flex justify-end"}>
-						<Button variant={"link"} className={"p-0 m-0"}>Esqueci a palavra passe</Button>
+						<Button variant={"link"} className={"p-0 m-0 text-xs"}>Esqueci a palavra passe</Button>
 					</div>
 					<div className={`text-red-500 italic font-semibold`}>
 						{error}
 					</div>
-					<Button type="submit" color="primary" className={"w-full py-4 my-4"}>
+					<Button type="submit" color="primary" className={"w-full py-4 text-sm my-4"}>
 						Iniciar Sessão
 					</Button>
 				</form>

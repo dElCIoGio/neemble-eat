@@ -28,8 +28,8 @@ export function TabDashboard() {
 			</div>
 
 			<div className="py-8">
-				<Tabs defaultValue="overview">
-					<TabsList className="rounded-lg">
+				<Tabs defaultValue="overview" className="">
+					<TabsList className="rounded-lg mb-2">
 						<TabsTrigger className="rounded-md prevent-select" onClick={() => setSection("overview")}
 						             value="overview">
 							Visão Geral

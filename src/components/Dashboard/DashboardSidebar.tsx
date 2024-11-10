@@ -8,9 +8,11 @@ import {
 	SidebarMenuItem,
 	SidebarMenuButton, useSidebar
 } from "@/components/ui/sidebar";
-import {Home, Menu, Settings} from "lucide-react"
+import {Home, Menu, Settings, Info} from "lucide-react"
 import {useDashboardContext} from "@/context/dashboardContext.ts";
 import {DashboardPage} from "@/schema.ts";
+import {Button} from "@/components/ui/button.tsx";
+
 
 const tabs = [
 	{
@@ -43,49 +45,45 @@ export function DashboardSidebar() {
 
 
 	return (
-		<Sidebar className="rounded-xl bg-black">
+		<Sidebar className="">
 			<SidebarHeader
-				className="flex flex-row items-center space-x-2 p-4 border-b font-poppins-semibold prevent-select">
+				className="flex flex-row items-center space-x-2 h-16 p-4 font-poppins-semibold prevent-select">
 				<div
 					className={"rounded-lg bg-dark_purple w-8 h-8 text-white flex justify-center items-center"}>
 					N
 				</div>
-				<span>
-					Bem-vindo
-				</span>
+				<div className="flex flex-col text-xs">
+					<span>Delcio Agostinho</span>
+					<span className="font-poppins-light text-zinc-400">dagostinho04@hotmail.com</span>
+				</div>
 			</SidebarHeader>
 	      <SidebarContent>
 	        <SidebarGroup className="">
 		        <SidebarMenu className="rounded-none">
 			        {tabs.map((tab) => (
-				        <SidebarMenuItem className="cursor-pointer" key={tab.tag}>
-					        <SidebarMenuButton className="" onClick={() => handlePageChange(tab.tag)}
-					                           asChild>
-						        {
-							        tab.tag === currentPage ?
-								        <div
-									        className="bg-amethyst-900 hover:bg-amethyst-800 text-amethyst-300 hover:text-amethyst-300 font-poppins-semibold transition-all duration-100">
-							                <tab.icon/>
-						                    <span>{tab.title}</span>
-						                </div> :
-								        <div className="transition-all duration-100 text-zinc-400">
-							                <tab.icon/>
-						                    <span>{tab.title}</span>
-						                </div>
-						        }
-
-
+				        <SidebarMenuItem className="cursor-pointer " key={tab.tag}>
+					        <SidebarMenuButton
+						        className={`transition-all duration-100 ${tab.tag === currentPage ?
+							        "hover:bg-amethyst-800 bg-amethyst-900 focus:bg-amethyst-800 text-amethyst-300 hover:text-amethyst-300 font-poppins-semibold  transition-all duration-100" :
+							        "text-zinc-400"}`}
+						        onClick={() => handlePageChange(tab.tag)}
+						        asChild>
+						            <div>
+							            <tab.icon/>
+							            <span>{tab.title}</span>
+									</div>
 					        </SidebarMenuButton>
 			            </SidebarMenuItem>
 			        ))}
 		        </SidebarMenu>
 	        </SidebarGroup>
 	      </SidebarContent>
-			<SidebarFooter className="p-2">
-				<div
-					className="cursor-pointer prevent-select p-2 bg-zinc-100 hover:bg-amethyst-900 text-zinc-400 hover:text-amethyst-500 font-poppins-semibold transition-all durantion-150 rounded-md">
-					Powered by Neemble
-				</div>
+			<SidebarFooter className="">
+				<Button variant="ghost"
+				        className="flex justify-start items-center text-zinc-400 text-sm font-poppins-regular">
+					<Info size={12}/>
+					Ajuda e informações
+				</Button>
 			</SidebarFooter>
     </Sidebar>
 	);

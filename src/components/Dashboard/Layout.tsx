@@ -8,12 +8,15 @@ interface Props {
 }
 
 export function Layout({children}: Props) {
+
+
 	return (
 		<SidebarProvider>
 			<DashboardSidebar/>
-			<main className="w-full">
+			<main className={`w-full`}>
 				<Navbar/>
-				<div className="p-4">
+				<div
+					className={`p-4`}>
 					{children}
 				</div>
 			</main>
