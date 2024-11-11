@@ -99,7 +99,7 @@ export function LogInForm() {
 					<div className={"flex justify-end"}>
 						<Button variant={"link"} className={"p-0 m-0 text-xs"}>Esqueci a palavra passe</Button>
 					</div>
-					<div className={`text-red-500 italic font-semibold`}>
+					<div className={`text-red-500 italic text-xs`}>
 						{error}
 					</div>
 					<Button type="submit" color="primary" className={"w-full py-4 text-sm my-4"}>

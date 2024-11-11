@@ -2,19 +2,22 @@ import {SidebarTrigger} from "@/components/ui/sidebar.tsx";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {Button} from "@/components/ui/button.tsx";
 import {Ellipsis} from "lucide-react";
+import {useDashboardContext} from "@/context/dashboardContext.ts";
+import Time from "@/components/Dashboard/Time.tsx";
 
 
 export function Navbar() {
 
+	const {user} = useDashboardContext()
 
 	return (
 		<div
-			className={`flex justify-between items-center sticky top-0 w-full px-4 h-16 bg-white`}>
+			className={`flex justify-between items-center sticky top-0 w-full px-4 h-16 z-10 bg-white`}>
 			<div className="flex items-center space-x-4">
 				<SidebarTrigger/>
 				<div className="text-xs">
-					<h1 className="font-poppins-semibold">Ola, Delcio!</h1>
-					<span className=" text-zinc-500">Quarta-Feira, 6 de Novembro</span>
+					<h1 className="font-poppins-semibold">Ola, {user.firstName}!</h1>
+					<Time/>
 				</div>
 			</div>
 

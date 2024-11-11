@@ -34,7 +34,7 @@ const tabs = [
 
 export function DashboardSidebar() {
 
-	const {currentPage, selectPage} = useDashboardContext()
+	const {currentPage, selectPage, user} = useDashboardContext()
 	const {toggleSidebar, isMobile} = useSidebar()
 
 	function handlePageChange(page: string) {
@@ -53,8 +53,8 @@ export function DashboardSidebar() {
 					N
 				</div>
 				<div className="flex flex-col text-xs">
-					<span>Delcio Agostinho</span>
-					<span className="font-poppins-light text-zinc-400">dagostinho04@hotmail.com</span>
+					<span>{user.firstName} {user.lastName}</span>
+					<span className="font-poppins-light text-zinc-400">{user.email}</span>
 				</div>
 			</SidebarHeader>
 	      <SidebarContent>

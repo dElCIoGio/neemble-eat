@@ -10,7 +10,7 @@ const GET_RESTAURANT_STALETIME: number = HOUR * 24
 const GET_RESTAURANT_CACHETIME: number = HOUR * 36
 
 interface props {
-	restaurantID: string | null
+	restaurantID: string | undefined
 }
 
 
@@ -35,7 +35,7 @@ function useGetRestaurant({restaurantID}: props) {
 		queryKey: ["GET Restaurant", restaurantID],
 		queryFn: () => getRestaurant({restaurantID})
 			.then(data => data),
-		enabled: restaurantID != null,
+		enabled: restaurantID != undefined,
 		staleTime: GET_RESTAURANT_STALETIME,
 		gcTime: GET_RESTAURANT_CACHETIME,
 	});

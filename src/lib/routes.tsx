@@ -59,9 +59,9 @@ export const ROUTES: Route[] = [
 		requiresAuth: false
 	},
 	{
-		path: `${URL_PATH_PREFIX}/user`,
+		path: `${URL_PATH_PREFIX}/user/:userID`,
 		element: <Dashboard/>,
-		requiresAuth: false
+		requiresAuth: true
 	}
 
 ]

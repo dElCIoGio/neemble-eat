@@ -14,14 +14,7 @@ export enum OrderStatus {
 	Cancelled = "Cancelled"
 }
 
-interface Category {
-	id?: string,
-	created_time?: string
-	name: string,
-	description?: string,
-	menuID: string,
-	items: MenuItem[],
-}
+
 
 interface CategoryJson {
 	id: string,
@@ -68,6 +61,31 @@ interface Menu {
 	categories?: Array<Category>,
 }
 
+interface Category {
+	id?: string,
+	created_time?: string
+	name: string,
+	description?: string,
+	menuID: string,
+	items: Array<MenuItem>,
+}
+
+
+interface MenuItem {
+	[key: string]: string | number | boolean | undefined | null | File;
+
+	id?: string,
+	created_time?: string,
+	name: string,
+	description?: string,
+	categoryID: string,
+	availability?: boolean,
+	price: number,
+	imageURL: string | null,
+	imageFile?: File // DO NOT NEED THIS, IDK WHY I ADDED BUT WONT DELETE IT NOW
+}
+
+
 interface MenuJson {
 	id: string,
 	created_time: string
@@ -85,19 +103,7 @@ interface MenuParsed {
 	categories: CategoryParsed[]
 }
 
-interface MenuItem {
-	[key: string]: string | number | boolean | undefined | null | File;
 
-	id?: string,
-	created_time?: string,
-	name: string,
-	description?: string,
-	categoryID: string,
-	availability?: boolean,
-	price: number,
-	imageURL: string | null,
-	imageFile?: File // DO NOT NEED THIS, IDK WHY I ADDED BUT WONT DELETE IT NOW
-}
 
 interface item {
 	categoryID: string,

@@ -20,6 +20,7 @@ import {z} from 'zod';
 import {AdditionalNoteSchema} from "@/lib/zodSchema.ts";
 import {ProductAdditionalInfo} from "@/components/RestaurantMenu/ProductAdditionalInfo.tsx";
 
+
 interface props {
 	children: ReactNode;
 	item: MenuItem;
@@ -39,11 +40,8 @@ export function Product({children, item}: props) {
 
 	const showMessage = () => {
 		setProductAdded(true);
-		// setTimeout(() => {
-		// 	setProductAdded(false);
-		// }, 3000);
-	};
 
+	};
 
 	const handleNumberOfItems = (operation: string) => {
 		if (operation === '+') {
@@ -109,11 +107,11 @@ export function Product({children, item}: props) {
 			quantity: numberOfItems,
 			total
 		}}>
-					<Drawer open={isOpen} onOpenChange={setIsOpen}>
-			<DrawerTrigger>
-				{children}
-			</DrawerTrigger>
-			<DrawerContent className="max-h-[95%]">
+			<Drawer open={isOpen} onOpenChange={setIsOpen}>
+				<DrawerTrigger>
+					{children}
+				</DrawerTrigger>
+				<DrawerContent className="max-h-[95%]">
 				<DrawerHeader>
 					<DrawerTitle>
 						<div className={"flex relative justify-between items-center px-2"}>
@@ -144,7 +142,7 @@ export function Product({children, item}: props) {
                     </DrawerClose>
                 </DrawerFooter>
 			</DrawerContent>
-		</Drawer>
+		    </Drawer>
 		</ProductContext.Provider>
 	);
 }

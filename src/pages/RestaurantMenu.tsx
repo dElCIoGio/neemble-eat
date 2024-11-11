@@ -7,7 +7,7 @@ import {RestaurantInfo} from "@/components/RestaurantMenu/RestaurantInfo.tsx";
 import {TableInfo} from "@/components/RestaurantMenu/tableInfo.tsx";
 import {Categories} from "@/components/RestaurantMenu/Categories.tsx";
 import {Footer} from "@/components/RestaurantMenu/Footer.tsx";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {MenuItem} from "@/schema.ts";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import {LoadingRestaurantMenu} from "@/components/RestaurantMenu/LoadingRestaurantMenu.tsx";
@@ -19,29 +19,11 @@ function RestaurantMenu() {
 	const menuID: string = "B5xNBhl5n3DfSZPvkkG1"
 	const tableNumber: number = 3
 
-	const [searchParams, setSearchParams] = useSearchParams();
-	const itemID = searchParams.get("item")
-	const categoryID = searchParams.get("category")
+	const [, setSearchParams] = useSearchParams();
 	const {restaurant, isRestaurantLoading} = useGetRestaurant({restaurantID})
 	const {menu, isMenuLoading} = useGetMenu({menuID})
 	const [selectedItem, setSelectedItem] = useState<MenuItem | undefined>()
 
-
-	useEffect(() => {
-		if (menu && menu.categories) {
-			for (const category of menu.categories) {
-				if (category.id === categoryID) {
-					for (const item of category.items) {
-						if (item.id == itemID) {
-							setSelectedItem(item)
-							break
-						}
-					}
-					break
-				}
-			}
-		}
-	}, [menu]);
 
 	const setUrlVariable = (key: string, value: string) => {
 		setSearchParams(prevParams => {
@@ -56,15 +38,14 @@ function RestaurantMenu() {
 			setUrlVariable("item", item.id)
 			setUrlVariable("category", item.categoryID)
 		}
-
 	}
 
 	function unselectItem() {
-		setSelectedItem(undefined)
 		setSearchParams(prevParams => {
-			prevParams.delete("item")
-			prevParams.delete("category")
-			return prevParams;
+			const newParams = new URLSearchParams(prevParams.toString());
+			newParams.delete("item");
+			newParams.delete("category");
+			return newParams;
 		});
 	}
 
