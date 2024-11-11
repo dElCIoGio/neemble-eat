@@ -1,4 +1,3 @@
-import Background from "@/components/ui/Background.tsx";
 import {Link} from "react-router-dom";
 import {ChevronLeft} from "lucide-react";
 import {URL_PATH_PREFIX} from "@/lib/constants.ts";
