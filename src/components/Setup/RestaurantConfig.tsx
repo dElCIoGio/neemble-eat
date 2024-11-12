@@ -9,7 +9,7 @@ import {useForm} from "react-hook-form";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
 import {RequiredInput} from "@/components/wrappers/requiredInput"
 import {Textarea} from "@/components/ui/textarea.tsx";
-import {RestaurantBannerDisplay} from "@/components/Setup/RestaurantBannerDisplay.tsx";
+import {ImageSelectionDisplay} from "@/components/ui/ImageSelectionDisplay.tsx";
 import {PinIcon, PhoneIcon} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
 import {useSetupContext} from "@/context/setupContext.ts";
@@ -88,7 +88,7 @@ export function RestaurantConfig() {
 											}
 											}/>
 									</label>
-									<RestaurantBannerDisplay
+									<ImageSelectionDisplay
 										removeImage={removeimage}
 										selectedImage={selectedImageURL}/>
 									</div>
@@ -123,8 +123,8 @@ export function RestaurantConfig() {
 										</RequiredInput>
 									</div>
 								<FormControl>
-								<Input {...field}/>
-									</FormControl>
+									<Input {...field}/>
+								</FormControl>
 									<FormMessage/>
 								</FormItem>
 							)}/>

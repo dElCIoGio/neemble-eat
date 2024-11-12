@@ -1,14 +1,18 @@
 import {SidebarTrigger} from "@/components/ui/sidebar.tsx";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import {Button} from "@/components/ui/button.tsx";
-import {Ellipsis} from "lucide-react";
+import {EllipsisVertical} from "lucide-react";
 import {useDashboardContext} from "@/context/dashboardContext.ts";
 import Time from "@/components/Dashboard/Time.tsx";
+import {logout} from "@/service/firebase/signOut.ts";
+import {URL_PATH_PREFIX} from "@/lib/constants.ts";
+import {useNavigate} from "react-router-dom";
 
 
 export function Navbar() {
 
 	const {user} = useDashboardContext()
+	const navigate = useNavigate();
 
 	return (
 		<div
@@ -24,12 +28,18 @@ export function Navbar() {
             <DropdownMenu>
 	            <DropdownMenuTrigger asChild>
 		            <Button variant={"ghost"} className="focus:ring-0">
-			            <Ellipsis/>
+			            <EllipsisVertical/>
 		            </Button>
 	            </DropdownMenuTrigger>
                 <DropdownMenuContent className="mx-2">
-	                <DropdownMenuItem className="bg-red-400 focus:bg-red-500 focus:text-white text-white">
-		                Terminar Sessão
+	                <DropdownMenuItem asChild className="bg-red-500 focus:bg-red-600 focus:text-white text-white">
+						<Button onClick={() => {
+							logout().then()
+							navigate(`${URL_PATH_PREFIX}/home`)
+						}}>
+							Terminar Sessão
+						</Button>
+
 	                </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>

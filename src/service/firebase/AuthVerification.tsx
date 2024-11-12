@@ -11,6 +11,7 @@ interface props {
 export function AuthVerification({children}: props) {
 
 	const {user} = useAuth();
+	console.log(user)
 
 	const navigate = useNavigate()
 

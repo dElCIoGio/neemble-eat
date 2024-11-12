@@ -12,7 +12,7 @@ export function Home() {
 
 	return (
 		<div className="h-screen bg-cover">
-			<Background className="bg-gradient-to-br from-slate-50 to-violet-100"/>
+			<Background className="bg-gradient-to-br from-slate-50 to-amethyst-800"/>
 			<div className="w-full">
 				<nav className="p-4 bg-opacity-50 flex justify-between items-center">
 					<h1 className="text-xl font-bold">NEEMBLE EAT</h1>
@@ -32,7 +32,7 @@ export function Home() {
 							</SheetContent>
 						</Sheet> :
 						<div className="flex items-center gap-3">
-							<Button asChild className="rounded-full" variant="ghost">
+							<Button asChild className="rounded-full" variant="link">
 								<Link to={`${URL_PATH_PREFIX}/login`} className="border-white">
 									Login
 								</Link>
@@ -47,10 +47,10 @@ export function Home() {
 					}
 
 				</nav>
-				<main className="max-w-[920px] w-full mx-auto py-24 px-4">
+				<main className="max-w-[920px] w-full mx-auto py-16 px-4">
 					<div className="text-center">
-						<h1 className="text-4xl font-bold">
-							Aumente o seu rendimento e performance com a nossa plataforma
+						<h1 className="text-6xl font-bold">
+							Aumente o seu rendimento e performance com pedidos online
 						</h1>
 						<h2 className={"text-base mt-8 max-w-[700px] mx-auto text-gray-500"}>
 							A nossa plataforma oferece uma solução robusta para automatizar as operações do seu

@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-export function RestaurantBannerDisplay({removeImage, selectedImage}: Props) {
+export function ImageSelectionDisplay({removeImage, selectedImage}: Props) {
 
 	if (selectedImage == null)
 		return <div></div>

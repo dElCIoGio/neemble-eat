@@ -1,7 +1,7 @@
 import {Menu, MenuItem} from "@/schema.ts";
 import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
 import EditItem from "@/components/Dashboard/EditItem.tsx";
-import {EditMenuContext} from "@/context/editMenuContext.ts";
+import {EditItemContext} from "@/context/editItemContext.ts";
 import {useEffect, useState} from "react";
 
 interface TableProps{
@@ -19,8 +19,6 @@ function ItemsTable({menu, search, selectedCategory}: TableProps) {
     useEffect(() => {
         setEditingItem(!!selectedItem)
     }, [selectedItem])
-
-    console.log(menu)
 
     return (
         <div>
@@ -48,15 +46,17 @@ function ItemsTable({menu, search, selectedCategory}: TableProps) {
                                 category.items
                                     .filter(item => search === ""? item: item.name.toLowerCase().includes(search.toLowerCase()))
                                     .map(item => (
-                                            <TableRow onClick={() => setSelectedItem(item)} key={item.name} className={`${item.availability != true && "bg-zinc-100"}`}>
-                                                <TableCell className="font-poppins-semibold">{item.name}</TableCell>
-                                                <TableCell>{category.name}</TableCell>
+                                            <TableRow onClick={
+                                                () => setSelectedItem(item)
+                                            } key={item.name} className={`${item.availability != true && "bg-zinc-100"}`}>
+                                                <TableCell className="font-poppins-semibold max-w-[200px] text-nowrap truncate">{item.name}</TableCell>
+                                                <TableCell className="text-nowrap">{category.name}</TableCell>
                                                 <TableCell>
                                                     <span className={`${item.availability == true && "text-green-700 font-poppins-semibold bg-green-100 py-0.5 px-2 rounded-full"} prevent-select`}>
                                                         {item.availability ? "Disponível" : "Indisponível"}
                                                     </span>
                                                 </TableCell>
-                                                <TableCell>{item.price} Kz</TableCell>
+                                                <TableCell className="text-nowrap text-zinc-600 font-poppins-semibold">{item.price} Kz</TableCell>
                                             </TableRow>
                                     )
                                 ))
@@ -64,17 +64,17 @@ function ItemsTable({menu, search, selectedCategory}: TableProps) {
                     }
                 </TableBody>
             </Table>
-            {
-                selectedItem && editingItem &&
-                <EditMenuContext.Provider value={{
+
+
+                <EditItemContext.Provider value={{
                     item: selectedItem,
                     isOpened: editingItem,
                     onOpenChange: (isOpened: boolean) => setEditingItem(isOpened),
                 }}>
                     <EditItem/>
-                </EditMenuContext.Provider>
+                </EditItemContext.Provider>
 
-            }
+
         </div>
     );
 }

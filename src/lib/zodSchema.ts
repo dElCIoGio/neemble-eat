@@ -1,5 +1,7 @@
 import {z} from "zod";
 
+export const MB = 1024 * 1024;
+
 export const LogInSchema = z.object({
 	email: z.string().email({
 		message: 'Insira um e-mail válido',
@@ -78,4 +80,38 @@ export const TablesConfigSchema = z.object({
 	}).max(MAX_NUMBER_OF_TABLES, {
 		message: `O número máximo de mesas permitido é ${MAX_NUMBER_OF_TABLES}`
 	}),
+})
+
+
+export const MAX_NUMBER_OF_CHARACTERS_ITEM_NAME = 55
+export const MAX_NUMBER_OF_CHARACTERS_ITEM_DESCRIPTION = 300
+export const MAX_IMAGE_SIZE = 15
+
+export const AddItemSchema = z.object({
+	image: z.instanceof(File).refine(file => {
+		return file.type.startsWith('image/');
+	}, {
+		message: "Formato inválido. Apenas imagens são permitidas."
+	}).refine(file => file.size > MAX_IMAGE_SIZE * MB, {
+		message: `Imagem grande demais. O tamanho máximo permitido são ${MAX_IMAGE_SIZE}MB.`
+	}).refine(file => file.size !== 0, {
+		message: "Nenhuma imagem foi selecionada. Por favor, inclua uma imagem."
+	}),
+	name: z.string().min(1, {
+		message: "Inclua um nome para o seu produto."
+	}).max(MAX_NUMBER_OF_CHARACTERS_ITEM_NAME, {
+		message: `O nome deve ter no máximo ${MAX_NUMBER_OF_CHARACTERS_ITEM_NAME} caracteres.`
+	}),
+	description: z.string().min(1, {
+		message: "Inclua uma descrição para o seu produto."
+	}).max(MAX_NUMBER_OF_CHARACTERS_ITEM_DESCRIPTION, {
+		message: `A descrição deve ter no máximo ${MAX_NUMBER_OF_CHARACTERS_ITEM_DESCRIPTION} caracteres.`
+	}),
+	price: z.number().int().positive({
+		message: "Insira um preço válido."
+	}),
+	category: z.string().min(1, {
+		message: "Inclua uma categoria para o seu produto."
+	}),
+	isAvailable: z.boolean().optional(),
 })
