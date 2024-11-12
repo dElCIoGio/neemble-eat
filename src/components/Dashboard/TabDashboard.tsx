@@ -2,7 +2,6 @@ import {TypographyH2, TypographyMuted} from "@/components/ui/Typography.tsx";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {useState} from "react";
 import {Analytics} from "@/components/Dashboard/Analytics.tsx";
-import {Performance} from "@/components/Dashboard/Performance.tsx";
 import {Overview} from "@/components/Dashboard/Overview.tsx";
 
 export function TabDashboard() {
@@ -38,10 +37,7 @@ export function TabDashboard() {
 						             value="analytics">
 							Analítico
 						</TabsTrigger>
-						<TabsTrigger className="rounded-md prevent-select" onClick={() => setSection("performance")}
-						             value="performance">
-							Performance
-						</TabsTrigger>
+
 					</TabsList>
 					<div>
 						<TabsContent value="overview">
@@ -50,11 +46,7 @@ export function TabDashboard() {
 						<TabsContent value="analytics">
 							<Analytics/>
 						</TabsContent>
-						<TabsContent value="performance">
-							<Performance/>
-						</TabsContent>
 					</div>
-
 				</Tabs>
 			</div>
 		</div>

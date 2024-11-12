@@ -1,26 +1,69 @@
 import {Link} from "react-router-dom";
-import background from "@/../public/images/mesh.png"
 import {URL_PATH_PREFIX} from "@/lib/constants.ts";
+import { Button } from "@/components/ui/button";
+import Background from "@/components/ui/Background.tsx";
+import {useIsMobile} from "@/hooks/use-mobile.tsx";
+import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
+import {AlignCenter} from "lucide-react"
 
 export function Home() {
+
+	const isMobile = useIsMobile()
+
 	return (
-		<div className="h-screen bg-cover ]" style={{backgroundImage: `url(${background})`}}>
-			<div className="max-w-[920px] w-full mx-auto">
-				<nav className="p-4 bg-opacity-50 text-white flex justify-between items-center">
-					<h1 className="text-xl font-bold">Logo</h1>
-					<div className="space-x-4">
-						<Link to="/" className="text-white hover:text-gray-300">Home</Link>
-						<Link to="/about" className="text-white hover:text-gray-300">About</Link>
-						<Link to="/contact" className="text-white hover:text-gray-300">Contact</Link>
+		<div className="h-screen bg-cover">
+			<Background className="bg-gradient-to-br from-slate-50 to-violet-100"/>
+			<div className="w-full">
+				<nav className="p-4 bg-opacity-50 flex justify-between items-center">
+					<h1 className="text-xl font-bold">NEEMBLE EAT</h1>
+					{isMobile ? <Sheet>
+						<SheetTrigger asChild><AlignCenter/></SheetTrigger>
+							<SheetContent className="py-12">
+
+								<div className="flex flex-col gap-3">
+									<Link to={`${URL_PATH_PREFIX}/login`} className="font-poppins-semibold">
+										Login
+									</Link>
+									<Link to={`${URL_PATH_PREFIX}/signup`} className="font-poppins-semibold">
+										Criar Conta
+									</Link>
+								</div>
+
+							</SheetContent>
+						</Sheet> :
+						<div className="flex items-center gap-3">
+							<Button asChild className="rounded-full" variant="ghost">
+								<Link to={`${URL_PATH_PREFIX}/login`} className="border-white">
+									Login
+								</Link>
+							</Button>
+							<Button asChild className="rounded-full">
+								<Link to={`${URL_PATH_PREFIX}/signup`} className="border-white">
+									Criar Conta
+								</Link>
+							</Button>
+
 					</div>
-					<Link to={`${URL_PATH_PREFIX}/login`} className="text-white border-white">
-						Login
-					</Link>
+					}
+
 				</nav>
-				<main>
-					<h1>
-						Exepecie a simplicidade em seu restaurante
-					</h1>
+				<main className="max-w-[920px] w-full mx-auto py-24 px-4">
+					<div className="text-center">
+						<h1 className="text-4xl font-bold">
+							Aumente o seu rendimento e performance com a nossa plataforma
+						</h1>
+						<h2 className={"text-base mt-8 max-w-[700px] mx-auto text-gray-500"}>
+							A nossa plataforma oferece uma solução robusta para automatizar as operações do seu
+							restaurante e promover uma experiência ultra dinâmica para os seus clientes.
+						</h2>
+					</div>
+					<div className="mt-8 mx-auto flex justify-center gap-4">
+						<Button asChild className="rounded-full px-6 shadow-lg">
+							<Link to={`${URL_PATH_PREFIX}/signup`} className="border-white">
+								Comece agora e ganhe 10% de desconto
+							</Link>
+						</Button>
+					</div>
 				</main>
 			</div>
 		</div>

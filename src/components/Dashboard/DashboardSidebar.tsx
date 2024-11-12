@@ -21,7 +21,7 @@ const tabs = [
 		icon: Home
 	},
 	{
-		title: "Menu",
+		title: "Edite o Menu",
 		tag: "menu",
 		icon: Menu
 	},

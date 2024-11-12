@@ -5,6 +5,7 @@ import {useGetMenu} from "@/api/menu/getMenu.ts";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import ItemsTable from "@/components/Dashboard/ItemsTable.tsx";
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, SelectLabel} from "@/components/ui/select";
+import {TypographyH2} from "@/components/ui/Typography.tsx";
 
 export function TabMenu() {
 
@@ -17,6 +18,12 @@ export function TabMenu() {
 
 	return (
 		<div>
+			<div className="mb-4">
+				<TypographyH2>
+					Edite o Menu
+				</TypographyH2>
+			</div>
+
 			<div className={"flex flex-col space-y-4 laptop:flex-row laptop:justify-between laptop:items-center mb-8"}>
 				<Input
 					type="text"

@@ -12,7 +12,7 @@ export function Navbar() {
 
 	return (
 		<div
-			className={`flex justify-between items-center sticky top-0 w-full px-4 h-16 z-10 bg-white`}>
+			className={`flex justify-between items-center sticky top-0 w-full px-4 h-16 z-10 bg-zinc-50`}>
 			<div className="flex items-center space-x-4">
 				<SidebarTrigger/>
 				<div className="text-xs">

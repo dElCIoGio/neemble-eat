@@ -5,7 +5,7 @@ import {Button} from "@/components/ui/button.tsx";
 export function Overview() {
 	return (
 		<div>
-			<div className="bg-zinc-100 rounded-md p-2">
+			<div className="">
 				<Grid>
 					<Card className="p-4 col-span-12 laptop:col-span-6 bg-zinc-950 text-white space-y-3 flex flex-col justify-between">
 						<h1 className="font-poppins-semibold border-l-2 px-2 border-amethyst-400">Pedidos</h1>
