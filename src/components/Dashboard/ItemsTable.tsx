@@ -17,6 +17,7 @@ function ItemsTable({menu, search, selectedCategory}: TableProps) {
     const [selectedItem, setSelectedItem] = useState<MenuItem | undefined>(undefined)
 
     useEffect(() => {
+        console.log(selectedItem)
         setEditingItem(!!selectedItem)
     }, [selectedItem])
 
@@ -46,9 +47,9 @@ function ItemsTable({menu, search, selectedCategory}: TableProps) {
                                 category.items
                                     .filter(item => search === ""? item: item.name.toLowerCase().includes(search.toLowerCase()))
                                     .map(item => (
-                                            <TableRow onClick={
-                                                () => setSelectedItem(item)
-                                            } key={item.name} className={`${item.availability != true && "bg-zinc-100"}`}>
+                                            <TableRow
+                                                onClick={() => setSelectedItem(item)}
+                                                key={item.id? item.id: item.name} className={`${item.availability != true ? "bg-zinc-100": "cursor-pointer"} prevent-select`}>
                                                 <TableCell className="font-poppins-semibold max-w-[200px] text-nowrap truncate">{item.name}</TableCell>
                                                 <TableCell className="text-nowrap">{category.name}</TableCell>
                                                 <TableCell>

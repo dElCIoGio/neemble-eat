@@ -10,7 +10,6 @@ interface Props {
 	email: string;
 	phoneNumber: string;
 	role: string;
-
 }
 
 export async function createUser({
@@ -22,7 +21,7 @@ export async function createUser({
 	role
 }: Props): Promise<RepresentantJson> {
 	try {
-		const response = await API.post("representant",
+		const response = await API.post("/representant",
 			{
 				"UUID": UUID,
 				"firstName": firstName,

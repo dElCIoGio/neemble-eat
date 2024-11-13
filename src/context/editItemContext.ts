@@ -1,8 +1,8 @@
-import {MenuItem} from "@/schema.ts";
+import {MenuItemWithCategory} from "@/schema.ts";
 import {createContext, useContext} from "react";
 
 type EditItemContext = {
-    item: MenuItem | undefined;
+    item: MenuItemWithCategory | undefined;
     isOpened: boolean;
     onOpenChange: (isOpened: boolean) => void;
 }

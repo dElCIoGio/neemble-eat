@@ -24,6 +24,8 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer"
 
+import {useEffect, useRef} from "react";
+
 interface BaseProps {
     children: React.ReactNode
 }
@@ -73,8 +75,29 @@ const CredenzaContent = ({ className, children, ...props }: CredenzaProps) => {
     const isDesktop = useMediaQuery(desktop)
     const CredenzaContent = isDesktop ? DialogContent : DrawerContent
 
+    const formContainerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (formContainerRef.current) {
+                formContainerRef.current.style.setProperty('bottom', `env(safe-area-inset-bottom)`);
+            }
+        };
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener("resize", handleResize);
+            handleResize(); // Initial call in case the keyboard is already open
+        }
+
+        return () => {
+            if (window.visualViewport) {
+                window.visualViewport.removeEventListener("resize", handleResize);
+            }
+        };
+    }, []);
+
     return (
-        <CredenzaContent className={className} {...props}>
+        <CredenzaContent className={className} ref={isDesktop? undefined: formContainerRef} {...props}>
     {children}
     </CredenzaContent>
 )

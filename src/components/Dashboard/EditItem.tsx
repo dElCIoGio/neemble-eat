@@ -1,5 +1,5 @@
 import {useEditItemContext} from "@/context/editItemContext";
-import {Credenza, CredenzaBody, CredenzaContent, CredenzaHeader, CredenzaTitle} from "@/components/ui/credenza.tsx";
+import {Dialog, DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog.tsx";
 
 
 
@@ -9,18 +9,18 @@ function EditItem() {
     const {item, onOpenChange, isOpened} = useEditItemContext()
 
     return (
-        <Credenza open={isOpened} onOpenChange={onOpenChange}>
-            <CredenzaContent>
-                <CredenzaHeader>
-                    <CredenzaTitle>
+        <Dialog open={isOpened} onOpenChange={onOpenChange}>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>
                         {item?.name ? item.name : "Novo item"}
-                    </CredenzaTitle>
-                </CredenzaHeader>
-                <CredenzaBody>
+                    </DialogTitle>
+                </DialogHeader>
+                <div className="px-4">
                     <EditItemContent/>
-                </CredenzaBody>
-            </CredenzaContent>
-        </Credenza>
+                </div>
+            </DialogContent>
+        </Dialog>
     );
 }
 

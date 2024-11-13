@@ -14,8 +14,6 @@ const protocol = `${online ? "https:" : "http:"}//`
 export const API = axios.create({
     baseURL: `${protocol}${BASE_URL}`
 })
-
-
 export async function handleError(error: AxiosError) {
     try {
         const errorMessage =

@@ -71,9 +71,7 @@ interface Category {
 }
 
 
-interface MenuItem {
-	[key: string]: string | number | boolean | undefined | null | File;
-
+type MenuItem = {
 	id?: string,
 	created_time?: string,
 	name: string,
@@ -83,6 +81,10 @@ interface MenuItem {
 	price: number,
 	imageURL: string | null,
 	imageFile?: File // DO NOT NEED THIS, IDK WHY I ADDED BUT WONT DELETE IT NOW
+}
+
+export interface MenuItemWithCategory extends MenuItem {
+	category?: string
 }
 
 
