@@ -21,7 +21,8 @@ export async function fetchUserByUUID(uuid: string): Promise<RepresentantJson> {
 }
 
 export function useFetchUserByUUID(uuid: string) {
-    return useQuery({
+
+    const {data, isLoading, isFetching} = useQuery({
         queryKey: ['fetchUserByUUID', uuid],
         queryFn: () => fetchUserByUUID(uuid)
             .then(data => data)
@@ -32,4 +33,10 @@ export function useFetchUserByUUID(uuid: string) {
         staleTime: GET_USER_BY_UUID_STALETIME,
         gcTime: GET_USER_BY_UUID_GCTIME,
     });
+
+    return {
+        data,
+        isLoading,
+        isFetching,
+    }
 }

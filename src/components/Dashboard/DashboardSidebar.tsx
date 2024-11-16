@@ -8,7 +8,7 @@ import {
 	SidebarMenuItem,
 	SidebarMenuButton, useSidebar
 } from "@/components/ui/sidebar";
-import {Home, Menu, Settings, Info} from "lucide-react"
+import {Home, Menu, Settings, Info, QrCode} from "lucide-react"
 import {useDashboardContext} from "@/context/dashboardContext.ts";
 import {DashboardPage} from "@/schema.ts";
 import {Button} from "@/components/ui/button.tsx";
@@ -26,10 +26,16 @@ const tabs = [
 		icon: Menu
 	},
 	{
+		title: "Mesas e QR Code",
+		tag: "tables",
+		icon: QrCode
+	},
+	{
 		title: "Definições",
 		tag: "settings",
 		icon: Settings
-	}
+	},
+
 ]
 
 export function DashboardSidebar() {

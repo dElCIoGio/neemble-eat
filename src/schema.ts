@@ -1,4 +1,3 @@
-import {DocumentReference, Timestamp} from "firebase/firestore";
 import {ReactElement} from "react";
 
 
@@ -80,7 +79,6 @@ type MenuItem = {
 	availability?: boolean,
 	price: number,
 	imageURL: string | null,
-	imageFile?: File // DO NOT NEED THIS, IDK WHY I ADDED BUT WONT DELETE IT NOW
 }
 
 export interface MenuItemWithCategory extends MenuItem {
@@ -168,22 +166,6 @@ interface OrderJson {
 	additionalNote?: string
 }
 
-interface OrderFirestore {
-	id: string,
-	createdAt: Timestamp,
-	sessionID: DocumentReference
-	orderTime: string,
-	itemID: DocumentReference,
-	unitPrice: number,
-	total: number,
-	orderedItemName: string,
-	quantity: number,
-	delivered?: boolean,
-	prepStatus: OrderStatus,
-	tableNumber: number,
-	sessionStatus?: SessionStatus,
-	additionalNote?: string
-}
 
 interface Representant {
 	id?: string,
@@ -239,19 +221,6 @@ interface RestaurantJson {
 	tables?: Array<string>
 }
 
-interface RestaurantFirestore {
-	id: string,
-	name: string,
-	address: string,
-	phoneNumber: string,
-	representants?: Array<DocumentReference>,
-	bannerURL: string,
-	description: string,
-	orders?: Array<DocumentReference>,
-	sessions?: Array<DocumentReference>,
-	menus?: Array<DocumentReference>,
-	tables?: Array<DocumentReference>
-}
 
 interface Table {
 	id?: string,
@@ -293,12 +262,12 @@ interface TableSessionJson {
 	id: string,
 	created_time: string,
 	invoiceID?: string,
-	startTime?: string,
+	startTime: string,
 	endTime?: string,
 	tableID: string,
 	tableNumber: number,
 	restaurantID: string,
-	orders: Array<string>,
+	orders?: Array<string>,
 	status: SessionStatus
 	total: number
 }
@@ -347,7 +316,5 @@ export type {
 	RestaurantJson,
 	RepresentantJson,
 	CategoryParsed,
-	RestaurantFirestore,
-	OrderFirestore,
 	item
 }

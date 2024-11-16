@@ -6,7 +6,7 @@ import {
 	DrawerHeader, DrawerTitle,
 	DrawerTrigger
 } from "@/components/ui/drawer.tsx";
-import {useState, ReactNode} from "react";
+import {useState, ReactNode, useCallback} from "react";
 import {CartItem, MenuItem} from "@/schema.ts";
 import {useCart} from "@/hooks/useCart.ts";
 import {Button} from "@/components/ui/button.tsx";
@@ -38,42 +38,44 @@ export function Product({children, item}: props) {
 	const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false)
 
 
-	const showMessage = () => {
+	const showMessage = useCallback(() => {
 		setProductAdded(true);
+	}, []);
 
-	};
-
-	const handleNumberOfItems = (operation: string) => {
+	const handleNumberOfItems = useCallback((operation: string) => {
 		if (operation === '+') {
-			setNumberOfItems(numberOfItems + 1)
+			setNumberOfItems(numberOfItems + 1);
 		} else {
-			setNumberOfItems(numberOfItems - 1)
+			setNumberOfItems(numberOfItems - 1);
 		}
-	}
+	}, [numberOfItems]);
 
-	const handleTotal = (operation: string) => {
+	
+	const handleTotal = useCallback((operation: string) => {
 		if (item == null) {
-			return
+			return;
 		}
 		if (operation === '+') {
-			setTotal(total + item.price)
+			setTotal(total + item.price);
 		} else {
-			setTotal(total - item.price)
+			setTotal(total - item.price);
 		}
-	}
+	}, [item, total]);
 
-	const handleQuantityChange = (operation: string) => {
+	
+	const handleQuantityChange = useCallback((operation: string) => {
 		if (operation === '+') {
-			handleNumberOfItems(operation)
-			handleTotal(operation)
+			handleNumberOfItems(operation);
+			handleTotal(operation);
 		} else {
 			if (total) {
-				handleNumberOfItems(operation)
-				handleTotal(operation)
+				handleNumberOfItems(operation);
+				handleTotal(operation);
 			}
 		}
-	}
+	}, [total, handleNumberOfItems, handleTotal]);
 
+	
 	function handleSubmit(data: z.infer<typeof AdditionalNoteSchema>) {
 		const note = data.note
 		if (!item) return

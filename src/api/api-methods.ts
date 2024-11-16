@@ -9,6 +9,7 @@ export class ApiMethods {
 
     public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
         try {
+            console.log(API.defaults.baseURL, url)
             const response = await API.get<T>(url, config);
             return this.handleResponse(response);
         } catch (error) {

@@ -1,6 +1,4 @@
 import Navbar from "@/components/RestaurantMenu/Navbar.tsx";
-import {useGetRestaurant} from "@/api/restaurant/GET Restaurant.ts"
-import {useGetMenu} from "@/api/menu/getMenu.ts";
 import {MenuContext} from "@/context/menuContext.ts";
 import {Banner} from "@/components/RestaurantMenu/Banner.tsx";
 import {RestaurantInfo} from "@/components/RestaurantMenu/RestaurantInfo.tsx";
@@ -12,16 +10,18 @@ import {MenuItem} from "@/schema.ts";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import {LoadingRestaurantMenu} from "@/components/RestaurantMenu/LoadingRestaurantMenu.tsx";
 import {useSearchParams} from "react-router-dom";
+import {useGetMenu} from "@/service/api/menu.ts";
+import {useGetRestaurant} from "@/service/api/restaurant.ts";
 
 function RestaurantMenu() {
 
-	const restaurantID: string = "FUHT4zQL5Umz99BN7dUI"
+	const restaurantId: string = "FUHT4zQL5Umz99BN7dUI"
 	const menuID: string = "B5xNBhl5n3DfSZPvkkG1"
 	const tableNumber: number = 3
 
 	const [, setSearchParams] = useSearchParams();
-	const {restaurant, isRestaurantLoading} = useGetRestaurant({restaurantID})
-	const {menu, isMenuLoading} = useGetMenu({menuID})
+	const {data: restaurant, isLoading: isRestaurantLoading} = useGetRestaurant({restaurantId})
+	const {data: menu, isLoading: isMenuLoading} = useGetMenu({menuId: menuID})
 	const [selectedItem, setSelectedItem] = useState<MenuItem | undefined>()
 
 

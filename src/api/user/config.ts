@@ -1,11 +1,6 @@
 import {AxiosRequestConfig} from "axios";
+import {baseConfig} from "@/api/utils.ts";
 
-
-const baseConfig: AxiosRequestConfig = {
-    headers: {
-        "Accept": "application/json"
-    }
-};
 
 export const CONFIG = {
     CREATE_USER: (): AxiosRequestConfig => ({

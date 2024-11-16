@@ -4,6 +4,7 @@ import {ColumnDef} from "@tanstack/react-table";
 import {Button} from "@/components/ui/button.tsx";
 import {ArrowUpDown} from "lucide-react";
 import ItemRowActions from "@/components/Dashboard/ItemRowActions.tsx";
+import {formatCurrency} from "@/lib/utils.ts";
 
 interface ItemActions {
     onEdit: (item: MenuItemWithCategory) => void;
@@ -56,16 +57,9 @@ export const menuColumnsSchema = ({ onEdit, onDelete }: ItemActions): ColumnDef<
         accessorKey: "price",
         header: () => <div className="text-left">Preço</div>,
         cell: ({row}) => {
-            const price = parseFloat(row.getValue("price"));
+            const price = formatCurrency(row.getValue("price"))
 
-            const formattedPrice = new Intl.NumberFormat("pt-PT", {
-                style: "currency",
-                currency: "AOA",
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            }).format(price);
-
-            return <div className="text-left font-poppins-semibold text-zinc-600">{formattedPrice}</div>;
+            return <div className="text-left font-poppins-semibold text-zinc-600">AOA&nbsp;{price}</div>;
         }
     },
     {

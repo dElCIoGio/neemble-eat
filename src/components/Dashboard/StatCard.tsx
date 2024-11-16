@@ -1,5 +1,6 @@
 import {Card} from "@/components/ui/card.tsx";
 import {TrendingUp, TrendingDown} from "lucide-react"
+import {formatCurrency} from "@/lib/utils.ts";
 
 interface StatCardProps {
 	title: string;
@@ -11,8 +12,11 @@ interface StatCardProps {
 
 
 export function StatCard({period, pillText, trend, value, title}: StatCardProps) {
+
+	const formattedAmount = formatCurrency(value)
+
 	return (
-		<Card className="col-span-12 tablet:col-span-6 laptop:col-span-4 p-4">
+		<Card className="col-span-12 tablet:col-span-6 laptop:col-span-4 p-4 border-0 shadow-none">
 			<div className="flex justify-between items-center">
 				<h3 className="text-french_gray-300 font-poppins-semibold text-sm">{title}</h3>
 				{
@@ -21,7 +25,7 @@ export function StatCard({period, pillText, trend, value, title}: StatCardProps)
 
 			</div>
 			<p className="text-3xl font-poppins-semibold mb-8">
-				{value} Kz
+				AOA&nbsp;{formattedAmount}
 			</p>
 			<p className="text-xs text-french_gray-400">
 				{period}

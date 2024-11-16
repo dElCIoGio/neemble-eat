@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useDashboardContext} from "@/context/dashboardContext.ts";
-import {useGetMenu} from "@/api/menu/getMenu.ts";
+import {useGetMenu} from "@/service/api/menu";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import {TypographyH2} from "@/components/ui/Typography.tsx";
 import AddItem from "@/components/Dashboard/AddItem.tsx";
@@ -18,7 +18,7 @@ export function TabMenu() {
 	document.title = "Menu";
 
 	const {restaurant} = useDashboardContext()
-	const {menu, isMenuLoading} = useGetMenu({menuID: restaurant.menus[0]})
+	const {data: menu, isLoading: isMenuLoading} = useGetMenu({menuId: restaurant.menus[0]})
 
 	const [items, setItems] = useState<Array<MenuItem>>([]);
 
@@ -30,9 +30,9 @@ export function TabMenu() {
 
 	return (
 		<div>
-			<div className="mb-4">
+			<div className="mb-12">
 				<TypographyH2>
-					Edite o Menu
+					Edite o Menu | <span className="text-zinc-600">{restaurant.name}</span>
 				</TypographyH2>
 			</div>
 			{
@@ -51,7 +51,7 @@ export function TabMenu() {
 					</div>
 					<Separator className="mb-8" />
 					<Loading Fallback={() => <div></div>} loadingParams={[isMenuLoading]}>
-							<ItemsDisplay items={items}/>
+						<ItemsDisplay items={items}/>
 					</Loading>
 				</EditMenuContext.Provider>
 			}

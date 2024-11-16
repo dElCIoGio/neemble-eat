@@ -88,6 +88,7 @@ export const MAX_NUMBER_OF_CHARACTERS_ITEM_DESCRIPTION = 300
 export const MAX_IMAGE_SIZE = 15
 
 export const AddItemSchema = z.object({
+	availability: z.boolean().default(true),
 	image: z.instanceof(File).refine(file => {
 		return file.type.startsWith('image/');
 	}, {

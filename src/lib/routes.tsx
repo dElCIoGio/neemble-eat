@@ -11,7 +11,7 @@ import {URL_PATH_PREFIX} from "@/lib/constants";
 import AuthError from "@/pages/AuthError.tsx";
 import Setup from "@/pages/Setup.tsx";
 import {Dashboard} from "@/pages/Dashboard.tsx";
-import {Test} from "@/pages/Test.tsx";
+import {Redirect} from "@/pages/Redirect.tsx";
 
 export const ROUTES: Route[] = [
 	{
@@ -65,8 +65,15 @@ export const ROUTES: Route[] = [
 		requiresAuth: true
 	},
 	{
-		path: `/test`,
-		element: <Test/>,
+		path: `/redirect/:tableId`,
+		element: <Redirect/>,
+		requiresAuth: false
+	},
+	{
+		path: `/redirect`,
+		element:  <div>
+			Para aceder ao menu, por favor escolha uma mesa e faça scan do nosso QR Code.
+		</div>,
 		requiresAuth: false
 	}
 

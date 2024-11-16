@@ -7,9 +7,10 @@ import {useState} from "react";
 import {DashboardPage} from "@/schema.ts";
 import {DashboardContext} from "@/context/dashboardContext.ts";
 import {useParams} from "react-router-dom";
-import {useGetRestaurant} from "@/api/restaurant/GET Restaurant.ts";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import {useFetchUserByUUID} from "@/api/user/fetchUserByUUID.ts";
+import {useGetRestaurant} from "@/service/api/restaurant.ts";
+import {TabTables} from "@/components/Dashboard/TabTables.tsx";
 
 
 export function Dashboard() {
@@ -19,7 +20,7 @@ export function Dashboard() {
 	const {userID} = useParams() as unknown as {userID: string};
 
 	const {data: user, isFetching: isUserFetching} = useFetchUserByUUID(userID);
-	const {isRestaurantLoading, restaurant} = useGetRestaurant({restaurantID: user? user.restaurantID: undefined})
+	const {isLoading: isRestaurantLoading, data: restaurant} = useGetRestaurant({restaurantId: user? user.restaurantID: undefined})
 
 
 	function selectPage(page: DashboardPage) {
@@ -47,6 +48,9 @@ export function Dashboard() {
 							</TabsContent>
 							<TabsContent value="settings">
 								<TabSettings/>
+							</TabsContent>
+							<TabsContent value="tables">
+								<TabTables/>
 							</TabsContent>
 						</Tabs>
 					</Layout>

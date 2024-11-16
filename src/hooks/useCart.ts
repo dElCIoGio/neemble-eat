@@ -4,11 +4,11 @@ import {getCart, saveCartToLocalStorage} from "@/lib/utils.ts";
 
 
 export function useCart() {
-	const [cart, setCart] = useState<Array<CartItem>>(() => getCart());
+	const [cart, setCart] = useState<CartItem[]>(() => getCart());
 
-	const itemCount = useCallback(() => {
+	const itemCount = () => {
 		return cart.reduce((total, item) => total + item.quantity, 0);
-	}, [cart]);
+	};
 
 	const [numberOfItems, setNumberOfItems] = useState<number>(itemCount)
 
@@ -23,38 +23,51 @@ export function useCart() {
 		saveCartToLocalStorage(cart);
 		setTotalValue(getTotalValue(cart));
 		setNumberOfItems(cart.reduce((total, item) => total + item.quantity, 0))
-	}, [cart]);
+	}, [cart, getTotalValue]);
 
-	const findCartItemIndexByID = useCallback((id: string) => {
+
+	const findCartItemIndexByID = (id: string) => {
 		return cart.findIndex(item => item.id === id);
-	}, [cart]);
+	};
 
-	const deleteProduct = useCallback((index: number) => {
+	const deleteProduct = (index: number) => {
 		if (index >= 0) {
 			setCart(prevCart => prevCart.filter((_, itemIndex) => index !== itemIndex));
 			return 1;
 		}
 		return 0;
-	}, []);
+	};
 
-	const addItem = useCallback((newItem: CartItem) => {
-		let found = false
-		setCart(prevCart => prevCart.map((item) => {
-			if (item.id === newItem.id) {
-				found = true
-				return {
-					...item,
-					quantity: item.quantity + newItem.quantity
-				}
+	const addItem = (newItem: CartItem) => {
+
+		console.log(newItem)
+
+		setCart((prevCart) => {
+			// Check if the item already exists in the cart by its id
+			const existingItemIndex = prevCart.findIndex(item => item.id === newItem.id);
+			console.log(existingItemIndex)
+			console.log("PREV CART")
+			console.log(prevCart)
+			console.log(cart)
+
+			if (existingItemIndex !== -1) {
+				console.log("EXISTING ITEM")
+				// Item found: update its quantity
+				const updatedCart = [...prevCart];
+				updatedCart[existingItemIndex] = {
+					...updatedCart[existingItemIndex],
+					quantity: updatedCart[existingItemIndex].quantity + newItem.quantity,
+				};
+				return updatedCart;
 			}
-			return item;
-		}))
-		if (!found) {
-			setCart(prevCart => [...prevCart, newItem])
-		}
-	}, []);
 
-	const updateCartItem = useCallback((index: number, quantityChange: number) => {
+			console.log("NEW ITEM")
+
+			// Item not found: add it to the cart
+			return [...getCart(), newItem];
+		});
+	};
+	const updateCartItem = (index: number, quantityChange: number) => {
 		setCart(prevCart =>
 			prevCart.map((item, itemIndex) => {
 				if (itemIndex === index) {
@@ -66,7 +79,7 @@ export function useCart() {
 				return item;
 			}).filter(item => item.quantity > 0) // Remove item if quantity reaches 0
 		);
-	}, []);
+	};
 
 	const decrementProduct = (index: number) => {
 		if (index >= 0 && cart[index].quantity > 0) {
