@@ -4,8 +4,12 @@ import {useDashboardContext} from "@/context/dashboardContext";
 import { QRCodeCanvas } from "qrcode.react"
 import {Info} from "lucide-react"
 import {Button} from "@/components/ui/button.tsx";
+import {useMediaQuery} from "@/hooks/use-media-query.ts";
+import {DESKTOP} from "@/lib/constants.ts";
 
 export function TabTables() {
+
+    const isDesktop = useMediaQuery(DESKTOP)
 
     const {restaurant} = useDashboardContext()
 
@@ -38,27 +42,28 @@ export function TabTables() {
                 </div>
 
             </div>
-            <div className="flex gap-2">
+            <div className={`grid gap-4 ${isDesktop ? 'grid-cols-3' : 'grid-cols-1'}`}>
                 {
                     tables &&
                     tables.map((table, index) =>
                         <div key={table.id}
-                             className="rounded-md p-4 bg-zinc-100 border border-zinc-10 shadow-sm items-center justify-between inline-block space-y-4">
-                            <div className="w-full">
-                                <h1 className="text-center text-xl font-bold">
-                                    Mesa {table.number}
-                                </h1>
-                            </div>
-
-                            <div className="border border-zinc-200 rounded-md">
+                             className="rounded-md p-2 bg-zinc-100 border border-zinc-10 shadow-sm items-center justify-between inline-block space-y-4 w-full mx-auto">
+                            <div
+                                className="border border-zinc-200 rounded-md bg-white"
+                                style={{height: "auto", margin: "0 auto", maxWidth: 150, width: "100%"}}>
                                 <QRCodeCanvas
-                                    marginSize={1}
-                                    size={200}
+                                    marginSize={3}
+                                    style={{height: "auto", maxWidth: "100%", width: "100%"}}
+                                    size={256}
                                     bgColor={"#ffffff"}
                                     className="rounded-md"
                                     value={table.link}
-                                    id={`qrcode-${index + 1}`}
-                                />
+                                    id={`qrcode-${index + 1}`}/>
+                            </div>
+                            <div className="w-full">
+                                <h1 className="text-center text-lg font-bold">
+                                    Mesa {table.number}
+                                </h1>
                             </div>
                             <Button
                                 className="w-full"

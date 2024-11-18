@@ -8,3 +8,5 @@ export const HOUR = MINUTE * 60
 
 export const URL_PATH_PREFIX: string = ""
 export const TRANSPARENT_LOGO: string = logo
+
+export const DESKTOP = "(min-width: 768px)"
