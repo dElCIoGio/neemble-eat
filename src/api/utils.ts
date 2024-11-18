@@ -14,10 +14,10 @@ export const baseConfig: AxiosRequestConfig = {
 
 export const BASE_URL = online ? CloudRunUrl : localhostUrl
 
-// const protocol = `${online ? "https:" : "http:"}//`
+const protocol = `${online ? "https:" : "http:"}//`
 
 export const API = axios.create({
-    baseURL: `//${BASE_URL}`
+    baseURL: `${protocol}${BASE_URL}`
 })
 
 export async function handleError(error: AxiosError) {
