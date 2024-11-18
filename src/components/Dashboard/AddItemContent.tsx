@@ -4,7 +4,6 @@ import {useDropzone} from "react-dropzone";
 import {AddItemSchema, MAX_IMAGE_SIZE, MB} from "@/lib/zodSchema.ts";
 import {toast} from "sonner";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
-import {Separator} from "@/components/ui/separator.tsx";
 import {DollarSign, Upload} from "lucide-react";
 import {Input} from "@/components/ui/input.tsx";
 import {SelectCategory} from "@/components/Dashboard/SelectCategory.tsx";
@@ -12,6 +11,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {z} from "zod";
 import {NewCategory} from "@/components/Dashboard/NewCategory";
 import {Switch} from "@/components/ui/switch.tsx";
+import {Textarea} from "@/components/ui/textarea.tsx";
 
 type AddItemValues = z.infer<typeof AddItemSchema>;
 
@@ -115,12 +115,10 @@ export function AddItemContent() {
                                         ></span>
                                     </h2>
                                 </FormLabel>
-                                <Separator/>
                                 <FormControl>
                                     <div
                                         {...getRootProps()}
-                                        className={`mx-auto max-w-[350px] flex cursor-pointer flex-col items-center justify-center gap-y-2 rounded-lg border ${preview? "border-amethyst-300 bg-zinc-100":"border-foreground bg-white hover:bg-zinc-100"} transition-all duration-150 p-4 shadow-md`}
-                                    >
+                                        className={`mx-auto max-w-full flex cursor-pointer flex-col items-center justify-center gap-y-2 rounded-lg border border-dashed ${preview? "border-amethyst-300 bg-zinc-100" : "border-zinc-300 bg-white hover:bg-zinc-100"} transition-all duration-150 p-4 `}>
                                         {preview && (
                                             <img
                                                 src={preview as string}
@@ -129,14 +127,22 @@ export function AddItemContent() {
                                             />
                                         )}
                                         <Upload
-                                            className={`size-8 ${preview ? "hidden" : "block"}`}
+                                            className={`size-6 ${preview ? "hidden" : "block"} bg-zinc-200 rounded-full p-1 text-gray-800`}
                                         />
                                         <Input {...getInputProps()} type="file"/>
-                                        {isDragActive ? (
-                                            <p className="text-center">Arraste a imagem para aqui!</p>
-                                        ) : (
-                                            <p className="text-center">Clique aqui ou arraste a imagem para fazer upload</p>
-                                        )}
+                                        {
+                                            isDragActive ? (<p className="text-center">Arraste a imagem para aqui!</p>) :
+                                            preview != null? <p>Imagem selecionada</p>
+                                               :
+                                                <div>
+                                                    <p className="text-center text-sm">Clique aqui ou arraste a imagem para fazer
+                                                        upload</p>
+                                                    <p className="text-center text-xs text-zinc-600">
+                                                        Formatos: JPG, JPEG ou PNG | Tamanho máximo de {MAX_IMAGE_SIZE}MB.
+                                                    </p>
+
+                                                </div>
+                                        }
                                     </div>
                                 </FormControl>
                                 <FormMessage>
@@ -167,7 +173,7 @@ export function AddItemContent() {
                             <FormItem>
                                 <FormLabel>Descrição</FormLabel>
                                 <FormControl>
-                                    <Input {...field} className="pb-28 pl-2 pt-4" variant="brand" placeholder="descrição do produto"/>
+                                    <Textarea {...field} className="" placeholder="descrição do produto"/>
                                 </FormControl>
                             </FormItem>
                         )}/>
@@ -197,7 +203,7 @@ export function AddItemContent() {
                 <NewCategory isOpened={isCreateCategoryOpen} setIsOpened={(value) => setIsCreateCategoryOpen(value)}/>
                 <Button
                     type="submit"
-                    disabled={form.formState.isSubmitting}
+                    disabled={form.formState.isSubmitting || form.formState.isSubmitSuccessful || isCreateCategoryOpen}
                     className="">
                     Confimar
                 </Button>

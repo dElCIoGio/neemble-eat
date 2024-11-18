@@ -1,11 +1,4 @@
-import {
-	Drawer,
-	DrawerClose,
-	DrawerContent, DrawerDescription,
-	DrawerFooter,
-	DrawerHeader, DrawerTitle,
-	DrawerTrigger
-} from "@/components/ui/drawer.tsx";
+
 import {useState, ReactNode, useCallback} from "react";
 import {CartItem, MenuItem} from "@/schema.ts";
 import {useCart} from "@/hooks/useCart.ts";
@@ -19,6 +12,15 @@ import {ProductContext, useProductContext} from "@/context/productContext.ts";
 import {z} from 'zod';
 import {AdditionalNoteSchema} from "@/lib/zodSchema.ts";
 import {ProductAdditionalInfo} from "@/components/RestaurantMenu/ProductAdditionalInfo.tsx";
+import {
+	Sheet,
+	SheetClose,
+	SheetContent, SheetDescription,
+	SheetFooter,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger
+} from "@/components/ui/sheet.tsx";
 
 
 interface props {
@@ -109,42 +111,44 @@ export function Product({children, item}: props) {
 			quantity: numberOfItems,
 			total
 		}}>
-			<Drawer open={isOpen} onOpenChange={setIsOpen}>
-				<DrawerTrigger>
+			<Sheet open={isOpen} onOpenChange={setIsOpen}>
+				<SheetTrigger>
 					{children}
-				</DrawerTrigger>
-				<DrawerContent className="max-h-[95%]">
-				<DrawerHeader>
-					<DrawerTitle>
-						<div className={"flex relative justify-between items-center px-2"}>
-							<div className='flex-grow'/>
-							<h1 className={"text-center flex-none"}>
-								{item.name}
-							</h1>
-							<div className='flex-grow'/>
-							<Popover open={isPopoverOpen} onOpenChange={(val) => setIsPopoverOpen(val)}>
-								<PopoverTrigger>
-									<CartIcon/>
-								</PopoverTrigger>
-								<PopoverContent className={"m-2"}>
-									<CartPopoverContent cart={cart} productAdded={productAdded}/>
-								</PopoverContent>
-							</Popover>
-						</div>
-					</DrawerTitle>
-					<DrawerDescription>{undefined}</DrawerDescription>
-				</DrawerHeader>
+				</SheetTrigger>
+				<SheetContent className="max-h-[90%] px-1 flex flex-col rounded-t-2xl" side={"bottom"}>
 
-				<ScrollArea className="overflow-y-auto">
-					<ProductContent/>
-				</ScrollArea>
-				<DrawerFooter className="pt-2">
-                    <DrawerClose asChild>
-                        <Button variant="outline">Cancelar</Button>
-                    </DrawerClose>
-                </DrawerFooter>
-			</DrawerContent>
-		    </Drawer>
+					<SheetHeader>
+						<SheetTitle>
+							<div className={"flex relative justify-between items-center px-2"}>
+								<div className='flex-grow'/>
+								<h1 className={"text-center flex-none"}>
+									{item.name}
+								</h1>
+								<div className='flex-grow'/>
+								<Popover open={isPopoverOpen} onOpenChange={(val) => setIsPopoverOpen(val)}>
+									<PopoverTrigger>
+										<CartIcon/>
+									</PopoverTrigger>
+									<PopoverContent className={"m-2"}>
+										<CartPopoverContent cart={cart} productAdded={productAdded}/>
+									</PopoverContent>
+								</Popover>
+							</div>
+						</SheetTitle>
+						<SheetDescription>{undefined}</SheetDescription>
+					</SheetHeader>
+					<div className="overflow-y-auto">
+						<ScrollArea className="overflow-y-auto">
+						<ProductContent/>
+					</ScrollArea>
+					</div>
+					<SheetFooter className="pt-2">
+						<SheetClose asChild>
+							<Button variant="outline" className={`laptop:w-full mx-4`}>Cancelar</Button>
+						</SheetClose>
+					</SheetFooter>
+				</SheetContent>
+		    </Sheet>
 		</ProductContext.Provider>
 	);
 }

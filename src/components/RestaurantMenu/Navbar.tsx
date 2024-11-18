@@ -11,13 +11,13 @@ function Navbar() {
 	return (
 		<div className={"flex space-x-4 justify-end p-4"}>
 			<Button asChild variant="secondary"
-			        className={"text-zinc-600"}>
+			        className={"text-zinc-600 hover:text-zinc-900"}>
 				<Link to={`${URL_PATH_PREFIX}/o/${restaurant.id}/${menu.id}/${tableNumber}`}>
 					Seus Pedidos
 				</Link>
 			</Button>
 			<Button asChild variant="secondary"
-			        className={"text-zinc-600"}>
+			        className={"text-zinc-600 hover:text-zinc-900"}>
 				<Link to={`${URL_PATH_PREFIX}/c/${restaurant.id}/${menu.id}/${tableNumber}`}
 				      className={"flex items-center space-x-2"}>
 					<ShoppingCart/>

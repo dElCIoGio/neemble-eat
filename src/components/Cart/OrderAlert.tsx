@@ -18,7 +18,7 @@ export function OrderAlert() {
 
 	return (
 		<AlertDialog>
-			<AlertDialogTrigger className={"w-full pt-2"}>
+			<AlertDialogTrigger asChild className={`w-full pt-2`}>
 				<Button className={`w-full ${totalValue === 0 && "cursor-not-allowed bg-zinc-600"}`}>
 					Confirmar
 				</Button>

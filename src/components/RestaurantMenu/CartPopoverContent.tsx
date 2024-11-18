@@ -14,11 +14,10 @@ export const CartPopoverContent = ({cart, productAdded}: PopUpButtonParams) => {
 	const {restaurant, menu, tableNumber, selectedItem} = useMenuContext()
 
 	return (
-		<div
-			className="">
+		<div>
 			{
 				cart.length > 0 ?
-					<div className=''>
+					<div>
                         <div className='divide-y-[0.2px] divide-gray-300 space-y-2'>
                             {cart.reverse().map((item, index) => (
 	                            <div key={index} className='pt-2'>
@@ -38,8 +37,10 @@ export const CartPopoverContent = ({cart, productAdded}: PopUpButtonParams) => {
                                 </div>
                             ))}
                         </div>
-							<Button asChild className={"w-full mt-4 rounded-lg"}>
-								<Link to={`${URL_PATH_PREFIX}/c/${restaurant.id}/${menu.id}/${tableNumber}`}>
+							<Button asChild
+									className={"w-full mt-4 rounded-lg"}>
+								<Link to={`${URL_PATH_PREFIX}/c/${restaurant.id}/${menu.id}/${tableNumber}`}
+										className="">
 									Carrinho
 								</Link>
 							</Button>

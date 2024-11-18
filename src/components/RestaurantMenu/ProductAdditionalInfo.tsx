@@ -4,10 +4,10 @@ import {Form} from '@/components/ui/form'
 import {useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {FormControl, FormField, FormItem, FormMessage} from "@/components/ui/form.tsx";
-import {Input} from "@/components/ui/input";
 import {ProductQuantity} from "@/components/RestaurantMenu/ProductQuantity.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {useProductContext} from "@/context/productContext.ts";
+import {Textarea} from "@/components/ui/textarea.tsx";
 
 
 type ProductAdditionalType = z.infer<typeof AdditionalNoteSchema>;
@@ -36,11 +36,11 @@ export function ProductAdditionalInfo() {
 					render={({field}) => (
 						<FormItem>
 						<FormControl>
-							<Input
+							<Textarea
 								{...field}
 								disabled={total === 0}
 								placeholder="Indique como quer o seu pedido..."
-								className="text-base pb-28 pt-4"/>
+								className="text-base"/>
 						</FormControl>
 						<FormMessage/>
 					</FormItem>

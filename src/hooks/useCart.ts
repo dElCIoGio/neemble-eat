@@ -1,34 +1,57 @@
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useState, useRef} from "react";
 import {CartItem} from "@/schema.ts";
 import {getCart, saveCartToLocalStorage} from "@/lib/utils.ts";
 
 
-export function useCart() {
-	const [cart, setCart] = useState<CartItem[]>(() => getCart());
-
-	const itemCount = () => {
+function useCountCartItems(cart: CartItem[] = []) {
+	const [count, setCount] = useState<number>(() => {
 		return cart.reduce((total, item) => total + item.quantity, 0);
-	};
+	});
+	
+	function getItemCount() {
+		return cart.reduce((total, item) => total + item.quantity, 0);
+	}
+	
+	useEffect(() => {
+		setCount(getItemCount());
+	}, [cart]);
+	
+	return count;
+}
 
-	const [numberOfItems, setNumberOfItems] = useState<number>(itemCount)
-
+function useTotalCartValue(cart: CartItem[] = []) {
+	const [total, setTotal] = useState<number>(() => {
+		return cart.reduce((total, item) => total + item.quantity * item.price, 0);
+	});
 
 	const getTotalValue = useCallback((cart: Array<CartItem>) => {
 		return cart.reduce((total, item) => total + item.quantity * item.price, 0);
 	}, []);
+	
+	useEffect(() => {
+		setTotal(getTotalValue(cart));
+	}, [cart, getTotalValue]);
+	
+	return total;
+	
+}
 
-	const [totalValue, setTotalValue] = useState<number>(() => getTotalValue(cart));
+export function useCart() {
+	const [cart, setCart] = useState<CartItem[]>(() => getCart());
+	const count = useCountCartItems(cart);
+	const total = useTotalCartValue(cart);
+	const cartRef = useRef(cart);
+
 
 	useEffect(() => {
 		saveCartToLocalStorage(cart);
-		setTotalValue(getTotalValue(cart));
-		setNumberOfItems(cart.reduce((total, item) => total + item.quantity, 0))
-	}, [cart, getTotalValue]);
+	}, [cart]);
 
 
 	const findCartItemIndexByID = (id: string) => {
 		return cart.findIndex(item => item.id === id);
 	};
+
 
 	const deleteProduct = (index: number) => {
 		if (index >= 0) {
@@ -38,35 +61,34 @@ export function useCart() {
 		return 0;
 	};
 
+
+	// Function to add an item to the cart
 	const addItem = (newItem: CartItem) => {
+		setCart(() => {
+			const prevCart = getCart();
 
-		console.log(newItem)
-
-		setCart((prevCart) => {
 			// Check if the item already exists in the cart by its id
 			const existingItemIndex = prevCart.findIndex(item => item.id === newItem.id);
-			console.log(existingItemIndex)
-			console.log("PREV CART")
-			console.log(prevCart)
-			console.log(cart)
 
 			if (existingItemIndex !== -1) {
-				console.log("EXISTING ITEM")
+
 				// Item found: update its quantity
 				const updatedCart = [...prevCart];
 				updatedCart[existingItemIndex] = {
 					...updatedCart[existingItemIndex],
 					quantity: updatedCart[existingItemIndex].quantity + newItem.quantity,
 				};
+				cartRef.current = updatedCart;
 				return updatedCart;
 			}
 
-			console.log("NEW ITEM")
-
 			// Item not found: add it to the cart
-			return [...getCart(), newItem];
+
+			const newCart = [...prevCart, newItem];
+			return newCart;
 		});
 	};
+
 	const updateCartItem = (index: number, quantityChange: number) => {
 		setCart(prevCart =>
 			prevCart.map((item, itemIndex) => {
@@ -81,6 +103,7 @@ export function useCart() {
 		);
 	};
 
+
 	const decrementProduct = (index: number) => {
 		if (index >= 0 && cart[index].quantity > 0) {
 			if (cart[index].quantity === 1) {
@@ -93,6 +116,7 @@ export function useCart() {
 		return null;
 	};
 
+
 	const incrementProduct = (index: number) => {
 		if (index >= 0) {
 			updateCartItem(index, 1);
@@ -100,7 +124,7 @@ export function useCart() {
 		}
 		return null;
 	};
-	
+
 
 	const setCartEmpty = useCallback(() => {
 		setCart([]);
@@ -108,8 +132,7 @@ export function useCart() {
 
 
 	return {
-		itemCount,
-		numberOfItems,
+		numberOfItems: count,
 		cart,
 		addItem,
 		findCartItemIndexByID,
@@ -117,6 +140,6 @@ export function useCart() {
 		decrementProduct,
 		deleteProduct,
 		setCartEmpty,
-		totalValue,
+		totalValue: total,
 	}
 }

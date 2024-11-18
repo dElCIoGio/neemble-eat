@@ -1,10 +1,20 @@
 import {API} from "@/api/utils"
-import {AxiosRequestConfig, AxiosResponse} from "axios";
+import {AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
 
 export class ApiMethods {
 
     private handleResponse<T>(response: AxiosResponse<T>): T {
         return response.data;
+    }
+
+    private handleError(error: AxiosError) {
+        switch (error.message) {
+            case "Request failed with status code 404":
+                return Promise.reject("endpoint not found");
+            default:
+                return Promise.reject("There was an error. Please try again later.");
+        }
+
     }
 
     public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
@@ -13,8 +23,13 @@ export class ApiMethods {
             const response = await API.get<T>(url, config);
             return this.handleResponse(response);
         } catch (error) {
-            console.error(error);
-            throw error;
+            if (error instanceof AxiosError)
+                throw this.handleError(error);
+            else {
+                console.error(error);
+                throw error;
+            }
+
         }
     }
 

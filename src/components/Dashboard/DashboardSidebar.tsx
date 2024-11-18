@@ -6,7 +6,8 @@ import {
 	Sidebar,
 	SidebarMenu,
 	SidebarMenuItem,
-	SidebarMenuButton, useSidebar
+	SidebarMenuButton,
+	useSidebar
 } from "@/components/ui/sidebar";
 import {Home, Menu, Settings, Info, QrCode} from "lucide-react"
 import {useDashboardContext} from "@/context/dashboardContext.ts";
@@ -41,7 +42,7 @@ const tabs = [
 export function DashboardSidebar() {
 
 	const {currentPage, selectPage, user} = useDashboardContext()
-	const {toggleSidebar, isMobile} = useSidebar()
+	const {toggleSidebar, isMobile, state} = useSidebar()
 
 	function handlePageChange(page: string) {
 		selectPage(page as DashboardPage)
@@ -51,14 +52,13 @@ export function DashboardSidebar() {
 
 
 	return (
-		<Sidebar className="">
-			<SidebarHeader
-				className="flex flex-row items-center space-x-2 h-16 p-4 font-poppins-semibold prevent-select">
+		<Sidebar className="" collapsible={"icon"}>
+			<SidebarHeader className={`flex flex-row items-center space-x-2 h-16 p-4 font-poppins-semibold prevent-select`}>
 				<div
-					className={"rounded-lg bg-dark_purple w-8 h-8 text-white flex justify-center items-center"}>
+					className={`rounded-lg ${state === "collapsed" ? "bg-none text-zinc-50 font-poppins-semibold" : "bg-dark_purple"} transition-all duration-150 w-8 h-8 text-white flex justify-center items-center`}>
 					N
 				</div>
-				<div className="flex flex-col text-xs">
+				<div className={`flex flex-col text-xs ${state === "collapsed" && "hidden"}`}>
 					<span>{user.firstName} {user.lastName}</span>
 					<span className="font-poppins-light text-zinc-400">{user.email}</span>
 				</div>
@@ -88,7 +88,10 @@ export function DashboardSidebar() {
 				<Button variant="ghost"
 				        className="flex justify-start items-center text-zinc-400 text-sm font-poppins-regular">
 					<Info size={12}/>
-					Ajuda e informações
+					<p className="transition-all duration-150">
+						{state === "collapsed" ? "" : "Ajuda e informações"}
+					</p>
+
 				</Button>
 			</SidebarFooter>
     </Sidebar>
