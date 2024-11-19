@@ -23,7 +23,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 				<input
 					type={type}
 					className={cn(
-						`${variant == "brand" ? "focus-visible:ring-tropical_indigo-300 focus-visible:outline-[2px] focus-visible:outline-tropical_indigo-900 hover:outline-2 hover:outline-tropical_indigo-900" : "focus-visible:ring-ring"} hover:bg-zinc-100 transition-all duration-150 flex h-9 w-full rounded-md shadow-sm border border-input bg-background px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50`,
+						`${variant == "brand" ? "focus-visible:ring-tropical_indigo-300 focus-visible:outline-[2px] focus-visible:outline-tropical_indigo-900 hover:outline-2 hover:outline-tropical_indigo-900" : "focus-visible:ring-ring"} hover:bg-zinc-100 transition-all duration-150 flex h-8 w-full rounded-md shadow-sm border border-input bg-background px-3 py-2 text-base file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50`,
 						startIcon ? "pl-8" : "",
 						endIcon ? "pr-8" : "",
 						className

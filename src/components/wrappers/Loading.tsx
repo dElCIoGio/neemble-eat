@@ -25,6 +25,7 @@ export function Loading({loadingParams, Fallback, children}: Props) {
 		};
 	}, [isLoading]);
 
+
 	return (
 		<div>
 			{!isLoading ? (

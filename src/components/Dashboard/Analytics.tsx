@@ -6,8 +6,8 @@ import {AnalyticBox} from "@/components/Dashboard/AnalyticBox.tsx";
 
 export function Analytics() {
 	return (
-		<div className="w-full space-y-4">
-			<div className="grid grid-cols-1 gap-4 laptop:grid-cols-3 laptop:gap-3">
+		<div className="w-full space-y-4 grid grid-cols-1 gap-4 laptop:grid-cols-3 laptop:gap-3">
+			<div className="flex flex-col desktop:flex-row gap-4 col-span-full">
 				<AnalyticBox
 					title={"Ganhos"}
 					icon={Coins}>
@@ -38,9 +38,9 @@ export function Analytics() {
 						trend="up"/>
 				</AnalyticBox>
 			</div>
-			<AnalyticBox title={"Pedidos mais populares"} icon={Receipt}>
-				<TopOrdersTable/>
-			</AnalyticBox>
+			<div className="col-span-full laptop:col-span-2">
+				<TopOrdersTable maxNumber={10}/>
+			</div>
 
 		</div>
 	);

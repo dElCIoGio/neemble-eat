@@ -75,7 +75,7 @@ export function DashboardSidebar() {
 						        onClick={() => handlePageChange(tab.tag)}
 						        asChild>
 						            <div>
-							            <tab.icon/>
+							            <tab.icon fill={tab.tag === currentPage?"#d3c2e8": "#ffffff"}/>
 							            <span>{tab.title}</span>
 									</div>
 					        </SidebarMenuButton>
