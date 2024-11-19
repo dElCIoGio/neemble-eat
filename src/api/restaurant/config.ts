@@ -10,5 +10,8 @@ export const CONFIG = {
     }),
     GET_ALL_TABLES: (): AxiosRequestConfig => ({
         ...baseConfig
+    }),
+    GET_ALL_ORDERS: (): AxiosRequestConfig => ({
+        ...baseConfig
     })
 };

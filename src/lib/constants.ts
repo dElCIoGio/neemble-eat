@@ -10,3 +10,20 @@ export const URL_PATH_PREFIX: string = ""
 export const TRANSPARENT_LOGO: string = logo
 
 export const DESKTOP = "(min-width: 768px)"
+export const TABLET = "(min-width: 480px)"
+export const PHONE = "(max-width: 480px)"
+export const MOBILE = "(max-width: 320px)"
+export const LARGE_SCREEN = "(min-width: 1024px)"
+
+export interface Filter {
+    name: string;
+    tag: string;
+}
+
+export const FILTERS: Filter[] = [
+    {name: "Todos", tag: "All"},
+    {name: "Novos", tag: "New"},
+    {name: "Em preparo", tag: "In Progress"},
+    {name: "Prontos", tag: "Done"},
+    {name: "Cancelados", tag: "Cancelled"},
+]

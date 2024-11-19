@@ -9,3 +9,7 @@ export interface GetRestaurantProps {
 export interface GetAllTablesProps {
     restaurantId: string;
 }
+
+export interface GetAllOrdersProps {
+    restaurantID: string
+}

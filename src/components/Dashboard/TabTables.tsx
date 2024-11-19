@@ -2,7 +2,7 @@ import {TypographyH2, TypographyMuted} from "@/components/ui/Typography";
 import {useGetAllTables} from "@/service/api/table";
 import {useDashboardContext} from "@/context/dashboardContext";
 import { QRCodeCanvas } from "qrcode.react"
-import {Info} from "lucide-react"
+import {Info, Plus} from "lucide-react"
 import {Button} from "@/components/ui/button.tsx";
 import {useMediaQuery} from "@/hooks/use-media-query.ts";
 import {DESKTOP} from "@/lib/constants.ts";
@@ -42,10 +42,11 @@ export function TabTables() {
                 </div>
 
             </div>
-            <div className={`grid gap-4 ${isDesktop ? 'grid-cols-3' : 'grid-cols-1'}`}>
+            <div className={`grid gap-4 ${isDesktop ? 'grid-cols-4' : 'grid-cols-1'}`}>
                 {
                     tables &&
                     tables.map((table, index) =>
+
                         <div key={table.id}
                              className="rounded-md p-2 bg-zinc-100 border border-zinc-10 shadow-sm items-center justify-between inline-block space-y-4 w-full mx-auto">
                             <div
@@ -61,7 +62,7 @@ export function TabTables() {
                                     id={`qrcode-${index + 1}`}/>
                             </div>
                             <div className="w-full">
-                                <h1 className="text-center text-lg font-bold">
+                                <h1 className="text-center text-lg font-poppins-semibold text-zinc-500">
                                     Mesa {table.number}
                                 </h1>
                             </div>
@@ -73,6 +74,12 @@ export function TabTables() {
                         </div>
                     )
                 }
+                <div className="flex text-zinc-600 items-center justify-center w-full h-full bg-zinc-100 border border-zinc-200 rounded-md shadow-sm">
+                    <Button variant="ghost" className={`w-full h-full`}>
+                        <Plus/>
+                        Nova mesa
+                    </Button>
+                </div>
             </div>
         </div>
     );

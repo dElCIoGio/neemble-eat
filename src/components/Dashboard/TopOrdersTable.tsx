@@ -1,8 +1,6 @@
 import {useDashboardContext} from "@/context/dashboardContext.ts";
-import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {useGetTopOrders} from "@/service/api/restaurant.ts";
-import {TypographyH3} from "@/components/ui/Typography.tsx";
-
 
 export function TopOrdersTable() {
 
@@ -15,21 +13,10 @@ export function TopOrdersTable() {
     }
 
     return (
-        <div className="w-full rounded-lg p-2">
-            <div className="mb-4">
-                <TypographyH3>
-                <span className="p-3p">
-                    Pratos mais vendidos
-                </span>
-                </TypographyH3>
-            </div>
-
+        <div className="w-full rounded-lg">
             {
                 orders &&
-                    <Table className={ "w-full"}>
-                        <TableCaption>
-                            Pratos mais vendidos nos ultimos 7 dias
-                        </TableCaption>
+                    <Table className={"w-full"}>
                         <TableHeader className="bg-zinc-100">
 
                             <TableRow>

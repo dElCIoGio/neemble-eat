@@ -37,7 +37,6 @@ export function TabDashboard() {
 						             value="analytics">
 							Analítico
 						</TabsTrigger>
-
 					</TabsList>
 					<div>
 						<TabsContent value="overview">

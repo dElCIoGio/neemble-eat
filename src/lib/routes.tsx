@@ -12,6 +12,8 @@ import AuthError from "@/pages/AuthError.tsx";
 import Setup from "@/pages/Setup.tsx";
 import {Dashboard} from "@/pages/Dashboard.tsx";
 import {Redirect} from "@/pages/Redirect.tsx";
+import {OrdersTracking} from "@/pages/OrdersTracking.tsx";
+import {SessionsTracking} from "@/pages/SessionsTracking.tsx";
 
 export const ROUTES: Route[] = [
 	{
@@ -75,6 +77,17 @@ export const ROUTES: Route[] = [
 			Para aceder ao menu, por favor escolha uma mesa e faça scan do nosso QR Code.
 		</div>,
 		requiresAuth: false
+	},
+	{
+		path: `${URL_PATH_PREFIX}/orders-tracking/:restaurantID`,
+		element: <OrdersTracking/>,
+		requiresAuth: false
+	},
+	{
+		path: `${URL_PATH_PREFIX}/tables-tracking/:restaurantID`,
+		element: <SessionsTracking/>,
+		requiresAuth: false
 	}
+
 
 ]

@@ -1,4 +1,5 @@
 import {
+    GetAllOrdersProps,
     GetAllTablesProps,
     GetRestaurantProps,
     GetTopOrdersProps
@@ -6,7 +7,7 @@ import {
 import {ENDPOINTS} from "@/api/restaurant/endpoints"
 import {CONFIG} from "@/api/restaurant/config.ts";
 import {ApiMethods} from "@/api/api-methods.ts";
-import {RestaurantJson, TableJson} from "@/schema.ts";
+import {OrderJson, RestaurantJson, TableJson} from "@/schema.ts";
 
 
 const api = new ApiMethods()
@@ -32,4 +33,10 @@ export async function getAllTables({restaurantId}: GetAllTablesProps): Promise<T
     const url = ENDPOINTS.GET_ALL_TABLES(restaurantId)
     const config = CONFIG.GET_ALL_TABLES()
     return await api.get<TableJson[]>(url, config)
+}
+
+export async function getAllOrders({restaurantID}: GetAllOrdersProps): Promise<OrderJson[]>{
+    const url = ENDPOINTS.GET_ALL_ORDERS(restaurantID)
+    const config = CONFIG.GET_ALL_ORDERS()
+    return await api.get<OrderJson[]>(url, config)
 }

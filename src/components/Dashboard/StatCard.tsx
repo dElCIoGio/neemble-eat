@@ -3,22 +3,22 @@ import {TrendingUp, TrendingDown} from "lucide-react"
 import {formatCurrency} from "@/lib/utils.ts";
 
 interface StatCardProps {
-	title: string;
 	value: number;
+	valueType?: "number" | "currency";
 	pillText: string;
 	trend: "up" | "down" | "steady";
 	period: string;
 }
 
 
-export function StatCard({period, pillText, trend, value, title}: StatCardProps) {
+export function StatCard({period, pillText, trend, value, valueType}: StatCardProps) {
 
-	const formattedAmount = formatCurrency(value)
+	const formattedAmount = valueType == "currency"? formatCurrency(value): value
 
 	return (
 		<Card className="col-span-12 tablet:col-span-6 laptop:col-span-4 p-4 border-0 shadow-none">
 			<div className="flex justify-between items-center">
-				<h3 className="text-french_gray-300 font-poppins-semibold text-sm">{title}</h3>
+				<h3 className="text-french_gray-300 font-poppins-semibold text-sm"></h3>
 				{
 					trend === "up" ? <TrendUp value={pillText}/> : <TrendDown value={pillText}/>
 				}
@@ -32,6 +32,39 @@ export function StatCard({period, pillText, trend, value, title}: StatCardProps)
 			</p>
 		</Card>
 	);
+}
+
+
+export function StatCardWithIcon({value, trend, pillText, period, valueType}: StatCardProps) {
+
+	const formattedAmount = valueType == "currency"? formatCurrency(value): value
+
+	return(
+	<div className={`space-y-4 p-4`}>
+			<div className="flex items-center justify-between">
+				<div>
+					<h2 className="text-2xl font-poppins-semibold text-center">
+						<span className={`text-base font-poppins-medium text-zinc-400 mr-1 ${valueType !== "currency" && "hidden"}`}>
+							AOA
+						</span>
+						{formattedAmount}
+					</h2>
+				</div>
+				<div>
+					{
+						trend === "up" ? <TrendUp value={pillText}/> : <TrendDown value={pillText}/>
+					}
+				</div>
+			</div>
+
+			<div>
+				<p className="text-xs text-zinc-400">
+					{period}
+				</p>
+			</div>
+		</div>
+	)
+
 }
 
 

@@ -52,8 +52,8 @@ export const getItemsInTheCartNumber = (cart: CartItem[]) => {
 export function isCategoryValid(category: Category): boolean {
 	const gotNoItems = category.items.length == 0
 
-	const gotNoItemsAvailble = category.items.every(item => item.availability === false)
-	return !(gotNoItemsAvailble || gotNoItems)
+	const gotNoItemsAvailable = category.items.every(item => item.availability === false)
+	return !(gotNoItemsAvailable || gotNoItems)
 
 }
 
@@ -143,6 +143,19 @@ export function formatCurrency(value: number): string {
 	}).format(amount);
 	return formattedAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
+}
+
+
+export function openUrlInNewTab(url: string): void {
+	if (!url || !url.trim()) {
+		throw new Error('Invalid URL');
+	}
+	const newWindow = window.open(url, '_blank');
+	if (newWindow) {
+		newWindow.focus();
+	} else {
+		throw new Error('Failed to open new tab');
+	}
 }
 
 export default formatDateString

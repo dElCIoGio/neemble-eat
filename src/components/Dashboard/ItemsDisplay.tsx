@@ -141,7 +141,6 @@ export function ItemsDisplay({items}: ItemsDisplayProps) {
                                         Nenhum resultado encontrado.
                                     </TableCell>
                                 </TableRow>
-
                             )
                         }
                     </TableBody>
