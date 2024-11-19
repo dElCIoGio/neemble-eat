@@ -54,7 +54,7 @@ export function Payment() {
 					paymentMethodShowing &&
                     <div className='mt-3 border-t border-gray-100 pt-3'>
 	                    <div className='flex mb-3 items-center'>
-                            <h1 className='mr-2'>
+                            <h1 className='mr-2 hidden'>
                                 Selecione o mêtodo de pagamento
                             </h1>
                             <ChevronDown

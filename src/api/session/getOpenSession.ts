@@ -38,10 +38,10 @@ export function getQueryKey(restaurantID: string, tableNumber: number) {
 
 export function useGetOpenSession({closeSession, restaurantID, tableNumber}: hookProps) {
 
-	const queryClient = useQueryClient()
-
+	const queryClient = useQueryClient();
+	
 	const queryK = getQueryKey(restaurantID, tableNumber)
-
+	
 	const {
 		data,
 		isLoading,
@@ -68,7 +68,8 @@ export function useGetOpenSession({closeSession, restaurantID, tableNumber}: hoo
 		onSuccess: () => {
 			queryClient.refetchQueries({
 				queryKey: queryK
-			}).catch((error) => console.error(error))
+			}).catch((error) => console.error(error));
+			refetch()
 		}
 	})
 
