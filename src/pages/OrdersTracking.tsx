@@ -14,15 +14,16 @@ import {OrderInfo} from "@/components/OrdersTracking/OrderInfo.tsx";
 import {ScrollArea} from "@/components/ui/scroll-area.tsx";
 import {useMediaQuery} from "@/hooks/use-media-query.ts";
 import {MobileOrderInfo} from "@/components/OrdersTracking/MobileOrderInfo.tsx";
+import {useSelectedState} from "@/hooks/use-selected-state.ts";
 
 
 export function OrdersTracking() {
 
     document.title = "Gestão de Pedidos"
 
-    const isDesktop = useMediaQuery(DESKTOP)
-
     const {restaurantID} = useParams() as unknown as { restaurantID: string };
+
+    const isDesktop = useMediaQuery(DESKTOP)
 
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     const newOrdersWsUrl = `${protocol}//${BASE_URL}/ws/${restaurantID}/order`;
@@ -30,7 +31,7 @@ export function OrdersTracking() {
 
     const [filterMode, setFilterMode] = useState<Filter>(FILTERS[0])
     const [allTablesNumbers, setAllTablesNumbers] = useState<string[]>(["Todas"])
-    const [orderSelected, setOrderSelected] = useState<OrderJson | null>(null)
+    const {selected: orderSelected, handleSelect} = useSelectedState<OrderJson | null>(null)
 
     const {orders, addOrder, removeOrders} = useGetAllOrders({restaurantID: restaurantID})
 
@@ -58,16 +59,6 @@ export function OrdersTracking() {
         removeOrders(billedOrdersIDs);
     }, [removeOrders]);
 
-    const handleOrderSelected = useCallback((order: OrderJson) => {
-        setOrderSelected(order);
-    }, []);
-
-    const handleOrderDeselected = () => {
-        console.log('Order deselected');
-        setOrderSelected(null);
-    };
-
-
     useWebSocket(
         newOrdersWsUrl, {
             onMessage: handleMessageNewOrder,
@@ -86,7 +77,6 @@ export function OrdersTracking() {
         return <div>Carregando...</div>
     }
 
-
     return (
         <div>
             <Background className="bg-zinc-100" />
@@ -97,10 +87,10 @@ export function OrdersTracking() {
                     filterMode,
                     handleFilterModeChange,
                     orderSelected,
-                    handleOrderSelected,
-                    handleOrderDeselected
+                    handleOrderSelected: (order) => handleSelect(order),
+                    handleOrderDeselected: () => handleSelect(null)
                 }}>
-                    <div className="p-6 laptop:h-screen laptop:flex laptop:flex-col">
+                    <div className="p-4 laptop:h-screen laptop:flex laptop:flex-col">
                         <div className="mt-4 mb-8">
                             <TypographyH2>
                                 Pedidos
@@ -116,19 +106,15 @@ export function OrdersTracking() {
                                         <div className="laptop:max-h-[20rem]">
                                             <OrdersDisplay/>
                                         </div>
-
                                     </ScrollArea>
                                 </div>
                                 {
                                     isDesktop ?
                                         <div
                                             className={`w-2/5 transition-all duration-150 ease-in-out ${orderSelected === null ? 'laptop:hidden' : 'laptop:block'}`}>
-                                            {
-                                                orderSelected &&
-                                                <OrderInfo order={orderSelected}/>
-                                            }
+                                            {orderSelected && <OrderInfo order={orderSelected}/>}
                                         </div> :
-                                        <MobileOrderInfo order={orderSelected} setOrder={setOrderSelected}/>
+                                        <MobileOrderInfo order={orderSelected} setOrder={handleSelect}/>
                                 }
 
                             </div>
