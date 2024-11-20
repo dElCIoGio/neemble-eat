@@ -88,7 +88,7 @@ export function OrdersTracking() {
 
 
     return (
-        <div className="p-6">
+        <div>
             <Background className="bg-zinc-100" />
             {
                 orders &&
@@ -100,34 +100,41 @@ export function OrdersTracking() {
                     handleOrderSelected,
                     handleOrderDeselected
                 }}>
-                    <div className="mt-4 mb-8">
-                        <TypographyH2>
-                            Pedidos
-                        </TypographyH2>
-                    </div>
-                    <div className="space-y-4">
-                        <Header/>
-                        <div className={`flex rounded-2xl w-full laptop:bg-zinc-50 laptop:border laptop:border-zinc-200`}>
-                            <div className={`transition-all duration-150 ease-in-out w-full ${orderSelected === null ? 'w-full' : 'laptop:w-3/5'}`}>
-                                <ScrollArea>
-                                    <OrdersDisplay/>
-                                </ScrollArea>
-                            </div>
-
-                            {
-                                isDesktop ?
+                    <div className="p-6 laptop:h-screen laptop:flex laptop:flex-col">
+                        <div className="mt-4 mb-8">
+                            <TypographyH2>
+                                Pedidos
+                            </TypographyH2>
+                        </div>
+                        <div className="space-y-4 h-max laptop:flex laptop:flex-grow laptop:flex-col">
+                            <Header/>
+                            <div
+                                className={`flex flex-grow rounded-2xl w-full laptop:bg-zinc-50 laptop:border laptop:border-zinc-200`}>
                                 <div
-                                    className={`w-2/5 transition-all duration-150 ease-in-out ${orderSelected === null ? 'laptop:hidden' : 'laptop:block'}`}>
-                                    {
-                                        orderSelected &&
-                                        <OrderInfo order={orderSelected}/>
-                                    }
-                                </div>:
-                                <MobileOrderInfo order={orderSelected} setOrder={setOrderSelected} />
-                            }
+                                    className={`transition-all laptop:flex overflow-y-hidden laptop:flex-grow duration-150 ease-in-out w-full ${orderSelected === null ? 'w-full' : 'laptop:w-3/5'}`}>
+                                    <ScrollArea className="w-full rounded-l-2xl">
+                                        <div className="laptop:max-h-[20rem]">
+                                            <OrdersDisplay/>
+                                        </div>
 
+                                    </ScrollArea>
+                                </div>
+                                {
+                                    isDesktop ?
+                                        <div
+                                            className={`w-2/5 transition-all duration-150 ease-in-out ${orderSelected === null ? 'laptop:hidden' : 'laptop:block'}`}>
+                                            {
+                                                orderSelected &&
+                                                <OrderInfo order={orderSelected}/>
+                                            }
+                                        </div> :
+                                        <MobileOrderInfo order={orderSelected} setOrder={setOrderSelected}/>
+                                }
+
+                            </div>
                         </div>
                     </div>
+
                 </OrdersTrackingContext.Provider>
             }
         </div>

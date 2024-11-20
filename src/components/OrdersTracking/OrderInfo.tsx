@@ -25,9 +25,7 @@ export function OrderInfo({order}: OrderInfoProps) {
                     <X className="h-8 w-8 p-0"/>
                 </Button>
             </div>
-            <h1 className="text-2xl font-semibold tracking-tight">
-                {order.orderedItemName}
-            </h1>
+
             <div className="mt-3">
                 {
                     order.prepStatus === "New" ? <New/> :
@@ -36,6 +34,9 @@ export function OrderInfo({order}: OrderInfoProps) {
                                 <Ready/>
                 }
             </div>
+            <h1 className="text-2xl font-semibold tracking-tight">
+                {order.orderedItemName}
+            </h1>
             <Separator className="my-4"/>
             <div className="w-full space-y-1.5">
                 <div className="w-full flex justify-between">
