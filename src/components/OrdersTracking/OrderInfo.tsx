@@ -15,7 +15,7 @@ interface OrderInfoProps {
 export function OrderInfo({order}: OrderInfoProps) {
 
     const { handleOrderDeselected } = useOrdersTrackingContext()
-    // const Time = new Date(order.orderTime)
+    const Time = new Date(order.orderTime)
     const price = formatCurrency(order.total)
 
     return (
@@ -51,7 +51,7 @@ export function OrderInfo({order}: OrderInfoProps) {
                         Hora
                     </h1>
                     <span className="font-poppins-semibold text-amethyst-300">
-                        22:12{/*{Time.getHours()}:{Time.getMinutes()}*/}
+                        {Time.getHours()}:{Time.getMinutes()}
                     </span>
                 </div>
                 <div className="w-full flex justify-between">
@@ -94,7 +94,6 @@ export function OrderInfo({order}: OrderInfoProps) {
                                     </Button>
                                 </div>
                 }
-
             </div>
         </div>
     );
