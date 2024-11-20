@@ -142,7 +142,6 @@ export function formatCurrency(value: number): string {
 		useGrouping: false,
 	}).format(amount);
 	return formattedAmount.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
 }
 
 

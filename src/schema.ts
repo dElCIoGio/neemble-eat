@@ -14,7 +14,6 @@ export enum OrderStatus {
 }
 
 
-
 interface CategoryJson {
 	id: string,
 	created_time: string
@@ -23,6 +22,7 @@ interface CategoryJson {
 	menuID: string,
 	items: string[],
 }
+
 
 interface CategoryParsed {
 	created_time?: string

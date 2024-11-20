@@ -9,6 +9,7 @@ export function OrderSingleItem({order}: Props) {
 
     const {day, month, time} = formatDateString(order.orderTime)
 
+
 	return (
 		<div className='flex justify-between items-center text-sm'>
             <div>

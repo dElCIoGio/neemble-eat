@@ -81,7 +81,6 @@ export function OrdersTracking() {
                     orders,
                     filterMode,
                     handleFilterModeChange
-
                 }}>
                     <div className="mt-4 mb-8">
                         <TypographyH2>
@@ -90,7 +89,7 @@ export function OrdersTracking() {
                     </div>
                     <div className="flex flex-col space-y-4">
                         <Header/>
-                        <div className={`bg-zinc-50 border border-zinc-200 rounded-xl p-4 `}>
+                        <div className={`rounded-xl`}>
                             <OrdersDisplay/>
                             <OrderInfo/>
                         </div>

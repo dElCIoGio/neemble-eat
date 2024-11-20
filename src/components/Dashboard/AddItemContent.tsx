@@ -101,9 +101,7 @@ export function AddItemContent() {
                             <FormItem>
                                 <FormLabel
                                     className={`${
-                                        fileRejections.length !== 0 && "text-destructive"
-                                    }`}
-                                >
+                                        fileRejections.length !== 0 && "text-destructive"}`}>
                                     <h2 className="font-semibold tracking-tight">
                                         Adicione uma imagem
                                         <span

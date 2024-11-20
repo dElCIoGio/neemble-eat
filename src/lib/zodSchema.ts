@@ -41,19 +41,22 @@ export const AdditionalNoteSchema = z.object({
 
 export const DESCRIPTION_MAX_SIZE: number = 300
 
+export const RESTAURANT_BANNER_MAX_IMAGE_SIZE = 15
+
 export const RestaurantConfigSchema = z.object({
 	image: z.instanceof(File).refine(file => {
 		return file.type.startsWith('image/');
 	}, {
 		message: "Formato inválido. Apenas imagens são permitidas."
 	}).refine(image => {
-		const MAX_FILE_SIZE = 5 * 1024 * 1024;
+		const MAX_FILE_SIZE = RESTAURANT_BANNER_MAX_IMAGE_SIZE * MB;
 		return image.size <= MAX_FILE_SIZE;
 	}, {
-		message: "Imagem grande demais. O tamanho máximo permitido são 5MB."
-	}).optional().refine(file => file !== undefined, {
-		message: "Nenhuma imagem foi selecionada. Por favor, inclua uma imagem."
-	}),
+		message: `Imagem grande demais. O tamanho máximo permitido são ${RESTAURANT_BANNER_MAX_IMAGE_SIZE}MB.`
+	}).refine(file => file.size !== 0,
+		{
+			message: "Nenhuma imagem foi selecionada. Por favor, inclua uma imagem."
+		}),
 	restaurantName: z.string().min(1, {
 		message: "Escreva o nome do restaurante."
 	}),

@@ -1,38 +1,32 @@
 import {Input} from "@/components/ui/input.tsx";
 import {Upload} from "lucide-react"
-import {useEffect, useState} from "react";
+import {useCallback, useState} from "react";
 import {TypographyMuted} from "@/components/ui/Typography.tsx";
-import {RestaurantConfigSchema} from "@/lib/zodSchema.ts";
+import {MAX_IMAGE_SIZE, MB, RESTAURANT_BANNER_MAX_IMAGE_SIZE, RestaurantConfigSchema} from "@/lib/zodSchema.ts";
 import {z} from 'zod';
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
 import {RequiredInput} from "@/components/wrappers/requiredInput"
 import {Textarea} from "@/components/ui/textarea.tsx";
-import {ImageSelectionDisplay} from "@/components/ui/ImageSelectionDisplay.tsx";
 import {PinIcon, PhoneIcon} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
 import {useSetupContext} from "@/context/setupContext.ts";
-
+import {useDropzone} from "react-dropzone";
+import { toast } from "sonner"
 
 type RestaurantConfigValues = z.infer<typeof RestaurantConfigSchema>;
 
 export function RestaurantConfig() {
 
-	const [selectedFile, setSelectedImageFile] = useState<File | null>(null);
-	const [selectedImageURL, setSelectedImageURL] = useState<string | null>(null);
+	const [preview, setPreview] = useState<string | ArrayBuffer | null>("");
 	const {nextTab} = useSetupContext()
-
-
-	useEffect(() => {
-		const url = selectedFile ? URL.createObjectURL(selectedFile) : null
-		setSelectedImageURL(url)
-	}, [selectedFile]);
 
 	const form = useForm<RestaurantConfigValues>({
 		resolver: zodResolver(RestaurantConfigSchema),
 		mode: 'onSubmit',
 		defaultValues: {
+			image: undefined,
 			address: "",
 			phoneNumber: "",
 			restaurantName: "",
@@ -42,74 +36,138 @@ export function RestaurantConfig() {
 
 	function onSubmit(data: RestaurantConfigValues) {
 		console.log(data.image)
+		toast.success(`Image uploaded successfully 🎉 ${data.image.name}`, {
+			description: `Your image was uploaded successfully!`,
+			action: {
+				label: "View Image",
+				onClick: () => {
+					window.open(URL.createObjectURL(data.image))
+				}
+			}
+		});
 		nextTab()
 		// Got to finish setting up the submit function nd direct the user to the next tab
 	}
 
-	function removeimage() {
-		setSelectedImageFile(null)
+	const onDrop = useCallback(
+		(acceptedFiles: File[]) => {
+			const reader = new FileReader();
+			try {
+				reader.onload = () => setPreview(reader.result);
+				reader.readAsDataURL(acceptedFiles[0]);
+				form.setValue("image", acceptedFiles[0])
+				form.clearErrors("image")
 
-	}
+			} catch (error) {
+				console.log(error);
+				setPreview(null)
+				form.resetField("image")
+
+			}
+
+		}, [form]
+	);
+
+	const { getRootProps, getInputProps, isDragActive, fileRejections } =
+		useDropzone({
+			onDrop,
+			maxFiles: 1,
+			maxSize: RESTAURANT_BANNER_MAX_IMAGE_SIZE * MB,
+			accept: { "image/png": [], "image/jpg": [], "image/jpeg": [] },
+		});
+
+
+
+
 
 	return (
 		<div>
+			<div className="mb-4">
+				<TypographyMuted>
+					Configure o seu restaurante. Não se preocupe, poderá alterar as informações à qualquer
+					momento
+				</TypographyMuted>
+			</div>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}>
-					<div className="mb-4">
-						<TypographyMuted>Escolha uma imagem para o deu restaurante. Não se preocupe, poderá alterar à qualquer momento</TypographyMuted>
-					</div>
-					<FormField
-						name="image"
-						control={form.control}
-						render={({field: {value, onChange, ...fieldProps}}) => (
-							<FormItem>
-								<FormMessage/>
-								<FormControl>
-									<div className={`flex space-x-4 items-start mb-8`}>
-										<label
-											className={`${!!selectedImageURL && "cursor-not-allowed"} mb-8 border border-gray-200 w-40 h-24 flex flex-col items-center justify-center px-4 py-4 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase cursor-pointer hover:bg-gray-100 transition-colors duration-300`}>
-										<Upload/>
-										<Input
-											{...fieldProps}
-											disabled={!!selectedImageURL}
-											type="file"
-											accept="image/*"
-											className={`hidden ${!!selectedImageURL && "cursor-not-allowed"}`}
-											onChange={(event) => {
-												event.preventDefault()
-												console.log(value instanceof File)
-												const files = event.target.files
-												if (files) {
-													onChange(files[0])
-													setSelectedImageFile(files[0])
-												} else {
-													setSelectedImageFile(null)
-												}
-											}
-											}/>
-									</label>
-									<ImageSelectionDisplay
-										removeImage={removeimage}
-										selectedImage={selectedImageURL}/>
-									</div>
-								</FormControl>
-							</FormItem>
-						)}/>
 					<div className={`space-y-4 laptop:w-[40%]`}>
+						<FormField
+							name="image"
+							control={form.control}
+							render={() => (
+								<FormItem className="max-w-[430px]">
+									<FormLabel
+										className={`${
+											fileRejections.length !== 0 && "text-destructive"}`}>
+										<h2 className="font-semibold tracking-tight">
+											Adicione uma imagem
+											<span
+												className={
+													form.formState.errors.image || fileRejections.length !== 0
+														? "text-destructive"
+														: "text-muted-foreground"
+												}
+											></span>
+										</h2>
+									</FormLabel>
+									<FormControl>
+										<div
+											{...getRootProps()}
+											className={`mx-auto max-w-full flex cursor-pointer flex-col items-center justify-center gap-y-2 rounded-lg border border-dashed ${preview ? "border-amethyst-300 bg-zinc-100" : "border-zinc-300 bg-white hover:bg-zinc-100"} transition-all duration-150 p-4 `}>
+											{preview && (
+												<img
+													src={preview as string}
+													alt="Uploaded image"
+													className="max-h-[150px] rounded-lg"
+												/>
+											)}
+											<Upload
+												className={`size-6 ${preview ? "hidden" : "block"} bg-zinc-200 rounded-full p-1 text-gray-800`}
+											/>
+											<Input {...getInputProps()} type="file"/>
+											{
+												isDragActive ? (
+														<p className="text-center">Arraste a imagem para aqui!</p>) :
+													preview != null ? <p>Imagem selecionada</p>
+														:
+														<div>
+															<p className="text-center text-sm">Clique aqui ou arraste a
+																imagem para fazer
+																upload</p>
+															<p className="text-center text-xs text-zinc-600">
+																Formatos: JPG, JPEG ou PNG | Tamanho máximo
+																de {MAX_IMAGE_SIZE}MB.
+															</p>
+
+														</div>
+											}
+										</div>
+									</FormControl>
+
+									<FormMessage>
+										{fileRejections.length !== 0 && (
+											<p>
+												A imagem deve conter no maximo {MAX_IMAGE_SIZE}MB e ser dos tipos, jpg, ou
+												jpeg.
+											</p>
+										)}
+									</FormMessage>
+								</FormItem>
+							)}/>
 						<FormField
 							name="restaurantName"
 							control={form.control}
 							render={({field}) => (
 								<FormItem>
-								<RequiredInput>
-									<FormLabel>Nome do Restaurante</FormLabel>
-								</RequiredInput>
-								<FormControl>
-									<Input {...field}
-									       placeholder={``}/>
-								</FormControl>
-								<FormMessage/>
-							</FormItem>
+									<RequiredInput>
+										<FormLabel>Nome do Restaurante</FormLabel>
+									</RequiredInput>
+									<FormControl>
+										<Input {...field}
+											   placeholder={``}/>
+									</FormControl>
+									<FormMessage/>
+								</FormItem>
 							)}/>
 						<FormField
 							name="phoneNumber"
@@ -122,9 +180,9 @@ export function RestaurantConfig() {
 											<FormLabel className={""}>Número de Telefone</FormLabel>
 										</RequiredInput>
 									</div>
-								<FormControl>
-									<Input {...field}/>
-								</FormControl>
+									<FormControl>
+										<Input {...field}/>
+									</FormControl>
 									<FormMessage/>
 								</FormItem>
 							)}/>
@@ -151,20 +209,20 @@ export function RestaurantConfig() {
 							control={form.control}
 							render={({field}) => (
 								<FormItem>
-								<RequiredInput>
-									<FormLabel>Descrição sobre o restaurante</FormLabel>
-								</RequiredInput>
-								<FormControl>
-									<Textarea {...field}/>
-								</FormControl>
-								<FormMessage/>
-							</FormItem>
+									<RequiredInput>
+										<FormLabel>Descrição sobre o restaurante</FormLabel>
+									</RequiredInput>
+									<FormControl>
+										<Textarea {...field}/>
+									</FormControl>
+									<FormMessage/>
+								</FormItem>
 							)}/>
 					</div>
 
 					<div className="mt-8 space-x-4">
 						<Button disabled
-						        type={"button"}>
+								type={"button"}>
 							Cancelar
 						</Button>
 						<Button type={"submit"}>

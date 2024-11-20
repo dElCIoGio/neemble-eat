@@ -44,6 +44,8 @@ export function useGetRestaurant({restaurantId}: GetRestaurantProps) {
 
 export function useGetAllOrders(attr: GetAllOrdersProps){
 
+    console.log("FETCHING ALL ORDERS")
+
     const queryClient = useQueryClient();
 
     function removeOrders(ids: string[]) {
@@ -54,8 +56,8 @@ export function useGetAllOrders(attr: GetAllOrdersProps){
 
     function addOrder(order: OrderJson) {
         queryClient.setQueryData(['getAllOrders', attr.restaurantID], (oldOrders: OrderJson[] = []) => {
-            // Append the new order to the existing orders
-            return [...oldOrders, order];
+
+            return oldOrders.some(o => o.id === order.id) ? oldOrders : [...oldOrders, order];
         });
     }
 
