@@ -86,12 +86,7 @@ export function OrderInfo({order}: OrderInfoProps) {
                             </div>:
                             order.prepStatus === "Cancelled" || order.prepStatus === "Done" &&
                                 <div className="space-x-2">
-                                    <Button variant="default" type="button">
-                                        Prato Pronto
-                                    </Button>
-                                    <Button variant={"destructive"} type={"button"}>
-                                        Cancelar
-                                    </Button>
+
                                 </div>
                 }
             </div>
