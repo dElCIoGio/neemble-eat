@@ -8,14 +8,19 @@ import {OrdersTrackingContext} from "@/context/ordersTrackingContext.ts";
 import {Header} from "@/components/OrdersTracking/Header.tsx";
 import Background from "@/components/ui/Background.tsx";
 import {TypographyH2} from "@/components/ui/Typography.tsx";
-import {Filter, FILTERS} from "@/lib/constants.ts";
+import {DESKTOP, Filter, FILTERS} from "@/lib/constants.ts";
 import {OrdersDisplay} from "@/components/OrdersTracking/OrdersDisplay.tsx";
 import {OrderInfo} from "@/components/OrdersTracking/OrderInfo.tsx";
+import {ScrollArea} from "@/components/ui/scroll-area.tsx";
+import {useMediaQuery} from "@/hooks/use-media-query.ts";
+import {MobileOrderInfo} from "@/components/OrdersTracking/MobileOrderInfo.tsx";
 
 
 export function OrdersTracking() {
 
     document.title = "Gestão de Pedidos"
+
+    const isDesktop = useMediaQuery(DESKTOP)
 
     const {restaurantID} = useParams() as unknown as { restaurantID: string };
 
@@ -25,7 +30,7 @@ export function OrdersTracking() {
 
     const [filterMode, setFilterMode] = useState<Filter>(FILTERS[0])
     const [allTablesNumbers, setAllTablesNumbers] = useState<string[]>(["Todas"])
-
+    const [orderSelected, setOrderSelected] = useState<OrderJson | null>(null)
 
     const {orders, addOrder, removeOrders} = useGetAllOrders({restaurantID: restaurantID})
 
@@ -52,6 +57,16 @@ export function OrdersTracking() {
         const billedOrdersIDs = billedOrders.map((order) => order.id);
         removeOrders(billedOrdersIDs);
     }, [removeOrders]);
+
+    const handleOrderSelected = useCallback((order: OrderJson) => {
+        setOrderSelected(order);
+    }, []);
+
+    const handleOrderDeselected = () => {
+        console.log('Order deselected');
+        setOrderSelected(null);
+    };
+
 
     useWebSocket(
         newOrdersWsUrl, {
@@ -80,22 +95,39 @@ export function OrdersTracking() {
                 <OrdersTrackingContext.Provider value={{
                     orders,
                     filterMode,
-                    handleFilterModeChange
+                    handleFilterModeChange,
+                    orderSelected,
+                    handleOrderSelected,
+                    handleOrderDeselected
                 }}>
                     <div className="mt-4 mb-8">
                         <TypographyH2>
                             Pedidos
                         </TypographyH2>
                     </div>
-                    <div className="flex flex-col space-y-4">
+                    <div className="space-y-4">
                         <Header/>
-                        <div className={`rounded-xl`}>
-                            <OrdersDisplay/>
-                            <OrderInfo/>
+                        <div className={`flex rounded-2xl w-full laptop:bg-zinc-50 laptop:border laptop:border-zinc-200`}>
+                            <div className={`transition-all duration-150 ease-in-out w-full ${orderSelected === null ? 'w-full' : 'laptop:w-3/5'}`}>
+                                <ScrollArea>
+                                    <OrdersDisplay/>
+                                </ScrollArea>
+                            </div>
+
+                            {
+                                isDesktop ?
+                                <div
+                                    className={`w-2/5 transition-all duration-150 ease-in-out ${orderSelected === null ? 'laptop:hidden' : 'laptop:block'}`}>
+                                    {
+                                        orderSelected &&
+                                        <OrderInfo order={orderSelected}/>
+                                    }
+                                </div>:
+                                <MobileOrderInfo order={orderSelected} setOrder={setOrderSelected} />
+                            }
+
                         </div>
-
                     </div>
-
                 </OrdersTrackingContext.Provider>
             }
         </div>

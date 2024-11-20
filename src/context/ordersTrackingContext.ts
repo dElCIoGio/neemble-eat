@@ -4,6 +4,9 @@ import {Filter} from "@/lib/constants.ts";
 
 
 interface OrdersTrackingContextProps {
+    orderSelected: OrderJson | null;
+    handleOrderSelected: (order: OrderJson) => void;
+    handleOrderDeselected: () => void;
     orders: OrderJson[]
     filterMode: Filter,
     handleFilterModeChange: (filterMode: Filter) => void

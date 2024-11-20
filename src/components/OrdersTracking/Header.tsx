@@ -8,8 +8,8 @@ export function Header() {
     const { filterMode, handleFilterModeChange } = useOrdersTrackingContext()
 
     return (
-        <div className="">
-            <div className={`flex flex-col laptop:flex-row justify-between items-center`}>
+        <div className="w-full">
+            <div className={`flex  justify-between items-center`}>
                 <div className="flex items-center gap-2">
                     {
                         FILTERS.map((filter) =>
