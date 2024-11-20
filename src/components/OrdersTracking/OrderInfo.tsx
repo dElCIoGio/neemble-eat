@@ -67,20 +67,20 @@ export function OrderInfo({order}: OrderInfoProps) {
             <div className="mb-12 laptop:mb-0">
                 {
                     order.prepStatus === "New" ?
-                        <div className="space-x-2">
-                            <Button variant={"default"} type={"button"}>
+                        <div className="flex space-x-2">
+                            <Button className="w-1/2" variant={"default"} type={"button"}>
                                 Em Preparo
                             </Button>
-                            <Button variant={"destructive"} type={"button"}>
+                            <Button className="w-1/2" variant={"destructive"} type={"button"}>
                                 Cancelar
                             </Button>
                         </div>:
                         order.prepStatus === "In Progress" ?
-                            <div className="space-x-2">
-                                <Button variant="default" type="button">
+                            <div className="flex space-x-2">
+                                <Button className="w-1/2"  variant="default" type="button">
                                     Prato Pronto
                                 </Button>
-                                <Button variant={"destructive"} type={"button"}>
+                                <Button className="w-1/2" variant={"destructive"} type={"button"}>
                                     Cancelar
                                 </Button>
                             </div>:
