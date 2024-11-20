@@ -15,7 +15,7 @@ interface OrderInfoProps {
 export function OrderInfo({order}: OrderInfoProps) {
 
     const { handleOrderDeselected } = useOrdersTrackingContext()
-    const Time = new Date(order.orderTime)
+    // const Time = new Date(order.orderTime)
     const price = formatCurrency(order.total)
 
     return (
@@ -25,7 +25,6 @@ export function OrderInfo({order}: OrderInfoProps) {
                     <X className="h-8 w-8 p-0"/>
                 </Button>
             </div>
-
             <div className="mt-3">
                 {
                     order.prepStatus === "New" ? <New/> :
@@ -52,7 +51,7 @@ export function OrderInfo({order}: OrderInfoProps) {
                         Hora
                     </h1>
                     <span className="font-poppins-semibold text-amethyst-300">
-                        {Time.getHours()}:{Time.getMinutes()}
+                        22:12{/*{Time.getHours()}:{Time.getMinutes()}*/}
                     </span>
                 </div>
                 <div className="w-full flex justify-between">
@@ -63,14 +62,39 @@ export function OrderInfo({order}: OrderInfoProps) {
                         Kz {price}
                     </span>
                 </div>
-
-
             </div>
             <Separator className="my-4"/>
-            <div>
-                <Button type={"button"}>
-                    teste
-                </Button>
+            <div className="mb-12 laptop:mb-0">
+                {
+                    order.prepStatus === "New" ?
+                        <div className="space-x-2">
+                            <Button variant={"default"} type={"button"}>
+                                Em Preparo
+                            </Button>
+                            <Button variant={"destructive"} type={"button"}>
+                                Cancelar
+                            </Button>
+                        </div>:
+                        order.prepStatus === "In Progress" ?
+                            <div className="space-x-2">
+                                <Button variant="default" type="button">
+                                    Prato Pronto
+                                </Button>
+                                <Button variant={"destructive"} type={"button"}>
+                                    Cancelar
+                                </Button>
+                            </div>:
+                            order.prepStatus === "Cancelled" || order.prepStatus === "Done" &&
+                                <div className="space-x-2">
+                                    <Button variant="default" type="button">
+                                        Prato Pronto
+                                    </Button>
+                                    <Button variant={"destructive"} type={"button"}>
+                                        Cancelar
+                                    </Button>
+                                </div>
+                }
+
             </div>
         </div>
     );

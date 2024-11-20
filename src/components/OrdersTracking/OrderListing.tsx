@@ -22,11 +22,11 @@ export function OrderListing({order}: OrderCardProps) {
 
     return (
         <Card onClick={() => handleOrderSelected(order)}
-              className={`p-4 w-full rounded-xl space-y-1.5 transition-all duration-150 ${orderSelected?.id === order.id ? 'border-amethyst-400 outline outline-amethyst-800 bg-zinc-50' : "hover:bg-zinc-50"}`}>
+              className={`p-4 w-full rounded-xl  transition-all duration-150 ${orderSelected?.id === order.id ? 'border-amethyst-400 outline outline-amethyst-800 bg-zinc-50' : "hover:bg-zinc-50"}`}>
             <div className="flex justify-between w-full">
                 <div className={"w-full"}>
-                    <div className="flex items-end space-x-1.5 font-semibold tracking-tight text-lg">
-                        <h1>{order.orderedItemName}</h1> <span className="hidden text-zinc-600 text-base laptop:block">x{order.quantity}</span>
+                    <div className="flex items-end space-x-1.5 font-semibold tracking-tight ">
+                        <h1 className=" w-fit text-base laptop:text-lg">{order.orderedItemName}</h1> <span className="hidden text-zinc-600 text-base laptop:block">x{order.quantity}</span>
                     </div>
                     <div className="flex laptop:hidden space-x-1.5 items-center text-zinc-600 font-poppins-regular w-full">
                         <h3>Quantidade: </h3>
@@ -37,7 +37,7 @@ export function OrderListing({order}: OrderCardProps) {
 
                 </div>
 
-                <div className="p-2">
+                <div className="p-2 text-sm">
                     {order.prepStatus === "New" ? <New/> :
                         order.prepStatus === "In Progress" ? <InProgress/> :
                             order.prepStatus === "Cancelled" ? <Cancelled/> :
