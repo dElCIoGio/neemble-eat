@@ -9,19 +9,19 @@ import {useState} from "react";
 import {MenuItem} from "@/schema.ts";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import {LoadingRestaurantMenu} from "@/components/RestaurantMenu/LoadingRestaurantMenu.tsx";
-import {useSearchParams} from "react-router-dom";
+import {useParams, useSearchParams} from "react-router-dom";
 import {useGetMenu} from "@/service/api/menu.ts";
 import {useGetRestaurant} from "@/service/api/restaurant.ts";
 
 function RestaurantMenu() {
 
-	const restaurantId: string = "FUHT4zQL5Umz99BN7dUI"
-	const menuID: string = "B5xNBhl5n3DfSZPvkkG1"
-	const tableNumber: number = 3
+	const {restaurantID, menuID, tableNumber} = useParams() as unknown as {tableNumber: number, restaurantID: string, menuID: string};
 
 	const [, setSearchParams] = useSearchParams();
-	const {data: restaurant, isLoading: isRestaurantLoading} = useGetRestaurant({restaurantId})
+	const {data: restaurant, isLoading: isRestaurantLoading} = useGetRestaurant({restaurantId: restaurantID})
 	const {data: menu, isLoading: isMenuLoading} = useGetMenu({menuId: menuID})
+
+
 	const [selectedItem, setSelectedItem] = useState<MenuItem | undefined>()
 
 

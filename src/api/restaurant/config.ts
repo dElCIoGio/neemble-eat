@@ -13,5 +13,8 @@ export const CONFIG = {
     }),
     GET_ALL_ORDERS: (): AxiosRequestConfig => ({
         ...baseConfig
+    }),
+    GET_OPEN_SESSION: (): AxiosRequestConfig => ({
+        ...baseConfig
     })
 };

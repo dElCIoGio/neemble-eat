@@ -4,13 +4,21 @@ import {OrderListing} from "@/components/OrdersTracking/OrderListing.tsx";
 
 export function OrdersDisplay() {
 
-    const {orders} = useOrdersTrackingContext()
+    const {orders, filterMode, tableFilter} = useOrdersTrackingContext()
+
+    const filteredOrders = orders.filter((order) => {
+        const matchesFilterMode = filterMode.tag === 'All' || filterMode.tag === order.prepStatus;
+        const matchesTableFilter = tableFilter === null || tableFilter === order.tableNumber.toString();
+
+        return matchesFilterMode && matchesTableFilter;
+    });
 
     return (
         <div className={`space-y-1.5 p-1`}>
             {
-                orders.map((order) =>
-                    <OrderListing key={order.id} order={order}/>)
+                filteredOrders.map(order => (
+                    <OrderListing key={order.id} order={order}/>
+                ))
             }
         </div>
     );

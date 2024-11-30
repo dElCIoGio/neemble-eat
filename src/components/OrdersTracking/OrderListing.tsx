@@ -44,7 +44,7 @@ export function OrderListing({order}: OrderCardProps) {
                                 <Ready/>}
                 </div>
             </div>
-            <Separator className="block laptop:hidden"/>
+            <Separator className="block laptop:hidden my-3"/>
             <div>
                 <div className='hidden laptop:flex items-center space-x-2'>
                     <OrderBadge icon={QrCode}>

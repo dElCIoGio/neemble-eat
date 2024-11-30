@@ -44,7 +44,6 @@ export function useGetRestaurant({restaurantId}: GetRestaurantProps) {
 
 export function useGetAllOrders(attr: GetAllOrdersProps){
 
-    console.log("FETCHING ALL ORDERS")
 
     const queryClient = useQueryClient();
 
@@ -52,6 +51,15 @@ export function useGetAllOrders(attr: GetAllOrdersProps){
         queryClient.setQueryData(["getAllOrders", attr.restaurantID], (oldOrders: OrderJson[] = []) => {
             return oldOrders.filter(order => !ids.includes(order.id))
         })
+    }
+
+
+    function updateOrderStatus(orderId: string, newStatus: string) {
+        queryClient.setQueryData(['getAllOrders', attr.restaurantID], (oldOrders: OrderJson[] = []) => {
+            return oldOrders.map(order =>
+                order.id === orderId ? {...order, prepStatus: newStatus} : order
+            );
+        });
     }
 
     function addOrder(order: OrderJson) {
@@ -76,6 +84,7 @@ export function useGetAllOrders(attr: GetAllOrdersProps){
             return filterLastXhOrders(order) && order.sessionStatus !== "Billed";
         }): undefined,
         ...query,
+        updateOrderStatus,
         addOrder,
         removeOrders,
     }

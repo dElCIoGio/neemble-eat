@@ -11,13 +11,13 @@ import {URL_PATH_PREFIX} from "@/lib/constants";
 import AuthError from "@/pages/AuthError.tsx";
 import Setup from "@/pages/Setup.tsx";
 import {Dashboard} from "@/pages/Dashboard.tsx";
-import {Redirect} from "@/pages/Redirect.tsx";
 import {OrdersTracking} from "@/pages/OrdersTracking.tsx";
 import {SessionsTracking} from "@/pages/SessionsTracking.tsx";
+import {Test} from "@/pages/Test.tsx";
 
 export const ROUTES: Route[] = [
 	{
-		path: `${URL_PATH_PREFIX}/`,
+		path: `${URL_PATH_PREFIX}/menu/:tableNumber/:restaurantID/:menuID`,
 		element: <RestaurantMenu/>,
 		requiresAuth: false
 	},
@@ -52,7 +52,7 @@ export const ROUTES: Route[] = [
 		requiresAuth: false
 	},
 	{
-		path: `${URL_PATH_PREFIX}/home`,
+		path: `${URL_PATH_PREFIX}/`,
 		element: <Home/>,
 		requiresAuth: false
 	},
@@ -67,8 +67,8 @@ export const ROUTES: Route[] = [
 		requiresAuth: true
 	},
 	{
-		path: `/redirect/:tableId`,
-		element: <Redirect/>,
+		path: `/test/:tableId`,
+		element: <Test/>,
 		requiresAuth: false
 	},
 	{

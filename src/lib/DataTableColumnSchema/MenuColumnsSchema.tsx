@@ -1,6 +1,5 @@
 import {MenuItemWithCategory} from "@/schema.ts";
 import {ColumnDef} from "@tanstack/react-table";
-// import {Checkbox} from "@/components/ui/checkbox.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {ArrowUpDown} from "lucide-react";
 import ItemRowActions from "@/components/Dashboard/ItemRowActions.tsx";
@@ -58,13 +57,11 @@ export const menuColumnsSchema = ({ onEdit, onDelete }: ItemActions): ColumnDef<
         header: () => <div className="text-left">Preço</div>,
         cell: ({row}) => {
             const price = formatCurrency(row.getValue("price"))
-
             return <div className="text-left font-poppins-semibold text-zinc-600">AOA&nbsp;{price}</div>;
         }
     },
     {
         id: "actions",
-
         enableHiding: false,
         cell: ({row}) => <ItemRowActions row={row} onEdit={onEdit} onDelete={onDelete}/>
     }

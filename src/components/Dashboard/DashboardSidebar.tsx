@@ -7,7 +7,7 @@ import {
 	SidebarMenu,
 	SidebarMenuItem,
 	SidebarMenuButton,
-	useSidebar
+	useSidebar,
 } from "@/components/ui/sidebar";
 import {Home, Menu, Settings, Info, QrCode} from "lucide-react"
 import {useDashboardContext} from "@/context/dashboardContext.ts";

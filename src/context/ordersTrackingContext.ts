@@ -10,6 +10,9 @@ interface OrdersTrackingContextProps {
     orders: OrderJson[]
     filterMode: Filter,
     handleFilterModeChange: (filterMode: Filter) => void
+    tableFilter: string | null,
+    handleTableFilterChange: (tableFilter: string | null) => void,
+    updateOrderStatus: (orderId: string, newStatus: string) => void
 }
 
 export const OrdersTrackingContext = createContext<OrdersTrackingContextProps | undefined>(undefined)

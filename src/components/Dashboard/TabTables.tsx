@@ -1,11 +1,11 @@
 import {TypographyH2, TypographyMuted} from "@/components/ui/Typography";
 import {useGetAllTables} from "@/service/api/table";
 import {useDashboardContext} from "@/context/dashboardContext";
-import { QRCodeCanvas } from "qrcode.react"
 import {Info, Plus} from "lucide-react"
 import {Button} from "@/components/ui/button.tsx";
 import {useMediaQuery} from "@/hooks/use-media-query.ts";
 import {DESKTOP} from "@/lib/constants.ts";
+import TableQrCodeCard from "@/components/Dashboard/TableQRCodeCard.tsx";
 
 export function TabTables() {
 
@@ -14,19 +14,6 @@ export function TabTables() {
     const {restaurant} = useDashboardContext()
 
     const {data: tables} = useGetAllTables({restaurantId: restaurant.id})
-
-    function downloadCode(id: string) {
-        const element: HTMLCanvasElement = document.querySelector(`#${id}`) as HTMLCanvasElement;
-        if (element) {
-            const url = element.toDataURL('image/png').replace('image/png', 'image/octet-stream')
-            const link = document.createElement('a')
-            link.download = `${id}.png`
-            link.href = url
-            document.body.appendChild(link)
-            link.click()
-            document.body.removeChild(link)
-        }
-    }
 
     return (
         <div>
@@ -46,32 +33,7 @@ export function TabTables() {
                 {
                     tables &&
                     tables.map((table, index) =>
-
-                        <div key={table.id}
-                             className="rounded-md p-2 bg-zinc-100 border border-zinc-10 shadow-sm items-center justify-between inline-block space-y-4 w-full mx-auto">
-                            <div
-                                className="border border-zinc-200 rounded-md bg-white"
-                                style={{height: "auto", margin: "0 auto", maxWidth: 150, width: "100%"}}>
-                                <QRCodeCanvas
-                                    marginSize={3}
-                                    style={{height: "auto", maxWidth: "100%", width: "100%"}}
-                                    size={256}
-                                    bgColor={"#ffffff"}
-                                    className="rounded-md"
-                                    value={table.link}
-                                    id={`qrcode-${index + 1}`}/>
-                            </div>
-                            <div className="w-full">
-                                <h1 className="text-center text-lg font-poppins-semibold text-zinc-500">
-                                    Mesa {table.number}
-                                </h1>
-                            </div>
-                            <Button
-                                className="w-full"
-                                onClick={() => downloadCode(`qrcode-${index + 1}`)}>
-                                Baixar imagem
-                            </Button>
-                        </div>
+                        <TableQrCodeCard table={table} index={index} key={index}/>
                     )
                 }
                 <div className="flex text-zinc-600 items-center justify-center w-full h-full bg-zinc-100 border border-zinc-200 rounded-md shadow-sm">

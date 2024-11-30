@@ -16,7 +16,7 @@ import {Textarea} from "@/components/ui/textarea.tsx";
 type AddItemValues = z.infer<typeof AddItemSchema>;
 
 export function AddItemContent() {
-    const [preview, setPreview] = useState<string | ArrayBuffer | null>("");
+    const [preview, setPreview] = useState<string | ArrayBuffer | null>(null);
     const [isAvailable, setIsAvailable] = useState<boolean>(true)
     const [isCreateCategoryOpen, setIsCreateCategoryOpen] = useState<boolean>(false)
 
@@ -124,21 +124,30 @@ export function AddItemContent() {
                                                 className="max-h-[150px] rounded-lg"
                                             />
                                         )}
-                                        <Upload
-                                            className={`size-6 ${preview ? "hidden" : "block"} bg-zinc-200 rounded-full p-1 text-gray-800`}
-                                        />
+
+
+
                                         <Input {...getInputProps()} type="file"/>
                                         {
-                                            isDragActive ? (<p className="text-center">Arraste a imagem para aqui!</p>) :
-                                            preview != null? <p>Imagem selecionada</p>
-                                               :
-                                                <div>
-                                                    <p className="text-center text-sm">Clique aqui ou arraste a imagem para fazer
-                                                        upload</p>
-                                                    <p className="text-center text-xs text-zinc-600">
-                                                        Formatos: JPG, JPEG ou PNG | Tamanho máximo de {MAX_IMAGE_SIZE}MB.
-                                                    </p>
-
+                                            isDragActive ?
+                                                <p className="text-center">Arraste a imagem para aqui!</p> :
+                                            preview != null?
+                                                <p className="text-center text-xs text-zinc-600">Imagem selecionada</p> :
+                                                <div className="flex flex-col items-center space-y-2.5">
+                                                    <Button className="rounded-xl w-fit">
+                                                        <Upload
+                                                            className={`size-6 ${preview ? "hidden" : "block"}`}/>
+                                                        Upload
+                                                    </Button>
+                                                    <div>
+                                                        <p className="text-center text-sm font-poppins-medium">
+                                                            Clique aqui ou arraste a imagem para fazer upload
+                                                        </p>
+                                                        <p className="text-center text-xs text-zinc-600">
+                                                            Formatos: JPG, JPEG ou PNG | Tamanho máximo
+                                                            de {MAX_IMAGE_SIZE}MB.
+                                                        </p>
+                                                    </div>
                                                 </div>
                                         }
                                     </div>
@@ -146,7 +155,7 @@ export function AddItemContent() {
                                 <FormMessage>
                                     {fileRejections.length !== 0 && (
                                         <p>
-                                            A imagem deve conter no maximo {MAX_IMAGE_SIZE}MB e ser dos tipos, jpg, ou jpeg.
+                                        A imagem deve conter no maximo {MAX_IMAGE_SIZE}MB e ser dos tipos, jpg, ou jpeg.
                                         </p>
                                     )}
                                 </FormMessage>

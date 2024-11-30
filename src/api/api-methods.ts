@@ -14,7 +14,6 @@ export class ApiMethods {
             default:
                 return Promise.reject("There was an error. Please try again later.");
         }
-
     }
 
     public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
@@ -24,7 +23,7 @@ export class ApiMethods {
             return this.handleResponse(response);
         } catch (error) {
             if (error instanceof AxiosError)
-                throw this.handleError(error);
+                throw await this.handleError(error);
             else {
                 console.error(error);
                 throw error;
