@@ -15,7 +15,7 @@ export const PHONE = "(max-width: 480px)"
 export const MOBILE = "(max-width: 320px)"
 export const LARGE_SCREEN = "(min-width: 1024px)"
 
-type Tag = "All" | "New" | "In Progress" | "Done" | "Cancelled"
+export type Tag = "All" | "New" | "In Progress" | "Done" | "Cancelled"
 
 export interface Filter {
     name: string;

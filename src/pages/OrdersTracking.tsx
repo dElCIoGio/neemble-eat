@@ -37,7 +37,6 @@ export function OrdersTracking() {
 
     const {orders, addOrder, removeOrders, updateOrderStatus} = useGetAllOrders({restaurantID: restaurantID})
 
-    console.log(orders)
 
     const handleMessageNewOrder = useCallback((event: MessageEvent) => {
         try {
@@ -51,7 +50,6 @@ export function OrdersTracking() {
 
     const handleFilterModeChange = useCallback((filterMode: Filter) => {
         setFilterMode(filterMode);
-        console.log(filterMode.tag);
     }, []);
     
     const handleMessageBilledOrder = useCallback((event: MessageEvent) => {

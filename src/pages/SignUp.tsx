@@ -28,7 +28,7 @@ export function SignUp() {
 				</div>
 				<footer className={`flex justify-between items-center`}>
 					<Button asChild variant={"ghost"} className={"px-0"}>
-						<Link to={`${URL_PATH_PREFIX}/home`}>
+						<Link to={`${URL_PATH_PREFIX}/`}>
 							<ArrowLeft/> Voltar
 						</Link>
 					</Button>
@@ -42,7 +42,7 @@ export function SignUp() {
 			<div className="relative w-full h-full flex flex-col items-center justify-center space-y-6">
 				<nav className={`absolute w-full px-4 top-6 laptop:hidden flex justify-between items-center`}>
 					<Button asChild variant={"ghost"} className={"px-0"}>
-						<Link to={`${URL_PATH_PREFIX}/home`}>
+						<Link to={`${URL_PATH_PREFIX}/`}>
 							<ArrowLeft/> Voltar
 						</Link>
 					</Button>

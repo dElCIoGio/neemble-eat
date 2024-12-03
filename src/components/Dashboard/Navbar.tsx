@@ -35,7 +35,7 @@ export function Navbar() {
 	                <DropdownMenuItem asChild className="bg-red-500 focus:bg-red-600 focus:text-white text-white">
 						<Button onClick={() => {
 							logout().then()
-							navigate(`${URL_PATH_PREFIX}/home`)
+							navigate(`${URL_PATH_PREFIX}/`, {replace: true})
 						}}>
 							Terminar Sessão
 						</Button>

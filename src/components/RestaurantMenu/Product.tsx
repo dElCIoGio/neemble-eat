@@ -116,7 +116,6 @@ export function Product({children, item}: props) {
 					{children}
 				</SheetTrigger>
 				<SheetContent className="max-h-[90%] px-1 flex flex-col rounded-t-2xl" side={"bottom"}>
-
 					<SheetHeader>
 						<SheetTitle>
 							<div className={"flex relative justify-between items-center px-2"}>
@@ -142,9 +141,9 @@ export function Product({children, item}: props) {
 						<ProductContent/>
 					</ScrollArea>
 					</div>
-					<SheetFooter className="pt-2">
+					<SheetFooter className="pt-2 ">
 						<SheetClose asChild>
-							<Button variant="outline" className={`laptop:w-full mx-4`}>Cancelar</Button>
+							<Button variant="outline" className={`w-full mx-4`}>Cancelar</Button>
 						</SheetClose>
 					</SheetFooter>
 				</SheetContent>

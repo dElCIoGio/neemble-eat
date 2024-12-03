@@ -8,5 +8,6 @@ export const ENDPOINTS = {
     GET_ALL_TABLES: (restaurantId: string) => `${ROUTER}/${restaurantId}/all-tables`,
     GET_ALL_ORDERS: (restaurantId: string) => `${ROUTER}/${restaurantId}/orders`,
     GET_OPEN_SESSION: (restaurantID: string, tableNumber: number) => `${ROUTER}/${restaurantID}/${tableNumber}/open-session`,
-
+    ADD_TABLE: (restaurantID: string) => `${ROUTER}/${restaurantID}/add-table`,
+    REMOVE_TABLE: (restaurantID: string, tableID: string) => `${ROUTER}/${restaurantID}/${tableID}/remove-table`,
 }

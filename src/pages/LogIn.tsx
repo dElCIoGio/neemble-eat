@@ -16,7 +16,7 @@ export function LogIn() {
 			<div
 				className={"relative flex justify-center items-center px-12 w-full tablet:w-full laptop:w-full desktop:w-1/2 desktop:1/2  h-full"}>
 				<div className={"absolute top-0 left-0 mx-4 my-8"}>
-					<Link to={"/home"}>
+					<Link to={`${URL_PATH_PREFIX}/`}>
 						<ChevronLeft/>
 					</Link>
 				</div>

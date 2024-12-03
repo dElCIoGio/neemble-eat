@@ -1,4 +1,4 @@
-import {FILTERS} from "@/lib/constants.ts";
+import {FILTERS, Tag} from "@/lib/constants.ts";
 import {Button} from "@/components/ui/button.tsx";
 import {useOrdersTrackingContext} from "@/context/ordersTrackingContext.ts";
 import {Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem} from "@/components/ui/select.tsx";
@@ -66,6 +66,7 @@ export function Header() {
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
+                            <SelectItem value={"All" as Tag}>Todas</SelectItem>
                             {
                                 [...new Set(orders.map(order => order.tableNumber))].map((tableNumber) => (
                                     <SelectItem key={tableNumber} value={tableNumber.toString()}>

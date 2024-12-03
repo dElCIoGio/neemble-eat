@@ -22,6 +22,8 @@ export function TabMenu() {
 
 	const [items, setItems] = useState<Array<MenuItem>>([]);
 
+
+
 	useEffect(() => {
 		if (menu) {
 			setItems(menuToItemsList(menu));

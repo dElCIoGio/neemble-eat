@@ -39,7 +39,7 @@ export function OrderInfo({order}: OrderInfoProps) {
                 tag = "in-progress";
                 break
             case "Cancelled":
-                tag = "cancelled";
+                tag = "cancel";
                 break
             case "Done":
                 tag = "done";

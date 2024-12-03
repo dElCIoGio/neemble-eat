@@ -16,5 +16,11 @@ export const CONFIG = {
     }),
     GET_OPEN_SESSION: (): AxiosRequestConfig => ({
         ...baseConfig
+    }),
+    ADD_TABLE: (): AxiosRequestConfig => ({
+        ...baseConfig
+    }),
+    REMOVE_TABLE: (): AxiosRequestConfig => ({
+        ...baseConfig
     })
 };

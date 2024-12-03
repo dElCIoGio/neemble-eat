@@ -1,7 +1,13 @@
-import {GetAllOrdersProps, GetRestaurantProps, GetTopOrdersProps} from "@/api/restaurant/types.ts";
-import {useQuery, useQueryClient} from "@tanstack/react-query";
+import {
+    AddTableProps,
+    GetAllOrdersProps,
+    GetRestaurantProps,
+    GetTopOrdersProps,
+    RemoveTableProps
+} from "@/api/restaurant/types.ts";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {HOUR} from "@/lib/constants.ts";
-import {getAllOrders, getRestaurant, getTopOrders} from "@/api/restaurant/manager"
+import {addTable, getAllOrders, getRestaurant, getTopOrders, removeTable} from "@/api/restaurant/manager"
 import {OrderJson} from "@/schema.ts";
 import filterLastXhOrders from "@/lib/filterLastXhOrders.ts";
 
@@ -88,4 +94,30 @@ export function useGetAllOrders(attr: GetAllOrdersProps){
         addOrder,
         removeOrders,
     }
+}
+
+
+export function useAddTable(attr: AddTableProps) {
+    return useMutation({
+        mutationFn: () => addTable(attr),
+        onSuccess: () => {
+            console.log("Table added")
+        },
+        onError: () => {
+            console.log("Error adding table")
+        },
+    })
+}
+
+
+export function useRemoveTable(attr: RemoveTableProps) {
+    return useMutation({
+        mutationFn: () => removeTable(attr),
+        onSuccess: () => {
+            console.log("Table removed")
+        },
+        onError: () => {
+            console.log("Error removing table")
+        },
+    })
 }

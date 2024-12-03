@@ -1,8 +1,9 @@
 import {
+    AddTableProps,
     GetAllOrdersProps,
     GetAllTablesProps,
     GetRestaurantProps,
-    GetTopOrdersProps
+    GetTopOrdersProps, RemoveTableProps
 } from "@/api/restaurant/types.ts";
 import {ENDPOINTS} from "@/api/restaurant/endpoints"
 import {CONFIG} from "@/api/restaurant/config.ts";
@@ -39,4 +40,16 @@ export async function getAllOrders({restaurantID}: GetAllOrdersProps): Promise<O
     const url = ENDPOINTS.GET_ALL_ORDERS(restaurantID)
     const config = CONFIG.GET_ALL_ORDERS()
     return await api.get<OrderJson[]>(url, config)
+}
+
+export async function addTable({restaurantID}: AddTableProps): Promise<TableJson>{
+    const url = ENDPOINTS.ADD_TABLE(restaurantID)
+    const config = CONFIG.ADD_TABLE()
+    return await api.put<TableJson>(url, undefined, config)
+}
+
+export async function removeTable({restaurantID, tableId}: RemoveTableProps): Promise<boolean>{
+    const url = ENDPOINTS.REMOVE_TABLE(restaurantID, tableId)
+    const config = CONFIG.REMOVE_TABLE()
+    return await api.put<boolean>(url, undefined, config)
 }

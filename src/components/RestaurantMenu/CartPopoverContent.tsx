@@ -1,7 +1,7 @@
 import {CartItem} from "@/schema";
 import {useMenuContext} from "@/context/menuContext";
 import {Button} from "@/components/ui/button";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {URL_PATH_PREFIX} from "@/lib/constants.ts";
 
 interface PopUpButtonParams {
@@ -11,9 +11,9 @@ interface PopUpButtonParams {
 
 export const CartPopoverContent = ({cart, productAdded}: PopUpButtonParams) => {
 
-
-
 	const {restaurant, menu, tableNumber, selectedItem} = useMenuContext()
+
+	const navigate = useNavigate()
 
 	return (
 		<div>
@@ -39,10 +39,10 @@ export const CartPopoverContent = ({cart, productAdded}: PopUpButtonParams) => {
                                 </div>
                             ))}
                         </div>
-						<Button className={"w-full mt-4 rounded-lg"}>
-							<Link to={`${URL_PATH_PREFIX}/c/${restaurant.id}/${menu.id}/${tableNumber}`}>
-								Carrinho
-							</Link>
+						<Button className={"w-full mt-4 rounded-lg"} onClick={() =>
+							navigate(`${URL_PATH_PREFIX}/c/${restaurant.id}/${menu.id}/${tableNumber}`)
+						}>
+							Carrinho
 						</Button>
                     </div> :
 					<div className='flex justify-center items-center'>

@@ -20,7 +20,8 @@ export function Orders() {
 
 	const {
 		restaurantID,
-		tableNumber
+		tableNumber,
+		menuID
 	} = useParams() as unknown as {
 		restaurantID: string,
 		menuID: string,
@@ -94,7 +95,7 @@ export function Orders() {
 		}}>
 			<Layout>
 				<Background className={`bg-gray-100`}/>
-				<ReturnNav path={`/`} title={"Pedidos"}/>
+				<ReturnNav path={`/menu/${tableNumber}/${restaurantID}/${menuID}`} title={"Pedidos"}/>
 				<div>
 		            <h1 className='text-lg font-semibold'>
 		                Pedidos recentes

@@ -17,7 +17,7 @@ export function Cart() {
 
 	document.title = "Carrinho"
 
-	const {restaurantID, tableNumber} = useParams() as unknown as {
+	const {restaurantID, tableNumber, menuID} = useParams() as unknown as {
 		restaurantID: string,
 		menuID: string,
 		tableNumber: number
@@ -95,7 +95,7 @@ export function Cart() {
 		}}>
 			<Layout>
 				<Background className={"bg-gray-100"}/>
-				<ReturnNav path={`/`} title={"Carrinho"}/>
+				<ReturnNav path={`/menu/${tableNumber}/${restaurantID}/${menuID}`} title={"Carrinho"}/>
 				<NumberOfItems/>
 				<ItemsSection/>
 				<Checkout onSubmit={handleSubmit}/>

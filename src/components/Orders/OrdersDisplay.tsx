@@ -6,10 +6,9 @@ export function OrdersDisplay() {
 
 	const {orders,} = useOrdersContext()
 
+	console.log(orders)
 
-	// if (isFetchingOrders) {
-	// 	return <Skeleton className={'h-20 w-full rounded-xl'}/>
-	// }
+
 
 	return (
 		<div className='bg-white shadow-sm p-2 rounded-3xl mt-3 border border-gray-200'>

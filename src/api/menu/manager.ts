@@ -12,4 +12,3 @@ export async function getMenu({menuId}:getMenuProps): Promise<Menu> {
     const config = CONFIG.FETCH_MENU()
     return await api.get<Menu>(url, config)
 }
-
