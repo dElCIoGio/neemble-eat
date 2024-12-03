@@ -34,6 +34,7 @@ export function OrdersTracking() {
 
     const {state: tableFilter, handleState: handleTableFilterChange} = useSelectedState<string | null>(null)
     const {state: orderSelected, handleState} = useSelectedState<OrderJson | null>(null)
+    const {state: sorting, handleState: handleSortingChange} = useSelectedState<"asc" | "desc">("asc")
 
     const {orders, addOrder, removeOrders, updateOrderStatus} = useGetAllOrders({restaurantID: restaurantID})
 
@@ -91,7 +92,9 @@ export function OrdersTracking() {
                     handleOrderDeselected: () => handleState(null),
                     tableFilter,
                     handleTableFilterChange,
-                    updateOrderStatus
+                    updateOrderStatus,
+                    sorting,
+                    handleSortingChange
                 }}>
                     <div className="p-4 laptop:h-screen laptop:flex laptop:flex-col">
                         <div className="mt-4 mb-8 flex space-x-1.5 items-center">

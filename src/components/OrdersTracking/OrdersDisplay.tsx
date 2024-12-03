@@ -4,14 +4,21 @@ import {OrderListing} from "@/components/OrdersTracking/OrderListing.tsx";
 
 export function OrdersDisplay() {
 
-    const {orders, filterMode, tableFilter} = useOrdersTrackingContext()
+    const {orders, filterMode, tableFilter, sorting} = useOrdersTrackingContext()
 
     const filteredOrders = orders.filter((order) => {
         const matchesFilterMode = filterMode.tag === 'All' || filterMode.tag === order.prepStatus;
-        console.log(matchesFilterMode)
         const matchesTableFilter = tableFilter === "All" || tableFilter === null || tableFilter === order.tableNumber.toString();
-        console.log(matchesTableFilter)
         return matchesFilterMode && matchesTableFilter;
+    }).sort((a, b) => {
+        const timeA = new Date(a.orderTime).getTime();
+        const timeB = new Date(b.orderTime).getTime();
+
+        if (sorting === "asc") {
+            return timeA - timeB;
+        } else {
+            return timeB - timeA;
+        }
     });
 
     return (

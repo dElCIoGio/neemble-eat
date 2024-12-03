@@ -13,6 +13,8 @@ interface OrdersTrackingContextProps {
     tableFilter: string | null,
     handleTableFilterChange: (tableFilter: string | null) => void,
     updateOrderStatus: (orderId: string, newStatus: string) => void
+    sorting: "asc" | "desc"
+    handleSortingChange: (order: "asc" | "desc") => void
 }
 
 export const OrdersTrackingContext = createContext<OrdersTrackingContextProps | undefined>(undefined)

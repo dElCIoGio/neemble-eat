@@ -4,26 +4,31 @@ import {useOrdersTrackingContext} from "@/context/ordersTrackingContext.ts";
 import {Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem} from "@/components/ui/select.tsx";
 import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger} from "@/components/ui/sheet.tsx";
 import {useState} from "react";
-
+import {SortAscending, SortDescending, ArrowRight} from "@phosphor-icons/react"
 
 
 export function Header() {
 
-    const { filterMode, handleFilterModeChange, orders, handleTableFilterChange} = useOrdersTrackingContext()
+    const { filterMode, handleFilterModeChange, orders, handleTableFilterChange, sorting, handleSortingChange} = useOrdersTrackingContext()
     const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false)
 
     function toggleSheet() {
         setIsSheetOpen(!isSheetOpen)
     }
 
+    function toggleSorting(){
+        handleSortingChange(sorting == "asc"? "desc" : "asc")
+    }
+
     return (
         <div className="w-full space-y-2">
             <div className={`flex justify-between items-center`}>
+
                 <div className="laptop:hidden my-2">
                     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen} defaultOpen={false}>
                         <SheetTrigger asChild>
                             <Button variant={"default"}>
-                                Selecionar Mesa
+                                Selecionar estado
                             </Button>
                         </SheetTrigger>
                         <SheetContent side={"left"}>
@@ -68,7 +73,7 @@ export function Header() {
                     }
                 </div>
             </div>
-            <div>
+            <div className="flex flex-col space-y-2 laptop:items-center laptop:justify-between laptop:flex-row laptop:space-x-4">
                 <Select onValueChange={handleTableFilterChange} defaultValue={"All" as Tag}>
                     <SelectTrigger className="w-[180px] focus:ring-0 focus:outline-none ">
                         <SelectValue placeholder={"Selecione uma mesa"}/>
@@ -86,6 +91,25 @@ export function Header() {
                         </SelectGroup>
                     </SelectContent>
                 </Select>
+                <div>
+                    <Button variant="secondary" className="hover:bg-zinc-200" onClick={toggleSorting}>
+                        {sorting == "asc" ?
+                            <>
+                                <SortDescending/>
+                                <span className="flex items-center">
+                                    Antigo <ArrowRight className="mx-1.5"/> Recente
+                                </span>
+                            </> :
+                            <>
+                                <SortAscending/>
+                                <span className="flex items-center">
+                                    Recente <ArrowRight className="mx-1.5"/> Antigo
+                                </span>
+                            </>
+
+                        }
+                    </Button>
+                </div>
             </div>
         </div>
     );
