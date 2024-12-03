@@ -9,7 +9,7 @@ export function OrdersDisplay() {
     const filteredOrders = orders.filter((order) => {
         const matchesFilterMode = filterMode.tag === 'All' || filterMode.tag === order.prepStatus;
         console.log(matchesFilterMode)
-        const matchesTableFilter = tableFilter === "All" || tableFilter === order.tableNumber.toString();
+        const matchesTableFilter = tableFilter === "All" || tableFilter === null || tableFilter === order.tableNumber.toString();
         console.log(matchesTableFilter)
         return matchesFilterMode && matchesTableFilter;
     });

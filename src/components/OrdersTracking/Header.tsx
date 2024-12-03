@@ -3,18 +3,24 @@ import {Button} from "@/components/ui/button.tsx";
 import {useOrdersTrackingContext} from "@/context/ordersTrackingContext.ts";
 import {Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem} from "@/components/ui/select.tsx";
 import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger} from "@/components/ui/sheet.tsx";
+import {useState} from "react";
 
 
 
 export function Header() {
 
     const { filterMode, handleFilterModeChange, orders, handleTableFilterChange} = useOrdersTrackingContext()
+    const [isSheetOpen, setIsSheetOpen] = useState<boolean>(false)
+
+    function toggleSheet() {
+        setIsSheetOpen(!isSheetOpen)
+    }
 
     return (
         <div className="w-full space-y-2">
             <div className={`flex justify-between items-center`}>
                 <div className="laptop:hidden my-2">
-                    <Sheet>
+                    <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen} defaultOpen={false}>
                         <SheetTrigger asChild>
                             <Button variant={"default"}>
                                 Selecionar Mesa
@@ -34,7 +40,10 @@ export function Header() {
                                             <Button key={filter.tag} className="text-sm bg-amethyst text-white hover:bg-amethyst-400" variant="secondary">
                                                 {filter.name}
                                             </Button>:
-                                            <Button onClick={() => handleFilterModeChange(filter)} key={filter.tag} className="text-sm bg-white" variant="secondary">
+                                            <Button onClick={() => {
+                                                handleFilterModeChange(filter)
+                                                toggleSheet()
+                                            }} key={filter.tag} className="text-sm bg-white" variant="secondary">
                                                 {filter.name}
                                             </Button>
                                     )
@@ -60,7 +69,7 @@ export function Header() {
                 </div>
             </div>
             <div>
-                <Select onValueChange={handleTableFilterChange}>
+                <Select onValueChange={handleTableFilterChange} defaultValue={"All" as Tag}>
                     <SelectTrigger className="w-[180px] focus:ring-0 focus:outline-none ">
                         <SelectValue placeholder={"Selecione uma mesa"}/>
                     </SelectTrigger>
