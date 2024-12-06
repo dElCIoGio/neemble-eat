@@ -11,7 +11,7 @@ import {addTable, getAllOrders, getRestaurant, getTopOrders, removeTable} from "
 import {OrderJson} from "@/schema.ts";
 import filterLastXhOrders from "@/lib/filterLastXhOrders.ts";
 
-const GET_TOP_ORDERS_GCTime: number  = HOUR * 5;
+const GET_TOP_ORDERS_GCTime: number  = 1000 * 60 * 60 * 24;
 const GET_TOP_ORDERS_STALETIME: number = HOUR * 2;
 
 const GET_RESTAURANT_STALETIME: number = HOUR * 24

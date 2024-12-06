@@ -216,6 +216,35 @@
     }
 
 
+    .pulse-button {
+        padding: 20px 40px;
+        font-size: 24px;
+        color: #fff;
+        background: #6200ea;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+        }
+
+        70% {
+            transform: scale(1);
+            box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+        }
+
+        100% {
+            transform: scale(0.95);
+            box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        }
+    }
+
+
     .header-grid-container {
         grid-template-areas:
             "main-image main-image main-image"

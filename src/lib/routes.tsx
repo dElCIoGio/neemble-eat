@@ -81,7 +81,7 @@ export const ROUTES: Route[] = [
 	{
 		path: `${URL_PATH_PREFIX}/orders-tracking/:restaurantID`,
 		element: <OrdersTracking/>,
-		requiresAuth: false
+		requiresAuth: true
 	},
 	{
 		path: `${URL_PATH_PREFIX}/tables-tracking/:restaurantID`,

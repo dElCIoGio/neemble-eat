@@ -9,35 +9,13 @@ import {
 	SidebarMenuButton,
 	useSidebar,
 } from "@/components/ui/sidebar";
-import {Home, Menu, Settings, Info, QrCode} from "lucide-react"
+import {Info} from "@phosphor-icons/react"
 import {useDashboardContext} from "@/context/dashboardContext.ts";
 import {DashboardPage} from "@/schema.ts";
 import {Button} from "@/components/ui/button.tsx";
+import {DashboardSidebarTabs} from "@/lib/DashboardSidebarTabs.ts";
 
 
-const tabs = [
-	{
-		title: "Dashboard",
-		tag: "dashboard",
-		icon: Home
-	},
-	{
-		title: "Edite o Menu",
-		tag: "menu",
-		icon: Menu
-	},
-	{
-		title: "Mesas e QR Code",
-		tag: "tables",
-		icon: QrCode
-	},
-	{
-		title: "Definições",
-		tag: "settings",
-		icon: Settings
-	},
-
-]
 
 export function DashboardSidebar() {
 
@@ -64,23 +42,29 @@ export function DashboardSidebar() {
 				</div>
 			</SidebarHeader>
 	      <SidebarContent>
-	        <SidebarGroup className="">
+	        <SidebarGroup>
 		        <SidebarMenu className="rounded-none">
-			        {tabs.map((tab) => (
-				        <SidebarMenuItem className="cursor-pointer " key={tab.tag}>
-					        <SidebarMenuButton
-						        className={`transition-all duration-100 ${tab.tag === currentPage ?
-							        "hover:bg-amethyst-800 bg-amethyst-900 focus:bg-amethyst-800 text-amethyst-300 hover:text-amethyst-300 font-poppins-semibold border border-amethyst-700 transition-all duration-100" :
-							        "text-zinc-400"}`}
-						        onClick={() => handlePageChange(tab.tag)}
-						        asChild>
-						            <div>
-							            <tab.icon fill={tab.tag === currentPage?"#d3c2e8": "#ffffff"}/>
-							            <span>{tab.title}</span>
+			        {DashboardSidebarTabs.map(({icon, tag, title}) => {
+						const TabIcon = icon
+
+
+						return (
+							<SidebarMenuItem className="cursor-pointer " key={tag}>
+								<SidebarMenuButton
+									className={`transition-all duration-100 ${tag === currentPage ?
+										"hover:bg-amethyst-800 bg-amethyst-900 focus:bg-amethyst-800 text-amethyst-300 hover:text-amethyst-300 font-poppins-semibold border border-amethyst-700 transition-all duration-100" :
+										"text-zinc-400"}`}
+									onClick={() => handlePageChange(tag)}
+									asChild>
+									<div>
+										<TabIcon/>
+										<span>{title}</span>
 									</div>
-					        </SidebarMenuButton>
-			            </SidebarMenuItem>
-			        ))}
+								</SidebarMenuButton>
+							</SidebarMenuItem>
+						)
+					}
+			        )}
 		        </SidebarMenu>
 	        </SidebarGroup>
 	      </SidebarContent>
@@ -91,7 +75,6 @@ export function DashboardSidebar() {
 					<p className="transition-all duration-150">
 						{state === "collapsed" ? "" : "Ajuda e informações"}
 					</p>
-
 				</Button>
 			</SidebarFooter>
     </Sidebar>

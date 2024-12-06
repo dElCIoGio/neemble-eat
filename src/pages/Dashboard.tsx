@@ -1,8 +1,5 @@
 import {Layout} from "@/components/Dashboard/Layout"
 import {Tabs, TabsContent} from "@/components/ui/tabs"
-import {TabDashboard} from "@/components/Dashboard/TabDashboard.tsx";
-import {TabMenu} from "@/components/Dashboard/TabMenu.tsx";
-import {TabSettings} from "@/components/Dashboard/TabSettings.tsx";
 import {useState} from "react";
 import {DashboardPage} from "@/schema.ts";
 import {DashboardContext} from "@/context/dashboardContext.ts";
@@ -10,7 +7,7 @@ import {useParams} from "react-router-dom";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import {useFetchUserByUUID} from "@/api/user/fetchUserByUUID.ts";
 import {useGetRestaurant} from "@/service/api/restaurant.ts";
-import {TabTables} from "@/components/Dashboard/TabTables.tsx";
+import {DashboardSidebarTabs} from "@/lib/DashboardSidebarTabs.ts";
 
 
 export function Dashboard() {
@@ -40,18 +37,16 @@ export function Dashboard() {
 				}}>
 					<Layout>
 						<Tabs defaultValue="dashboard" value={currentPage}>
-							<TabsContent value="dashboard">
-								<TabDashboard/>
-							</TabsContent>
-							<TabsContent value="menu">
-								<TabMenu/>
-							</TabsContent>
-							<TabsContent value="settings">
-								<TabSettings/>
-							</TabsContent>
-							<TabsContent value="tables">
-								<TabTables/>
-							</TabsContent>
+							{
+								DashboardSidebarTabs.map(({tab, tag}) => {
+									const Tab = tab
+									return(
+										<TabsContent key={tag} value={tag}>
+											{<Tab/>}
+										</TabsContent>
+									)}
+								)
+							}
 						</Tabs>
 					</Layout>
 				</DashboardContext.Provider>

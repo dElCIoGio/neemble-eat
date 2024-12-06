@@ -13,8 +13,11 @@ function App() {
 	              {
 		              ROUTES.map(route => <Route
 			              key={route.path}
-			              element={route.requiresAuth ?
-				              <AuthVerification>{route.element}</AuthVerification> :
+			              element={
+                          route.requiresAuth ?
+				              <AuthVerification>
+                                  {route.element}
+                              </AuthVerification> :
 				              route.element}
 			              path={route.path}/>
 		              )

@@ -222,6 +222,7 @@ interface RestaurantJson {
 	address: string,
 	phoneNumber: string,
 	representants?: Array<string>,
+	staff?: string[],
 	bannerURL: string,
 	description: string,
 	orders?: Array<string>,

@@ -13,10 +13,10 @@ import {Button} from "@/components/ui/button.tsx";
 import {Eye, EyeClosed} from 'lucide-react'
 import {useState} from "react";
 import {z} from "zod"
-import {signInWithEmailAndPassword} from "firebase/auth";
-import {auth} from '@/service/firebase/firebase'
+
 import {URL_PATH_PREFIX} from "@/lib/constants.ts";
 import {useNavigate} from "react-router-dom";
+import {logIn} from "@/service/firebase/logIn.ts";
 
 
 export function LogInForm() {
@@ -36,9 +36,9 @@ export function LogInForm() {
 	const onSubmit = (data: z.infer<typeof LogInSchema>) => {
 		const email: string = data.email
 		const password: string = data.password
-		signInWithEmailAndPassword(auth, email, password)
-			.then((userCredentials) => {
-				const userID = userCredentials.user.uid
+		logIn(email, password)
+			.then((user) => {
+				const userID = user.uid
 				navigate(`${URL_PATH_PREFIX}/user/${userID}`)
 			}).catch(() => {
 			setError("Houve um problema ao iniciar sessão. Tente novamente ou troque a sua palavra passe")

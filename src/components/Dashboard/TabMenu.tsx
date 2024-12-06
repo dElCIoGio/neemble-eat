@@ -18,10 +18,12 @@ export function TabMenu() {
 	document.title = "Menu";
 
 	const {restaurant} = useDashboardContext()
-	const {data: menu, isLoading: isMenuLoading, addCategory} = useGetMenu({menuId: restaurant.menus[0]})
+
+	const [menuSelected, ] = useState<string>(restaurant.menus[0])
+
+	const {data: menu, isLoading: isMenuLoading, addCategory} = useGetMenu({menuId: menuSelected})
 
 	const [items, setItems] = useState<Array<MenuItem>>([]);
-
 
 
 	useEffect(() => {
