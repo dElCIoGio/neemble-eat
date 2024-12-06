@@ -1,8 +1,9 @@
-import {Menu} from "@/schema.ts";
+import {CategoryJson, Menu} from "@/schema.ts";
 import {createContext, useContext} from "react";
 
 interface EditMenuProps {
     menu: Menu;
+    addCategory: (category: CategoryJson) => void;
 }
 
 export const EditMenuContext = createContext<EditMenuProps |  undefined>(undefined)

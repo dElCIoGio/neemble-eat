@@ -1,4 +1,4 @@
-import {useCallback, useState} from "react";
+import {useCallback} from "react";
 import {useGetAllOrders} from "@/service/api/restaurant.ts";
 import {useParams} from "react-router-dom";
 import useWebSocket from "@/hooks/use-web-socket.ts";
@@ -16,33 +16,32 @@ import {useMediaQuery} from "@/hooks/use-media-query.ts";
 import {MobileOrderInfo} from "@/components/OrdersTracking/MobileOrderInfo.tsx";
 import {useSelectedState} from "@/hooks/use-selected-state.ts";
 import {BowlFood} from "@phosphor-icons/react";
+import {Loading} from "@/components/wrappers/Loading.tsx";
+import {LoadingOrdersTracking} from "@/components/Loading/LoadingOrdersTracking.tsx";
 
+
+document.title = "Gestão de Pedidos"
+const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 
 export function OrdersTracking() {
-
-    document.title = "Gestão de Pedidos"
 
     const {restaurantID} = useParams() as unknown as { restaurantID: string };
 
     const isDesktop = useMediaQuery(DESKTOP)
-
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    
     const newOrdersWsUrl = `${protocol}//${BASE_URL}/ws/${restaurantID}/order`;
     const billedOrdersWsUrl = `${protocol}//${BASE_URL}/ws/${restaurantID}/billed`;
 
-    const [filterMode, setFilterMode] = useState<Filter>(FILTERS[0])
-
+    const {state: filterMode, handleState: setFilterMode} = useSelectedState<Filter>(FILTERS[0])
     const {state: tableFilter, handleState: handleTableFilterChange} = useSelectedState<string | null>(null)
     const {state: orderSelected, handleState} = useSelectedState<OrderJson | null>(null)
     const {state: sorting, handleState: handleSortingChange} = useSelectedState<"asc" | "desc">("asc")
 
-    const {orders, addOrder, removeOrders, updateOrderStatus} = useGetAllOrders({restaurantID: restaurantID})
-
+    const {orders, addOrder, removeOrders, updateOrderStatus, isLoading} = useGetAllOrders({restaurantID: restaurantID})
 
     const handleMessageNewOrder = useCallback((event: MessageEvent) => {
         try {
             const order = JSON.parse(event.data);
-            console.log('New order received:', order);
             addOrder(order);
         } catch (error) {
             console.error('Error parsing WebSocket message:', error);
@@ -51,7 +50,7 @@ export function OrdersTracking() {
 
     const handleFilterModeChange = useCallback((filterMode: Filter) => {
         setFilterMode(filterMode);
-    }, []);
+    }, [setFilterMode]);
     
     const handleMessageBilledOrder = useCallback((event: MessageEvent) => {
         const billedOrders: OrderJson[] = JSON.parse(event.data);
@@ -73,76 +72,85 @@ export function OrdersTracking() {
         }
     )
 
-
-    if (orders === undefined) {
-        return <div>Carregando...</div>
-    }
-
     return (
-        <div>
-            <Background className="bg-zinc-100" />
+        <Loading loadingParams={[isLoading]} Fallback={LoadingOrdersTracking}>
             {
-                orders &&
-                <OrdersTrackingContext.Provider value={{
-                    orders,
-                    filterMode,
-                    handleFilterModeChange,
-                    orderSelected,
-                    handleOrderSelected: (order) => handleState(order),
-                    handleOrderDeselected: () => handleState(null),
-                    tableFilter,
-                    handleTableFilterChange,
-                    updateOrderStatus,
-                    sorting,
-                    handleSortingChange
-                }}>
-                    <div className="p-4 laptop:h-screen laptop:flex laptop:flex-col">
-                        <div className="mt-4 mb-8 flex space-x-1.5 items-center">
-                            <div className="w-8 h-8 rounded-full bg-zinc-50 border border-zinc-300 flex justify-center items-center">
-                                <BowlFood className="w-6 h-6 text-zinc-800"/>
-                            </div>
-                            <TypographyH2>
-                                Pedidos
-                            </TypographyH2>
-                        </div>
-                        <div className="space-y-4 h-max laptop:flex laptop:flex-grow laptop:flex-col">
-                            <Header/>
-                            <div className={`flex flex-grow rounded-2xl w-full laptop:bg-zinc-50 laptop:border laptop:border-zinc-200`}>
-                                {
-                                    orders.length == 0 ?
-                                    <div className="laptop:flex laptop:flex-col justify-center items-center overflow-y-hidden laptop:flex-grow w-full">
-                                        <h1 className="text-lg font-poppins-semibold ">
-                                            Nenhum pedido encontrado.
-                                        </h1>
-                                        <h2 className="text-sm font-poppins-regular text-zinc-500">
-                                            Assim que algum cliente efetuar algum pedido, podera encontrar aqui.
-                                        </h2>
-                                    </div>:
-                                    <>
-                                        <div className={`transition-all laptop:flex overflow-y-hidden laptop:flex-grow duration-150 ease-in-out w-full ${orderSelected === null ? 'w-full' : 'laptop:w-3/5'}`}>
-                                            <ScrollArea className="w-full rounded-l-2xl">
-                                                <div className="laptop:max-h-[20rem]">
-                                                    <OrdersDisplay/>
-                                                </div>
-                                            </ScrollArea>
-                                        </div>
+                orders != undefined &&
+                <div>
+                    <Background className="bg-zinc-100"/>
+                    {
+                        orders &&
+                        <OrdersTrackingContext.Provider value={{
+                            orders,
+                            filterMode,
+                            handleFilterModeChange,
+                            orderSelected,
+                            handleOrderSelected: (order) => handleState(order),
+                            handleOrderDeselected: () => handleState(null),
+                            tableFilter,
+                            handleTableFilterChange,
+                            updateOrderStatus,
+                            sorting,
+                            handleSortingChange
+                        }}>
+                            <div className="p-4 laptop:h-screen laptop:flex laptop:flex-col">
+                                <div className="mt-4 mb-8 flex space-x-1.5 items-center">
+                                    <div
+                                        className="w-8 h-8 rounded-full bg-zinc-50 border border-zinc-300 flex justify-center items-center">
+                                        <BowlFood className="w-6 h-6 text-zinc-800"/>
+                                    </div>
+                                    <TypographyH2>
+                                        Pedidos
+                                    </TypographyH2>
+                                </div>
+                                <div className="space-y-4 h-max laptop:flex laptop:flex-grow laptop:flex-col">
+                                    <Header/>
+                                    <div
+                                        className={`flex flex-grow rounded-2xl w-full laptop:bg-zinc-50 laptop:border laptop:border-zinc-200`}>
                                         {
-                                            isDesktop ?
+                                            orders.length == 0 ?
                                                 <div
-                                                    className={`w-2/5 transition-all duration-150 ease-in-out ${orderSelected === null ? 'laptop:hidden' : 'laptop:block'}`}>
-                                                    {orderSelected && <OrderInfo order={orderSelected}/>}
+                                                    className="laptop:flex laptop:flex-col justify-center items-center overflow-y-hidden laptop:flex-grow w-full">
+                                                    <h1 className="text-lg font-poppins-semibold ">
+                                                        Nenhum pedido encontrado.
+                                                    </h1>
+                                                    <h2 className="text-sm font-poppins-regular text-zinc-500">
+                                                        Assim que algum cliente efetuar algum pedido, podera encontrar
+                                                        aqui.
+                                                    </h2>
                                                 </div> :
-                                                <MobileOrderInfo order={orderSelected} setOrder={handleState}/>
+                                                <>
+                                                    <div
+                                                        className={`transition-all laptop:flex overflow-y-hidden laptop:flex-grow duration-150 ease-in-out w-full ${orderSelected === null ? 'w-full' : 'laptop:w-3/5'}`}>
+                                                        <ScrollArea className="w-full rounded-l-2xl">
+                                                            <div className="laptop:max-h-[20rem]">
+                                                                <OrdersDisplay/>
+                                                            </div>
+                                                        </ScrollArea>
+                                                    </div>
+                                                    {
+                                                        isDesktop ?
+                                                            <div
+                                                                className={`w-2/5 transition-all duration-150 ease-in-out ${orderSelected === null ? 'laptop:hidden' : 'laptop:block'}`}>
+                                                                {orderSelected && <OrderInfo order={orderSelected}/>}
+                                                            </div> :
+                                                            <MobileOrderInfo order={orderSelected}
+                                                                             setOrder={handleState}/>
+                                                    }
+                                                </>
                                         }
-                                    </>
-                                }
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                </OrdersTrackingContext.Provider>
+                        </OrdersTrackingContext.Provider>
+                    }
+                </div>
             }
-        </div>
-    );
+
+        </Loading>
+
+)
+    ;
 }
 

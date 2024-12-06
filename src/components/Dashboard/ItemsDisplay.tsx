@@ -8,7 +8,7 @@ import {
 } from "@tanstack/react-table";
 import {Search} from "lucide-react";
 import {Input} from "@/components/ui/input.tsx";
-import {useEffect, useMemo, useState} from "react";
+import {useMemo, useState} from "react";
 import {Select, SelectItem} from "@/components/ui/select";
 import {SelectContent, SelectGroup, SelectLabel, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
@@ -36,6 +36,7 @@ export function ItemsDisplay({items}: ItemsDisplayProps) {
     const {menu} = useEditMenuContext()
 
     const onEdit = (menuItemWithCategory: MenuItemWithCategory) => {
+        setEditingItem(true)
         setSelectedItem(menuItemWithCategory)
     };
 
@@ -62,11 +63,6 @@ export function ItemsDisplay({items}: ItemsDisplayProps) {
             columnVisibility
         }
     })
-
-    useEffect(() => {
-        setEditingItem(!!selectedItem)
-    }, [selectedItem])
-
 
 
     return (

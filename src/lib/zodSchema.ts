@@ -90,7 +90,7 @@ export const MAX_NUMBER_OF_CHARACTERS_ITEM_NAME = 55
 export const MAX_NUMBER_OF_CHARACTERS_ITEM_DESCRIPTION = 300
 export const MAX_IMAGE_SIZE = 15
 
-export const AddItemSchema = z.object({
+export const ItemSchema = z.object({
 	availability: z.boolean().default(true),
 	image: z.instanceof(File).refine(file => {
 		return file.type.startsWith('image/');
@@ -114,8 +114,15 @@ export const AddItemSchema = z.object({
 	price: z.number().int().positive({
 		message: "Insira um preço válido."
 	}),
-	category: z.string().min(1, {
+	categoryID: z.string().min(1, {
 		message: "Inclua uma categoria para o seu produto."
 	}),
-	isAvailable: z.boolean().optional(),
+})
+
+
+export const CategorySchema = z.object({
+	name: z.string().min(1, {
+		message: "Inclua um nome para a categoria."
+	}),
+	description: z.string()
 })

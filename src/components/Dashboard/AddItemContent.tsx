@@ -1,7 +1,7 @@
 import {useCallback, useState} from "react";
 import {useForm} from "react-hook-form";
 import {useDropzone} from "react-dropzone";
-import {AddItemSchema, MAX_IMAGE_SIZE, MB} from "@/lib/zodSchema.ts";
+import {ItemSchema, MAX_IMAGE_SIZE, MB} from "@/lib/zodSchema.ts";
 import {toast} from "sonner";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
 import {DollarSign, Upload} from "lucide-react";
@@ -13,7 +13,7 @@ import {NewCategory} from "@/components/Dashboard/NewCategory";
 import {Switch} from "@/components/ui/switch.tsx";
 import {Textarea} from "@/components/ui/textarea.tsx";
 
-type AddItemValues = z.infer<typeof AddItemSchema>;
+type AddItemValues = z.infer<typeof ItemSchema>;
 
 export function AddItemContent() {
     const [preview, setPreview] = useState<string | ArrayBuffer | null>(null);
@@ -25,11 +25,15 @@ export function AddItemContent() {
             name: "",
             description: "",
             price: 0,
-            category: "",
+            categoryID: "",
             image: undefined,
             availability: true,
         }
     })
+
+    const setCategory = (categoryID: string) =>{
+        form.setValue("categoryID", categoryID)
+    }
 
 
     const onDrop = useCallback(
@@ -204,7 +208,7 @@ export function AddItemContent() {
                         )}/>
                     <div className="flex items-center gap-x-4 mb-16">
                         <p>Categoria</p>
-                        <SelectCategory isCategoryTabOpened={isCreateCategoryOpen} setIsCategoryTabOpened={(value) => setIsCreateCategoryOpen(value)}/>
+                        <SelectCategory setCategory={setCategory} isCategoryTabOpened={isCreateCategoryOpen} setIsCategoryTabOpened={(value) => setIsCreateCategoryOpen(value)}/>
                     </div>
                 </div>
                 <NewCategory isOpened={isCreateCategoryOpen} setIsOpened={(value) => setIsCreateCategoryOpen(value)}/>

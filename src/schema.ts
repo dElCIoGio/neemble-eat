@@ -81,6 +81,15 @@ type MenuItem = {
 	imageURL: string | null,
 }
 
+export type UpdateMenuItem = {
+	name?: string,
+	description?: string,
+	categoryID?: string,
+	availability?: boolean,
+	price?: number,
+	imageFile?: File,
+}
+
 export interface MenuItemWithCategory extends MenuItem {
 	category?: string
 }

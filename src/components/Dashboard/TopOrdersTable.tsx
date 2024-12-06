@@ -19,6 +19,9 @@ export function TopOrdersTable({maxNumber}: TopOrdersTableProps = {maxNumber: 10
     const {data: orders, isLoading, isFetching} = useGetTopOrders({restaurantId: restaurant.id})
 
 
+    if (!isLoading && orders == undefined){
+        return null
+    }
 
     return (
         <Loading Fallback={() => <TableLoading/>} loadingParams={[isLoading, isFetching]}>

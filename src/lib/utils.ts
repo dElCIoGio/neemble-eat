@@ -158,3 +158,16 @@ export function openUrlInNewTab(url: string): void {
 }
 
 export default formatDateString
+
+
+export async function urlToFile(url: string, filename: string, mimeType: string): Promise<File> {
+	// Step 1: Fetch the image
+	const response = await fetch(url);
+	if (!response.ok) throw new Error('Failed to fetch the image.');
+
+	// Step 2: Create a blob from the response data
+	const blob = await response.blob();
+
+	// Step 3: Create and return the File object
+	return new File([blob], filename, { type: mimeType });
+}

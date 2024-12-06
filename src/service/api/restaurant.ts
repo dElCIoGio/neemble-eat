@@ -6,7 +6,7 @@ import {
     RemoveTableProps
 } from "@/api/restaurant/types.ts";
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {HOUR} from "@/lib/constants.ts";
+import {HOUR, MINUTE} from "@/lib/constants.ts";
 import {addTable, getAllOrders, getRestaurant, getTopOrders, removeTable} from "@/api/restaurant/manager"
 import {OrderJson} from "@/schema.ts";
 import filterLastXhOrders from "@/lib/filterLastXhOrders.ts";
@@ -82,6 +82,7 @@ export function useGetAllOrders(attr: GetAllOrdersProps){
         staleTime: GET_ALL_ORDERS_STALETIME,
         gcTime: GET_ALL_ORDERS_CACHETIME,
         enabled: attr.restaurantID !== undefined,
+        refetchInterval: 10 * MINUTE
     })
 
 

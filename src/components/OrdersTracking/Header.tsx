@@ -23,7 +23,6 @@ export function Header() {
     return (
         <div className="w-full space-y-2">
             <div className={`flex justify-between items-center`}>
-
                 <div className="laptop:hidden my-2">
                     <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen} defaultOpen={false}>
                         <SheetTrigger asChild>

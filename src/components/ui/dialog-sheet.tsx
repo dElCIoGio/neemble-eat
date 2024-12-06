@@ -43,7 +43,14 @@ export function DialogSheet({children, ...props}: RootProps){
     const isDesktop = useMediaQuery(desktop)
     const DialogSheet = isDesktop ? Dialog : Sheet
 
-    return <DialogSheet {...props}>{children}</DialogSheet>
+    return (
+        <>
+            {
+                isDesktop? <DialogSheet {...props}>{children}</DialogSheet>:
+                    <DialogSheet {...props}>{children}</DialogSheet>
+            }
+        </>
+    )
 }
 
 export function DialogSheetTrigger({className, children, ...props}: Props){

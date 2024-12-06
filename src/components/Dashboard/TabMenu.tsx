@@ -18,7 +18,7 @@ export function TabMenu() {
 	document.title = "Menu";
 
 	const {restaurant} = useDashboardContext()
-	const {data: menu, isLoading: isMenuLoading} = useGetMenu({menuId: restaurant.menus[0]})
+	const {data: menu, isLoading: isMenuLoading, addCategory} = useGetMenu({menuId: restaurant.menus[0]})
 
 	const [items, setItems] = useState<Array<MenuItem>>([]);
 
@@ -39,7 +39,8 @@ export function TabMenu() {
 			</div>
 			{
 				menu && <EditMenuContext.Provider value={{
-					menu
+					menu,
+					addCategory
 				}}>
 
 					<div className="mb-8">

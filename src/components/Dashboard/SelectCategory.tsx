@@ -5,19 +5,22 @@ import {Button} from "@/components/ui/button.tsx";
 import {Check, ChevronsUpDown, Plus} from "lucide-react";
 import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from "@/components/ui/command.tsx";
 import {cn} from "@/lib/utils.ts";
+import {Category} from "@/schema.ts";
 
 
 
 interface SelectCategoryProps {
+    defaultCategory?: Category;
     isCategoryTabOpened: boolean;
     setIsCategoryTabOpened: (value: boolean) => void;
+    setCategory: (id: string) => void;
 }
 
 
-export function SelectCategory({setIsCategoryTabOpened, isCategoryTabOpened}: SelectCategoryProps) {
+export function SelectCategory({setIsCategoryTabOpened, isCategoryTabOpened, defaultCategory, setCategory}: SelectCategoryProps) {
 
     const [open, setOpen] = useState<boolean>(false)
-    const [value, setValue] = useState<string>("")
+    const [value, setValue] = useState<string>(defaultCategory? defaultCategory.id? defaultCategory.id: "": "")
     const {menu} = useEditMenuContext()
 
     function toggleNewCategoryTab() {
@@ -33,15 +36,15 @@ export function SelectCategory({setIsCategoryTabOpened, isCategoryTabOpened}: Se
                 className="w-[220px] justify-between"
             >
                 {menu.categories && value
-                    ?  menu.categories.find((category) => category.name === value)?.name
-                    : "Selecione uma categoria..."
+                    ?  menu.categories.find((category) => category.id === value)?.name
+                    : "Selecione uma categoria"
                 }
                 <ChevronsUpDown className="opacity-50" />
             </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">
             <Command>
-                <CommandInput placeholder="Search framework..." />
+                <CommandInput placeholder="Procure a categoria..." />
                 <CommandList>
                     <CommandEmpty>
                         Não foi possível encontrar...
@@ -56,20 +59,20 @@ export function SelectCategory({setIsCategoryTabOpened, isCategoryTabOpened}: Se
                         </Button>
                     }
                     <CommandGroup>
-
                         {menu.categories && menu.categories.map((category) => (
                             <CommandItem
-                                key={category.name}
-                                value={category.name}
+                                key={category.id}
+                                value={category.id}
                                 onSelect={(currentValue) => {
                                     setValue(currentValue === value ? "" : currentValue)
+                                    setCategory(currentValue)
                                     setOpen(false)
                                 }}>
                                 {category.name}
                                 <Check
                                     className={cn(
                                         "ml-auto",
-                                        value === category.name ? "opacity-100" : "opacity-0"
+                                        value === category.id ? "opacity-100" : "opacity-0"
                                     )}
                                 />
                             </CommandItem>
