@@ -1,6 +1,5 @@
 import axios, {AxiosError, AxiosRequestConfig} from "axios";
 
-
 const CloudRunUrl: string = import.meta.env.VITE_CLOUD_FASTAPI_URL
 const localhostUrl: string = import.meta.env.VITE_LOCAL_FASTAPI_URL
 
@@ -14,7 +13,7 @@ export const baseConfig: AxiosRequestConfig = {
 
 export const BASE_URL = online ? CloudRunUrl : localhostUrl
 
-export const protocol = `${online ? "https:" : "https:"}//`
+export const protocol = `${online ? "https:" : "http:"}//`
 
 export const API = axios.create({
     baseURL: `${protocol}${BASE_URL}`

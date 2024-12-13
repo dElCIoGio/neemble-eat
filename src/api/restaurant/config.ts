@@ -28,9 +28,6 @@ export const CONFIG = {
     }),
     GET_ALL_USERS: (): AxiosRequestConfig => ({
         ...baseConfig,
-        headers: {
-            ...baseConfig.headers,
-            referrerPolicy: "unsafe-url"
-        },
+
     })
 };
