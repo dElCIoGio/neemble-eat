@@ -17,6 +17,7 @@ export class ApiMethods {
     }
 
     public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+        console.log(url)
         try {
             const response = await API.get<T>(url, config);
             return this.handleResponse(response);
