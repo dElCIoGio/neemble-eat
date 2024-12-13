@@ -7,15 +7,12 @@ import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandL
 import {cn} from "@/lib/utils.ts";
 import {Category} from "@/schema.ts";
 
-
-
 interface SelectCategoryProps {
     defaultCategory?: Category;
     isCategoryTabOpened: boolean;
     setIsCategoryTabOpened: (value: boolean) => void;
     setCategory: (id: string) => void;
 }
-
 
 export function SelectCategory({setIsCategoryTabOpened, isCategoryTabOpened, defaultCategory, setCategory}: SelectCategoryProps) {
 

@@ -79,6 +79,7 @@ export function ItemsDisplay({items}: ItemsDisplayProps) {
                         startIcon={Search}
                         className={"max-w-[200px] shadow-sm placeholder:text-zinc-400 placeholder:font-poppins-regular"}
                         onChange={(e) => table.getColumn("name")?.setFilterValue(e.target.value)}/>
+
                     <Select
                         onValueChange={(value) => value === "All" ? table.getColumn("category")?.setFilterValue(undefined) : table.getColumn("category")?.setFilterValue(value)}
                         value={(table.getColumn("category")?.getFilterValue() as string) ?? ""}
@@ -141,8 +142,7 @@ export function ItemsDisplay({items}: ItemsDisplayProps) {
                                         Nenhum resultado encontrado.
                                     </TableCell>
                                 </TableRow>
-                            )
-                            }
+                            )}
                         </TableBody>
                     </Table>
                     <div className="space-y-2 py-4">

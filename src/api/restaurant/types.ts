@@ -22,3 +22,12 @@ export interface RemoveTableProps {
     restaurantID: string;
     tableId: string;
 }
+
+export interface AddUserProps {
+    restaurantID: string;
+    userID: string;
+}
+
+export interface GetAllUsers {
+    restaurantId: string;
+}

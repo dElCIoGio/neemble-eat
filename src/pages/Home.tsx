@@ -12,6 +12,8 @@ import logo from "@/../public/neemble-eat-logo.png";
 
 export function Home() {
 
+	window.document.title = "Neemble Eat";
+
 	const isMobile = useIsMobile()
 
 	return (

@@ -15,7 +15,7 @@ function Setup() {
 	document.title = "Bem Vindo | Neemble Eat"
 
 	const {nextTab, currentTab, prevTab} = useTabSwitcher()
-	const {name,} = useParams() as { name: string, representantID: string }
+	const {name,} = useParams() as { name: string, userID: string }
 
 
 	return (

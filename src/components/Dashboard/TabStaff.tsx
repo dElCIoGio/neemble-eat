@@ -1,15 +1,18 @@
 import {TypographyH2} from "@/components/ui/Typography.tsx";
 import {useDashboardContext} from "@/context/dashboardContext.ts";
-import {Button} from "@/components/ui/button.tsx";
-import {UserPlus} from "@phosphor-icons/react"
+import {InviteStaff} from "@/components/Dashboard/InviteStaff.tsx";
+import {StaffDisplay} from "@/components/Dashboard/StaffDisplay.tsx";
+import {useGetAllUsers} from "@/service/api/restaurant.ts";
 
 export function TabStaff() {
 
     const {restaurant} = useDashboardContext()
-    const emptyStaff = restaurant.staff == undefined || restaurant.staff?.length == 0
+    const emptyStaff = restaurant.users == undefined || restaurant.users?.length == 0
+
+    const {data: users} = useGetAllUsers({restaurantId: restaurant.id})
 
     return (
-        <div>
+        <div className="flex-1 flex flex-col">
             <div className="mb-8">
                 <TypographyH2>
                     Equipe do Restaurante
@@ -18,31 +21,32 @@ export function TabStaff() {
 
             <div>
                 <div className="flex justify-end">
-                    <Button>
-                        <UserPlus/> Convidar membro
-                    </Button>
+                    <InviteStaff/>
                 </div>
-
             </div>
 
-
-            <div className="h-full">
+            <div className="flex-1">
                 {emptyStaff ?
                     <NoStaff/> :
                     <div>
-
+                        {
+                            users &&
+                            <StaffDisplay users={users}/>
+                        }
                     </div>
+
                 }
             </div>
-
         </div>
     );
 }
 
 function NoStaff() {
     return (
-        <div>
-            Parece que não convidou
+        <div className="flex justify-center items-center">
+            <h1 className="font-poppins-light text-zinc-400 my-16">
+                Parece que ainda não convidou ninguém para o seu restaurante
+            </h1>
         </div>
     )
 }

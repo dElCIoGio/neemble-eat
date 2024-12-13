@@ -52,7 +52,7 @@ export function DashboardSidebar() {
 							<SidebarMenuItem className="cursor-pointer " key={tag}>
 								<SidebarMenuButton
 									className={`transition-all duration-100 ${tag === currentPage ?
-										"hover:bg-amethyst-800 bg-amethyst-900 focus:bg-amethyst-800 text-amethyst-300 hover:text-amethyst-300 font-poppins-semibold border border-amethyst-700 transition-all duration-100" :
+										"hover:bg-amethyst-800 bg-amethyst-900 focus:bg-amethyst-800 text-amethyst-300 hover:text-amethyst-300 font-poppins-semibold transition-all duration-200" :
 										"text-zinc-400"}`}
 									onClick={() => handlePageChange(tag)}
 									asChild>

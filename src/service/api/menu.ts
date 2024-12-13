@@ -2,13 +2,25 @@ import {useQuery, useQueryClient} from "@tanstack/react-query";
 import {getMenu} from "@/api/menu/manager";
 import {HOUR} from "@/lib/constants.ts";
 import {getMenuHookProps} from "@/api/menu/types.ts";
-import {CategoryJson, Menu} from "@/schema.ts";
+import {CategoryJson, Menu, MenuItemJson} from "@/schema.ts";
+import {findCategoryIndex, findMenuItemIndex} from "@/lib/utils.ts";
 
 
 const GET_MENU_STALETIME: number = HOUR * 3
 const GET_MENU_CACHETIME: number = HOUR * 6
 
 export function useGetMenu(attr: getMenuHookProps){
+
+    const queryKey = ["GET menu", attr.menuId]
+
+    const {refetch, ...query} =  useQuery({
+        queryKey,
+        queryFn: () => getMenu({menuId: attr.menuId})
+            .then(data => data),
+        enabled: !!attr.menuId,
+        staleTime: GET_MENU_STALETIME,
+        gcTime: GET_MENU_CACHETIME,
+    });
 
     const queryClient = useQueryClient();
 
@@ -30,18 +42,37 @@ export function useGetMenu(attr: getMenuHookProps){
             })
     }
 
-    const query =  useQuery({
-        queryKey: ["GET menu", attr.menuId],
-        queryFn: () => getMenu({menuId: attr.menuId})
-            .then(data => data),
-        enabled: !!attr.menuId,
-        staleTime: GET_MENU_STALETIME,
-        gcTime: GET_MENU_CACHETIME,
-    });
+    function updateItem(categoryId: string, itemId: string, newMenuItem: MenuItemJson){
+        queryClient.setQueryData(queryKey,
+            (oldMenu: Menu) => {
+                const categoryIndex = findCategoryIndex(oldMenu, categoryId);
+                if (oldMenu.categories != undefined && categoryIndex != -1){
+                    const itemIndex = findMenuItemIndex(oldMenu.categories[categoryIndex], itemId);
+                    if (itemIndex != -1){
+                        oldMenu.categories[categoryIndex].items[itemIndex] = newMenuItem;
+                        refetch()
+                    }
+                }
+                return oldMenu;
+            })
+    }
 
+    function addItem(categoryId: string, newMenuItem: MenuItemJson){
+        queryClient.setQueryData(queryKey,
+            (oldMenu: Menu) => {
+                const categoryIndex = findCategoryIndex(oldMenu, categoryId);
+                if (oldMenu.categories != undefined && categoryIndex != -1){
+                    const items = oldMenu.categories[categoryIndex].items;
+                    oldMenu.categories[categoryIndex].items = [...items, newMenuItem];
+                }
+                return oldMenu;
+            });
+    }
 
     return {
         ...query,
-        addCategory
+        addCategory,
+        updateItem,
+        addItem
     }
 }

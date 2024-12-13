@@ -1,7 +1,7 @@
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 import {z} from 'zod';
-import {Form, FormField, FormItem, FormLabel, FormControl, FormMessage} from '@/components/ui/form';
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/components/ui/form';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {RegisterSchema} from "@/lib/zodSchema.ts";
@@ -9,22 +9,22 @@ import {Required} from "@/components/ui/required.tsx";
 import {Eye, EyeClosed} from "lucide-react";
 import {useState} from "react";
 import {signUp} from '@/service/signIn'
-import {URL_PATH_PREFIX} from "@/lib/constants.ts";
-import {useNavigate} from "react-router-dom";
 import {Tabs, TabsContent} from "@/components/ui/tabs.tsx";
+import {MemberRoleNames, Permissions, UserJson} from "@/schema.ts";
 
 
 interface SignUpFormValues {
 	tab: "credentials" | "person";
 	handleTabChange: (tab: "credentials" | "person") => void;
+	submitAction: (user: UserJson) => void
 
 }
 
 type RegisterFormValues = z.infer<typeof RegisterSchema>;
 
-export function SignUpForm({tab, handleTabChange}: SignUpFormValues) {
+export function SignUpForm({tab, handleTabChange, submitAction}: SignUpFormValues) {
 
-	const navigate = useNavigate()
+
 	const [passwordShowing, setPasswordShowing] = useState<boolean>(false)
 	const [confirmPasswordShowing, setConfirmPasswordShowing] = useState<boolean>(false)
 
@@ -48,9 +48,20 @@ export function SignUpForm({tab, handleTabChange}: SignUpFormValues) {
 			lastName: data.lastName,
 			phoneNumber: data.phoneNumber,
 			email: data.email,
-			password: data.password
+			password: data.password,
+			role: {
+				name: MemberRoleNames.Waitstaff,
+				description: "",
+				permissions: [
+					{
+						permissions: [Permissions.View],
+						section: "*"
+					}
+				]
+			}
 		}).then((user) => {
-			navigate(`${URL_PATH_PREFIX}/setup/${user.id}`)
+			submitAction(user)
+
 		})
 	};
 

@@ -67,7 +67,7 @@ export type Restaurant = {
     name: string,
     address: string,
     phoneNumber: string,
-    representants?: Array<string>,
+    users?: Array<string>,
     bannerFile: File,
     description: string,
     orders?: Array<string>,

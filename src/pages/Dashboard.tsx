@@ -8,6 +8,7 @@ import {Loading} from "@/components/wrappers/Loading.tsx";
 import {useFetchUserByUUID} from "@/api/user/fetchUserByUUID.ts";
 import {useGetRestaurant} from "@/service/api/restaurant.ts";
 import {DashboardSidebarTabs} from "@/lib/DashboardSidebarTabs.ts";
+import {LoadingDashboard} from "@/components/Loading/LoadingDashboard.tsx";
 
 
 export function Dashboard() {
@@ -19,13 +20,12 @@ export function Dashboard() {
 	const {data: user, isFetching: isUserFetching} = useFetchUserByUUID(userID);
 	const {isLoading: isRestaurantLoading, data: restaurant} = useGetRestaurant({restaurantId: user? user.restaurantID: undefined})
 
-
 	function selectPage(page: DashboardPage) {
 		setCurrentPage(page)
 	}
 
 	return (
-		<Loading Fallback={() => <div></div>} loadingParams={[isUserFetching, isRestaurantLoading]}>
+		<Loading Fallback={LoadingDashboard} loadingParams={[isUserFetching, isRestaurantLoading]}>
 			{
 				user && restaurant &&
 				<DashboardContext.Provider value={{
@@ -36,12 +36,12 @@ export function Dashboard() {
 
 				}}>
 					<Layout>
-						<Tabs defaultValue="dashboard" value={currentPage}>
+						<Tabs className="h-full" defaultValue="dashboard" value={currentPage}>
 							{
 								DashboardSidebarTabs.map(({tab, tag}) => {
 									const Tab = tab
 									return(
-										<TabsContent key={tag} value={tag}>
+										<TabsContent className="h-full" key={tag} value={tag}>
 											{<Tab/>}
 										</TabsContent>
 									)}

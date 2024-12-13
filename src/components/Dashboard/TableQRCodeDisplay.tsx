@@ -6,7 +6,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {useDashboardContext} from "@/context/dashboardContext.ts";
 import {useToast} from "@/hooks/use-toast"
 import {DownloadSimple, Copy} from "@phosphor-icons/react"
-import {openUrlInNewTab} from "@/lib/utils.ts";
+import {copyToClipboard, openUrlInNewTab} from "@/lib/utils.ts";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip.tsx";
 
 
@@ -41,9 +41,6 @@ function TableQRCodeDisplay({table, index}: TableQrCodeCardProps) {
         return `${window.location.origin}/menu/${tableNumber}/${table.restaurantID}/${restaurant.menus[0]}`
     }
 
-    function copyToClipboard(text: string) {
-        navigator.clipboard.writeText(text)
-    }
 
     function activateToast(text: string) {
         toast({

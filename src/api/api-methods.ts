@@ -18,7 +18,6 @@ export class ApiMethods {
 
     public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
         try {
-            console.log(API.defaults.baseURL, url)
             const response = await API.get<T>(url, config);
             return this.handleResponse(response);
         } catch (error) {
@@ -28,7 +27,6 @@ export class ApiMethods {
                 console.error(error);
                 throw error;
             }
-
         }
     }
 
@@ -42,7 +40,7 @@ export class ApiMethods {
         }
     }
 
-    public async put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+    public async put<T>(url: string, data?: Record<string, unknown> | FormData, config?: AxiosRequestConfig): Promise<T> {
         try {
             const response = await API.put<T>(url, data, config);
             return this.handleResponse(response);

@@ -1,4 +1,4 @@
-import {RepresentantJson} from "@/schema.ts";
+import {UserJson} from "@/schema.ts";
 import {API, handleError} from "@/api/utils.ts";
 import {useQuery} from '@tanstack/react-query';
 import {HOUR} from "@/lib/constants.ts";
@@ -9,9 +9,9 @@ const FETCH_USER_STALETIME = 5 * HOUR
 const FETCH_USER_GCTIME = 10 * HOUR
 
 
-export async function fetchUserById(userId: string): Promise<RepresentantJson> {
+export async function fetchUserById(userId: string): Promise<UserJson> {
     try {
-        const response = await API.get(`/representants/${userId}`);
+        const response = await API.get(`/users/${userId}`);
         return response.data;
     }catch (error) {
         if (axios.isAxiosError(error)) {

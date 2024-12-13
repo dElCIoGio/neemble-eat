@@ -22,5 +22,11 @@ export const CONFIG = {
     }),
     REMOVE_TABLE: (): AxiosRequestConfig => ({
         ...baseConfig
+    }),
+    ADD_USER: (): AxiosRequestConfig => ({
+        ...baseConfig
+    }),
+    GET_ALL_USERS: (): AxiosRequestConfig => ({
+        ...baseConfig
     })
 };

@@ -14,6 +14,7 @@ import {Dashboard} from "@/pages/Dashboard.tsx";
 import {OrdersTracking} from "@/pages/OrdersTracking.tsx";
 import {SessionsTracking} from "@/pages/SessionsTracking.tsx";
 import {Test} from "@/pages/Test.tsx";
+import {InvitationPage} from "@/pages/InvitationPage.tsx";
 
 export const ROUTES: Route[] = [
 	{
@@ -86,6 +87,11 @@ export const ROUTES: Route[] = [
 	{
 		path: `${URL_PATH_PREFIX}/tables-tracking/:restaurantID`,
 		element: <SessionsTracking/>,
+		requiresAuth: false
+	},
+	{
+		path: `${URL_PATH_PREFIX}/invite/:tokenId`,
+		element: <InvitationPage/>,
 		requiresAuth: false
 	}
 

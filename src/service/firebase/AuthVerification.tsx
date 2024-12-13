@@ -26,8 +26,9 @@ export function AuthVerification({children}: props) {
 	if (loginTimestamp){
 		const elapsedTime = Date.now() - parseInt(loginTimestamp, 10);
 		if (elapsedTime > SESSION_DURATION_MS) {
-			logout()
-			localStorage.removeItem("loginTimestamp");
+			logout().then(() => {
+				localStorage.removeItem("loginTimestamp");
+			})
 		}
 	}
 

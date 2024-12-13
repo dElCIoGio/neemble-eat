@@ -1,14 +1,14 @@
 import {
-    AddTableProps,
+    AddTableProps, AddUserProps,
     GetAllOrdersProps,
-    GetAllTablesProps,
+    GetAllTablesProps, GetAllUsers,
     GetRestaurantProps,
     GetTopOrdersProps, RemoveTableProps
 } from "@/api/restaurant/types.ts";
 import {ENDPOINTS} from "@/api/restaurant/endpoints"
 import {CONFIG} from "@/api/restaurant/config.ts";
 import {ApiMethods} from "@/api/api-methods.ts";
-import {OrderJson, RestaurantJson, TableJson} from "@/schema.ts";
+import {OrderJson, RestaurantJson, TableJson, UserJson} from "@/schema.ts";
 
 
 const api = new ApiMethods()
@@ -52,4 +52,16 @@ export async function removeTable({restaurantID, tableId}: RemoveTableProps): Pr
     const url = ENDPOINTS.REMOVE_TABLE(restaurantID, tableId)
     const config = CONFIG.REMOVE_TABLE()
     return await api.put<boolean>(url, undefined, config)
+}
+
+export async function addUser({userID, restaurantID}: AddUserProps){
+    const url = ENDPOINTS.ADD_USER(restaurantID, userID)
+    const config = CONFIG.ADD_USER()
+    return await api.put<RestaurantJson>(url, undefined, config)
+}
+
+export async function getAllUsers({restaurantId}: GetAllUsers){
+    const url = ENDPOINTS.GET_ALL_USERS(restaurantId)
+    const config = CONFIG.GET_ALL_USERS()
+    return await api.get<UserJson[]>(url, config)
 }

@@ -24,7 +24,9 @@ import {
 import {ScrollArea} from "@/components/ui/scroll-area.tsx";
 import {UpdateMenuItem} from "@/schema.ts";
 import {useEditMenuContext} from "@/context/editMenuContext.ts";
-
+import {updateItem} from "@/api/menu-item/managers.ts";
+import {Spinner} from "@/components/ui/spinner.tsx";
+import {useDashboardContext} from "@/context/dashboardContext.ts";
 
 
 type EditItemValues = z.infer<typeof ItemSchema>;
@@ -59,30 +61,33 @@ function EditItem() {
 
 
 function EditItemContent(){
-    const {item} = useEditItemContext()
-    const {menu} = useEditMenuContext()
+    const {item, onOpenChange} = useEditItemContext()
+
+    const {menu, updateItem: mutation} = useEditMenuContext()
 
     const [preview, setPreview] = useState<string | ArrayBuffer | null>(
         item? item.imageURL != null? item.imageURL: null: null);
     const [isAvailable, setIsAvailable] = useState<boolean>(true)
     const [isCreateCategoryOpen, setIsCreateCategoryOpen] = useState<boolean>(false)
 
+    const {restaurant} = useDashboardContext()
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const form = useForm<EditItemValues>({
         defaultValues: {
             name: item? item.name : "",
             description: item? item.description: "",
             price: item? item.price: 0,
-            categoryID: item? item.category: "",
+            categoryID: item? item.categoryID: "",
             image: undefined,
             availability: item? item.availability : true,
         }
     })
 
-    const setCategory = (categoryID: string) =>{
+    const setCategory = (categoryID: string) => {
+        console.log(categoryID)
         form.setValue("categoryID", categoryID)
     }
-
 
     const onDrop = useCallback(
         (acceptedFiles: File[]) => {
@@ -106,14 +111,17 @@ function EditItemContent(){
         if (!item){
             return
         }
+        if (item.id == undefined)
+            return;
+
+        setIsLoading(true)
         const update: UpdateMenuItem = {}
 
         if (name != item.name)
             update.name = name;
 
-        if (categoryID != item.categoryID){
+        if (categoryID != item.categoryID)
             update.categoryID = categoryID;
-        }
 
         if (description != item.description)
             update.description = description;
@@ -128,6 +136,15 @@ function EditItemContent(){
             update.imageFile = image;
 
         console.log(update)
+
+        if (Object.keys(update).length > 0)
+            updateItem({updates: update, menuItemId: item.id, restaurantId: restaurant.id}).then((newCategory) => {
+                if (item.id != undefined){
+                    mutation(item.categoryID, item.id, newCategory)
+                    onOpenChange(false)
+                }
+                setIsLoading(false)
+            })
     };
 
     const { getRootProps, getInputProps, isDragActive, fileRejections } =
@@ -289,12 +306,20 @@ function EditItemContent(){
                     </div>
                     <NewCategory isOpened={isCreateCategoryOpen}
                                  setIsOpened={(value) => setIsCreateCategoryOpen(value)}/>
-                    <Button
-                        type="submit"
-                        disabled={form.formState.isSubmitting || isCreateCategoryOpen}
-                        className="">
-                        Confimar
-                    </Button>
+                    {
+                        isLoading?
+                            <Button
+                                type="button"
+                                disabled={true}>
+                                <Spinner className="bg-white"/> Aguarde
+                            </Button>:
+                            <Button
+                                type="submit"
+                                disabled={form.formState.isSubmitting || isCreateCategoryOpen}>
+                                Confirmar
+                            </Button>
+                    }
+
                 </form>
             </Form>
         </div>

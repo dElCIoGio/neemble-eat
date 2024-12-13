@@ -25,7 +25,6 @@ export function NewCategory({isOpened, setIsOpened}: NewCategoryProps & { setIsO
     const {addCategory: addCategoryMutation, menu} = useEditMenuContext()
 
 
-
     function onSubmit() {
         if (name.trim() == "" || menu.id === undefined)
             return;
@@ -35,7 +34,8 @@ export function NewCategory({isOpened, setIsOpened}: NewCategoryProps & { setIsO
                 addCategory({menuID: menu.id, description, name, items: []})
                     .then((category) => {
                         addCategoryMutation(category);
-                        setIsLoading(false)
+                        setIsLoading(false);
+                        setIsOpened(false);
                     }
                 ).catch((error) => {
                     console.log(error)

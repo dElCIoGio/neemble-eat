@@ -35,7 +35,6 @@ export function AddItemContent() {
         form.setValue("categoryID", categoryID)
     }
 
-
     const onDrop = useCallback(
         (acceptedFiles: File[]) => {
             const reader = new FileReader();
@@ -208,7 +207,9 @@ export function AddItemContent() {
                         )}/>
                     <div className="flex items-center gap-x-4 mb-16">
                         <p>Categoria</p>
-                        <SelectCategory setCategory={setCategory} isCategoryTabOpened={isCreateCategoryOpen} setIsCategoryTabOpened={(value) => setIsCreateCategoryOpen(value)}/>
+                        <SelectCategory setCategory={setCategory}
+                                        isCategoryTabOpened={isCreateCategoryOpen}
+                                        setIsCategoryTabOpened={(value) => setIsCreateCategoryOpen(value)}/>
                     </div>
                 </div>
                 <NewCategory isOpened={isCreateCategoryOpen} setIsOpened={(value) => setIsCreateCategoryOpen(value)}/>

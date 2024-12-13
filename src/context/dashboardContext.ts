@@ -1,4 +1,4 @@
-import {DashboardPage, RepresentantJson, RestaurantJson} from "@/schema.ts";
+import {DashboardPage, UserJson, RestaurantJson} from "@/schema.ts";
 import {createContext, useContext} from "react";
 
 
@@ -6,7 +6,7 @@ type DashboardContextProps = {
 	currentPage: DashboardPage;
 	selectPage: (page: DashboardPage) => void;
 	restaurant: RestaurantJson;
-	user: RepresentantJson
+	user: UserJson
 }
 
 export const DashboardContext = createContext<DashboardContextProps | undefined>(undefined);

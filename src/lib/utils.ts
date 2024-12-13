@@ -1,6 +1,6 @@
 import {type ClassValue, clsx} from "clsx"
 import {twMerge} from "tailwind-merge"
-import {CartItem, Category} from "@/schema.ts";
+import {CartItem, Category, Menu, UpdateMenuItem} from "@/schema.ts";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
@@ -170,4 +170,56 @@ export async function urlToFile(url: string, filename: string, mimeType: string)
 
 	// Step 3: Create and return the File object
 	return new File([blob], filename, { type: mimeType });
+}
+
+export function getUpdateItemFormData(data: UpdateMenuItem, restaurantId: string): FormData{
+
+	const formData = new FormData();
+
+	formData.append("restaurant_id", restaurantId)
+	if (data.name)
+		formData.append('name', data.name);
+	if (data.availability)
+		formData.append('availability', data.availability? "True": "False");
+	if (data.price)
+		formData.append('price', data.price.toString())
+	if (data.categoryID)
+		formData.append('categoryID', data.categoryID)
+	if (data.description)
+		formData.append('description', data.description)
+	if (data.imageFile)
+		formData.append('imageFile', data.imageFile);
+
+	return formData;
+}
+
+
+export function findCategoryIndex(menu: Menu, categoryId: string): number{
+
+	const categories = menu.categories
+
+	if (categories == undefined)
+		return -1
+
+	for (let i = 0; i < categories.length; i++) {
+		if (categories[i].id == categoryId)
+			return i;
+	}
+	return -1;
+}
+
+export function findMenuItemIndex(category: Category, menuItemId: string): number{
+	const items = category.items
+
+	for (let i = 0; i < items.length; i++) {
+		if (items[i].id == menuItemId){
+			return i;
+		}
+	}
+	return -1;
+}
+
+
+export function copyToClipboard(text: string) {
+	navigator.clipboard.writeText(text)
 }

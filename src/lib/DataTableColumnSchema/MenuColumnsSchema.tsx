@@ -10,6 +10,8 @@ interface ItemActions {
     onDelete: (item: MenuItemWithCategory) => void;
 }
 
+
+
 export const menuColumnsSchema = ({ onEdit, onDelete }: ItemActions): ColumnDef<MenuItemWithCategory>[] => [
     {
         accessorKey: "name",
@@ -29,7 +31,9 @@ export const menuColumnsSchema = ({ onEdit, onDelete }: ItemActions): ColumnDef<
             </Button>
         },
         cell: ({ row }) => (
-            <div className="text-center">{row.getValue("category")}</div>
+            <div className="text-center">
+                {row.getValue("category")}
+            </div>
         ),
     },
     {

@@ -21,10 +21,10 @@ export function TabMenu() {
 
 	const [menuSelected, ] = useState<string>(restaurant.menus[0])
 
-	const {data: menu, isLoading: isMenuLoading, addCategory} = useGetMenu({menuId: menuSelected})
+	const {data: menu, isLoading: isMenuLoading, addCategory, updateItem, addItem} = useGetMenu({menuId: menuSelected})
+	console.log(menu)
 
 	const [items, setItems] = useState<Array<MenuItem>>([]);
-
 
 	useEffect(() => {
 		if (menu) {
@@ -40,9 +40,12 @@ export function TabMenu() {
 				</TypographyH2>
 			</div>
 			{
-				menu && <EditMenuContext.Provider value={{
+				menu &&
+				<EditMenuContext.Provider value={{
 					menu,
-					addCategory
+					addCategory,
+					updateItem,
+					addItem
 				}}>
 
 					<div className="mb-8">
@@ -54,8 +57,9 @@ export function TabMenu() {
 							</Button>
 						</AddItem>
 					</div>
-					<Separator className="mb-8" />
-					<Loading Fallback={() => <div></div>} loadingParams={[isMenuLoading]}>
+					<Separator className="mb-8"/>
+					<Loading Fallback={() => <div></div>}
+							 loadingParams={[isMenuLoading]}>
 						<ItemsDisplay items={items}/>
 					</Loading>
 				</EditMenuContext.Provider>
