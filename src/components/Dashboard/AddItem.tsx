@@ -9,17 +9,25 @@ import {
     DialogSheetTitle,
     DialogSheetTrigger
 } from "@/components/ui/dialog-sheet";
+import {z} from "zod";
+import {ItemSchema} from "@/lib/zodSchema.ts";
 
 
 interface AddProductProps {
     children?: React.ReactNode;
 }
 
+type AddItemValues = z.infer<typeof ItemSchema>;
+
 const desktop = "(min-width: 768px)"
 
 function AddItem({ children }: AddProductProps) {
 
     const isDesktop = useMediaQuery(desktop)
+
+    function handleSubmit(values: AddItemValues) {
+        console.log(values)
+    }
 
     return (
         <DialogSheet>
@@ -37,9 +45,9 @@ function AddItem({ children }: AddProductProps) {
                 </DialogSheetHeader>
                     {
                         isDesktop?
-                            <AddItemContent/>:
+                            <AddItemContent onSubmit={handleSubmit}/>:
                                 <ScrollArea className="overflow-y-auto styled-scrollbar px-4">
-                                    <AddItemContent/>
+                                    <AddItemContent onSubmit={handleSubmit}/>
                                 </ScrollArea>
 
                     }

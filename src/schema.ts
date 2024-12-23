@@ -1,5 +1,15 @@
 import {ReactElement} from "react";
 
+export enum Sections {
+	ordersTracking="ordersTracking",
+	tablesTracking="tablesTracking",
+	menu="menu",
+	tables="tables",
+	staff="staff",
+	settings="settings",
+	dashboard="dashboard",
+	All="*"
+}
 
 export enum MemberRoleNames {
 	Administrator = "Administrator",
@@ -16,7 +26,7 @@ export enum Permissions {
 	Create = "create"
 }
 export type SectionPermission = {
-	section: string,
+	section: Sections,
 	permissions: Permissions[]
 }
 
@@ -32,7 +42,7 @@ export const Roles: Record<MemberRoleNames, Role> = {
 		description: "Has full control over the system, including managing users, settings, and sensitive data.",
 		permissions: [
 			{
-				section: "*",
+				section: Sections.All,
 				permissions: [
 					Permissions.View,
 					Permissions.Create,
@@ -47,27 +57,49 @@ export const Roles: Record<MemberRoleNames, Role> = {
 		description: "Oversees operations and manages staff activities.",
 		permissions: [
 			{
-				section: "Staff",
+				section: Sections.ordersTracking,
 				permissions: [
 					Permissions.View,
-					Permissions.Update
-				]
-			},
-			{
-				section: "Schedules",
-				permissions: [
-					Permissions.View,
+					Permissions.Update,
 					Permissions.Create,
-					Permissions.Update
+					Permissions.Delete
 				]
 			},
 			{
-				section: "Reports",
+				section: Sections.tablesTracking,
 				permissions: [
 					Permissions.View,
-					Permissions.Create
+					Permissions.Update,
+					Permissions.Create,
+					Permissions.Delete
 				]
 			},
+			{
+				section: Sections.menu,
+				permissions: [
+					Permissions.View,
+					Permissions.Update,
+					Permissions.Create,
+					Permissions.Delete
+				]
+			},
+			{
+				section: Sections.staff,
+				permissions: [
+					Permissions.View,
+					Permissions.Update,
+					Permissions.Delete
+				]
+			},
+			{
+				section: Sections.dashboard,
+				permissions: [
+					Permissions.View,
+					Permissions.Update,
+					Permissions.Create,
+					Permissions.Delete
+				]
+			}
 		],
 	},
 	[MemberRoleNames.Chef]: {
@@ -75,25 +107,38 @@ export const Roles: Record<MemberRoleNames, Role> = {
 		description: "Responsible for managing kitchen operations and food preparation.",
 		permissions: [
 			{
-				section: "Kitchen",
+				section: Sections.menu,
 				permissions: [
 					Permissions.View,
-					Permissions.Update]
+					Permissions.Update,
+					Permissions.Delete,
+					Permissions.Create
+				]
 			},
 			{
-				section: "Inventory",
+				section: Sections.ordersTracking,
 				permissions: [
 					Permissions.View,
-					Permissions.Update]
+					Permissions.Update,
+					Permissions.Delete
+				]
 			},
 			{
-				section: "Recipes",
+				section: Sections.tablesTracking,
 				permissions: [
 					Permissions.View,
-					Permissions.Create,
 					Permissions.Update
 				]
 			},
+			{
+				section: Sections.dashboard,
+				permissions: [
+					Permissions.View,
+					Permissions.Update,
+					Permissions.Create,
+					Permissions.Delete
+				]
+			}
 		],
 	},
 	[MemberRoleNames.Waitstaff]: {
@@ -101,19 +146,28 @@ export const Roles: Record<MemberRoleNames, Role> = {
 		description: "Handles customer interactions and table service.",
 		permissions: [
 			{
-				section: "Orders",
-				permissions: [
-					Permissions.View,
-					Permissions.Create
-				]
-			},
-			{
-				section: "Tables",
+				section: Sections.ordersTracking,
 				permissions: [
 					Permissions.View,
 					Permissions.Update
 				]
 			},
+			{
+				section: Sections.tablesTracking,
+				permissions: [
+					Permissions.View,
+					Permissions.Update
+				]
+			},
+			{
+				section: Sections.dashboard,
+				permissions: [
+					Permissions.View,
+					Permissions.Update,
+					Permissions.Create,
+					Permissions.Delete
+				]
+			}
 		],
 	},
 	[MemberRoleNames.Bartender]: {
@@ -121,7 +175,7 @@ export const Roles: Record<MemberRoleNames, Role> = {
 		description: "Prepares drinks and manages the bar area.",
 		permissions: [
 			{
-				section: "Bar",
+				section: Sections.ordersTracking,
 				permissions: [
 					Permissions.View,
 					Permissions.Create,
@@ -129,11 +183,14 @@ export const Roles: Record<MemberRoleNames, Role> = {
 				]
 			},
 			{
-				section: "Inventory",
+				section: Sections.dashboard,
 				permissions: [
-					Permissions.View
+					Permissions.View,
+					Permissions.Update,
+					Permissions.Create,
+					Permissions.Delete
 				]
-			},
+			}
 		],
 	},
 	[MemberRoleNames.Accountant]: {
@@ -141,20 +198,27 @@ export const Roles: Record<MemberRoleNames, Role> = {
 		description: "Manages financial records and reports.",
 		permissions: [
 			{
-				section: "Finance",
+				section: Sections.staff,
 				permissions: [
 					Permissions.View,
-					Permissions.Create,
+				]
+			},
+			{
+				section: Sections.menu,
+				permissions: [
+					Permissions.View,
 					Permissions.Update
 				]
 			},
 			{
-				section: "Reports",
+				section: Sections.dashboard,
 				permissions: [
 					Permissions.View,
-					Permissions.Create
+					Permissions.Update,
+					Permissions.Create,
+					Permissions.Delete
 				]
-			},
+			}
 		],
 	},
 };
@@ -219,6 +283,13 @@ export interface Menu {
 	categories?: Array<Category>,
 }
 
+export interface MenuCreate {
+	restaurantID?: string,
+	name: string,
+	description: string,
+	categories: CategoryCreate[],
+}
+
 export interface Category {
 	id?: string,
 	created_time?: string
@@ -228,6 +299,12 @@ export interface Category {
 	items: Array<MenuItem>,
 }
 
+export interface CategoryCreate {
+	name: string,
+	description: string,
+	menuID?: string,
+	items: MenuItemCreate[]
+}
 
 export type MenuItem = {
 	id?: string,
@@ -238,6 +315,15 @@ export type MenuItem = {
 	availability?: boolean,
 	price: number,
 	imageURL: string | null,
+}
+
+export interface MenuItemCreate {
+	name: string;
+	description: string;
+	categoryID?: string;
+	availability: boolean;
+	price: number;
+	imageFile: File;
 }
 
 export type UpdateMenuItem = {
@@ -259,6 +345,8 @@ export type InvitationToken = {
 export interface MenuItemWithCategory extends MenuItem {
 	category?: string
 }
+
+
 
 
 export interface MenuJson {

@@ -1,20 +1,12 @@
-import {Role, Roles} from "@/schema.ts";
+import {MemberRoleNames, Role} from "@/schema.ts";
 import {ColumnDef} from "@tanstack/react-table";
 import {Button} from "@/components/ui/button.tsx";
 import {Trash} from "@phosphor-icons/react"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectTrigger,
-    SelectValue
-} from "@/components/ui/select.tsx";
-
 import {Phone, At, User} from "@phosphor-icons/react"
+import {RoleSelectionCell} from "@/components/Dashboard/RoleSelectionCell.tsx";
 
 
-export interface UserColumnSchemaProps {
+export type UserColumnSchemaProps = {
     name: {
         firstName: string;
         lastName: string;
@@ -29,10 +21,15 @@ export interface UserColumnSchemaProps {
 }
 
 interface ItemActions {
-    onDelete: (item: UserColumnSchemaProps) => void;
+    onDelete: (user: UserColumnSchemaProps) => void;
+    onRoleChange: (user: UserColumnSchemaProps, newRole: MemberRoleNames) => void;
 }
 
-export const userColumnSchema = ({onDelete}: ItemActions): ColumnDef<UserColumnSchemaProps>[] => [
+export const userColumnSchema = (
+    {
+        onDelete,
+        onRoleChange
+    }: ItemActions): ColumnDef<UserColumnSchemaProps>[] => [
     {
         accessorKey: "name",
         header: () => (
@@ -86,37 +83,8 @@ export const userColumnSchema = ({onDelete}: ItemActions): ColumnDef<UserColumnS
     {
         accessorKey: "role",
         header: "Cargo",
-        cell: ({row}) => {
-            const isLoggedUser: boolean = row.original.loggedUser
-            const role: Role = row.getValue("role")
-            const roles = [
-                Roles.Administrator,
-                Roles.Manager,
-                Roles.Chef,
-                Roles.Waitstaff,
-                Roles.Bartender,
-                Roles.Accountant
-            ]
+        cell: ({row}) => <RoleSelectionCell row={row} onRoleChange={onRoleChange}/>
 
-            return (
-                <Select defaultValue={role.name} disabled={isLoggedUser}>
-                    <SelectTrigger>
-                        <SelectValue placeholder={`${role.name}`}/>
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectGroup>
-                            {
-                                roles.map((r, index) =>
-                                    <SelectItem value={r.name} key={index}>
-                                        {r.name}
-                                    </SelectItem>
-                                )
-                            }
-                        </SelectGroup>
-                    </SelectContent>
-                </Select>
-            )
-        }
     },
     {
         id: "actions",

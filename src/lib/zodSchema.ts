@@ -43,6 +43,8 @@ export const DESCRIPTION_MAX_SIZE: number = 300
 
 export const RESTAURANT_BANNER_MAX_IMAGE_SIZE = 15
 
+export const MAX_NUMBER_OF_TABLES = 40
+
 export const RestaurantConfigSchema = z.object({
 	image: z.instanceof(File).refine(file => {
 		return file.type.startsWith('image/');
@@ -71,9 +73,16 @@ export const RestaurantConfigSchema = z.object({
 	}).max(DESCRIPTION_MAX_SIZE, {
 		message: `O tamanho máximo da descrição são ${DESCRIPTION_MAX_SIZE} caracteres.`
 	}),
+	numberOfTables: z.number().int().positive({
+		message: "Insira um número válido de mesas"
+	}).min(1, {
+		message: "Insira pelo menos uma mesa."
+	}).max(MAX_NUMBER_OF_TABLES, {
+		message: `O número máximo de mesas permitido é ${MAX_NUMBER_OF_TABLES}`
+	}),
 });
 
-export const MAX_NUMBER_OF_TABLES = 40
+
 
 export const TablesConfigSchema = z.object({
 	numberOfTables: z.number().int().positive({
@@ -116,7 +125,7 @@ export const ItemSchema = z.object({
 	}),
 	categoryID: z.string().min(1, {
 		message: "Inclua uma categoria para o seu produto."
-	}),
+	}).optional(),
 })
 
 

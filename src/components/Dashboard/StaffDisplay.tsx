@@ -7,7 +7,7 @@ import {
     getSortedRowModel,
     useReactTable
 } from "@tanstack/react-table";
-import {UserJson} from "@/schema.ts";
+import {MemberRoleNames, UserJson} from "@/schema.ts";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
 import {useDashboardContext} from "@/context/dashboardContext.ts";
 
@@ -19,11 +19,16 @@ export function StaffDisplay({users}: StaffDisplayProps) {
 
     const {user} = useDashboardContext()
 
-    function onDelete(user: UserColumnSchemaProps) {
+    function handleDelete(user: UserColumnSchemaProps) {
         console.log(user)
     }
 
-    const columns = useMemo(() => userColumnSchema({onDelete}), [])
+    function handleRoleChance(user: UserColumnSchemaProps, newRole: MemberRoleNames) {
+        console.log(newRole)
+        console.log(user)
+    }
+
+    const columns = useMemo(() => userColumnSchema({onDelete: handleDelete, onRoleChange: handleRoleChance}), [])
 
     const table = useReactTable({
         data: users

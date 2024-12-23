@@ -24,7 +24,6 @@ export function Home() {
 			{/*<Background className="bg-gradient-to-br from-slate-50 to-amethyst-900"/>*/}
 			<div className="w-full">
 				<nav className="pr-4 laptop:px-4 bg-opacity-50 flex justify-between items-center">
-					{/*<h1 className="text-xl font-bold">NEEMBLE EAT</h1>*/}
 					<img src={logo} className="max-w-36 p-0" alt=""/>
 					{isMobile ? <Sheet>
 							<SheetTrigger asChild><AlignCenter/></SheetTrigger>

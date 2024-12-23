@@ -1,20 +1,20 @@
 import {
+	Sidebar,
 	SidebarContent,
 	SidebarFooter,
 	SidebarGroup,
 	SidebarHeader,
-	Sidebar,
 	SidebarMenu,
-	SidebarMenuItem,
 	SidebarMenuButton,
+	SidebarMenuItem,
 	useSidebar,
 } from "@/components/ui/sidebar";
 import {Info} from "@phosphor-icons/react"
 import {useDashboardContext} from "@/context/dashboardContext.ts";
-import {DashboardPage} from "@/schema.ts";
+import {DashboardPage, Permissions, Sections} from "@/schema.ts";
 import {Button} from "@/components/ui/button.tsx";
 import {DashboardSidebarTabs} from "@/lib/DashboardSidebarTabs.ts";
-
+import {hasPermission} from "@/lib/utils.ts";
 
 
 export function DashboardSidebar() {
@@ -47,13 +47,13 @@ export function DashboardSidebar() {
 			        {DashboardSidebarTabs.map(({icon, tag, title}) => {
 						const TabIcon = icon
 
-
 						return (
 							<SidebarMenuItem className="cursor-pointer " key={tag}>
 								<SidebarMenuButton
+									disabled={!hasPermission(user, tag as Sections, Permissions.View)}
 									className={`transition-all duration-100 ${tag === currentPage ?
 										"hover:bg-amethyst-800 bg-amethyst-900 focus:bg-amethyst-800 text-amethyst-300 hover:text-amethyst-300 font-poppins-semibold transition-all duration-200" :
-										"text-zinc-400"}`}
+										"text-zinc-400"} `}
 									onClick={() => handlePageChange(tag)}
 									asChild>
 									<div>

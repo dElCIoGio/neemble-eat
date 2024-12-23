@@ -1,30 +1,36 @@
 import {useState} from "react";
-import {Category} from "@/schema.ts";
+import {CategoryCreate} from "@/schema.ts";
 import {MenuConfigContext} from "@/context/menuConfigContext.ts";
 import {Input} from "@/components/ui/input"
 import {CategoriesTable} from "@/components/Setup/CategoriesTable.tsx";
-import {Plus} from "lucide-react"
+
+import {AddCategorySheet} from "@/components/Setup/AddCategorySheet.tsx";
+import {Search} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
+
+interface SubmitProps {
+	categories: CategoryCreate[];
+
+}
+
+async function handleRestaurantSetUp({categories}: SubmitProps){
+	console.log(categories);
+}
 
 export function MenuConfig() {
 
 	const [, setSortedCategories] = useState<"asc" | "desc" | "none">("none")
-	const [categories, setCategories] = useState<Category[]>([{
-		name: "Entradas",
-		menuID: "",
-		items: [
-			{
-				name: "teste",
-				price: 0,
-				categoryID: "",
-				imageURL: null
-			}
-		]
-	}])
+	const [categories, setCategories] = useState<CategoryCreate[]>([])
 	const [search, setSearch] = useState<string>("")
+	const [isAddCategorySheetOpen, setIsAddCategorySheetOpen] = useState<boolean>(false)
 
 	function deleteCategory(index: number) {
 		setCategories(prevCategories => prevCategories.filter((_, categoryIndex) => categoryIndex != index))
+	}
+
+	function addCategory(category: CategoryCreate){
+		setCategories([...categories, category])
+		setIsAddCategorySheetOpen(false)
 	}
 
 	function sortCategories() {
@@ -43,6 +49,12 @@ export function MenuConfig() {
 		})
 	}
 
+	function handleSubmit(){
+		handleRestaurantSetUp({
+			categories
+		}).then()
+	}
+
 	return (
 		<MenuConfigContext.Provider value={{
 			categories,
@@ -50,17 +62,19 @@ export function MenuConfig() {
 			sortCategories,
 			search
 		}}>
+			<Button type="button" onClick={handleSubmit}>
+				Confirmar
+			</Button>
 			<div className="flex items-center laptop:justify-between my-4 space-x-2">
 				<Input
 					type="text"
 					placeholder="Pesquisar"
 					value={search}
-					className={"max-w-[200px] shadow-sm"}
-					onChange={(e) => setSearch(e.target.value)}/>
-				<Button className="max-h-8 max-w-8 laptop:max-w-fit tablet:max-w-fit shadow-md">
-					<Plus size={18} className="m-0 p-0"/>
-					<span className="hidden tablet:block laptop:block">Adicionar Categoria</span>
-				</Button>
+					className={"max-w-[200px] shadow-sm border-b"}
+					onChange={(e) => setSearch(e.target.value)}
+					startIcon={Search}
+				/>
+				<AddCategorySheet onSubmitCategory={addCategory} isOpen={isAddCategorySheetOpen} onOpenChange={setIsAddCategorySheetOpen}/>
 			</div>
 			<CategoriesTable/>
 		</MenuConfigContext.Provider>

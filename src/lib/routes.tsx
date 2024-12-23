@@ -4,7 +4,6 @@ import {LoadingRestaurantMenu} from "@/components/RestaurantMenu/LoadingRestaura
 import Cart from "@/pages/Cart";
 import {Orders} from "@/pages/Orders";
 import {LogIn} from "@/pages/LogIn";
-import {Home} from "@/pages/Home";
 import {SignUp} from "@/pages/SignUp";
 
 import {URL_PATH_PREFIX} from "@/lib/constants";
@@ -15,6 +14,8 @@ import {OrdersTracking} from "@/pages/OrdersTracking.tsx";
 import {SessionsTracking} from "@/pages/SessionsTracking.tsx";
 import {Test} from "@/pages/Test.tsx";
 import {InvitationPage} from "@/pages/InvitationPage.tsx";
+import {HomePage} from "@/pages/HomePage.tsx";
+import {Test2} from "@/pages/Test2.tsx";
 
 export const ROUTES: Route[] = [
 	{
@@ -54,7 +55,7 @@ export const ROUTES: Route[] = [
 	},
 	{
 		path: `${URL_PATH_PREFIX}/`,
-		element: <Home/>,
+		element: <HomePage/>,
 		requiresAuth: false
 	},
 	{
@@ -68,7 +69,7 @@ export const ROUTES: Route[] = [
 		requiresAuth: true
 	},
 	{
-		path: `/test/:tableId`,
+		path: `/test`,
 		element: <Test/>,
 		requiresAuth: false
 	},
@@ -92,6 +93,11 @@ export const ROUTES: Route[] = [
 	{
 		path: `${URL_PATH_PREFIX}/invite/:tokenId`,
 		element: <InvitationPage/>,
+		requiresAuth: false
+	},
+	{
+		path: "/mytest",
+		element: <Test2/>,
 		requiresAuth: false
 	}
 

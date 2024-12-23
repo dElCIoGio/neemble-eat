@@ -1,6 +1,6 @@
 import {type ClassValue, clsx} from "clsx"
 import {twMerge} from "tailwind-merge"
-import {CartItem, Category, Menu, UpdateMenuItem} from "@/schema.ts";
+import {CartItem, Category, Menu, Sections, UpdateMenuItem, UserJson, Permissions} from "@/schema.ts";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
@@ -222,4 +222,15 @@ export function findMenuItemIndex(category: Category, menuItemId: string): numbe
 
 export function copyToClipboard(text: string) {
 	navigator.clipboard.writeText(text)
+}
+
+export function hasPermission(user: UserJson, section: Sections,  permission: Permissions): boolean {
+	for (const s of user.role.permissions){
+		if (s.section === section || s.section == "*"){
+			console.log(s)
+			console.log(s.permissions)
+			return s.permissions.includes(permission);
+		}
+	}
+	return false;
 }

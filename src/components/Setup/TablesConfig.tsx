@@ -5,7 +5,6 @@ import {z} from 'zod';
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
 import {TablesConfigSchema} from "@/lib/zodSchema.ts";
-import {useSetupContext} from "@/context/setupContext.ts";
 import {Button} from "@/components/ui/button.tsx";
 
 
@@ -21,13 +20,11 @@ export function TablesConfig() {
 		}
 	})
 
-	const {nextTab, prevTab} = useSetupContext()
 
 
 	function onSubmit(data: TablesConfigValues) {
 		console.log(data.numberOfTables)
 
-		nextTab()
 	}
 
 	return (
@@ -52,21 +49,21 @@ export function TablesConfig() {
 										Número de mesas: &nbsp;
 									</FormLabel>
 									<FormControl>
-									<Input
-										{...fieldProps}
-										type="number"
-										value={value}
-										className={`max-w-[100px] placeholder:text-zinc-300`}
-										onChange={(e) => onChange(Number(e.target.value))}
-										placeholder="0-30"/>
-								</FormControl>
+										<Input
+											{...fieldProps}
+											type="number"
+											value={value}
+											className={`max-w-[100px] placeholder:text-zinc-300`}
+											onChange={(e) => onChange(Number(e.target.value))}
+											placeholder="0-30"/>
+									</FormControl>
 								</div>
 
 								<FormMessage/>
 							</FormItem>
 						)}/>
 					<div className="my-8 fixed bottom-0 space-x-4">
-						<Button onClick={prevTab}
+						<Button
 						        type={"button"}>
 							Anterior
 						</Button>

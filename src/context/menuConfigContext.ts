@@ -1,9 +1,9 @@
-import {Category} from "@/schema.ts";
+import {CategoryCreate} from "@/schema.ts";
 import {createContext, useContext} from "react";
 
 
 type MenuConfigContextProps = {
-	categories: Category[];
+	categories: CategoryCreate[];
 	deleteCategory: (index: number) => void;
 	sortCategories: () => void;
 	search: string;

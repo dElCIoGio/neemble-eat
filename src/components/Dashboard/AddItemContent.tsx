@@ -15,7 +15,12 @@ import {Textarea} from "@/components/ui/textarea.tsx";
 
 type AddItemValues = z.infer<typeof ItemSchema>;
 
-export function AddItemContent() {
+
+interface AddItemProps {
+    onSubmit: (item: AddItemValues) => void
+}
+
+export function AddItemContent({onSubmit}: AddItemProps) {
     const [preview, setPreview] = useState<string | ArrayBuffer | null>(null);
     const [isAvailable, setIsAvailable] = useState<boolean>(true)
     const [isCreateCategoryOpen, setIsCreateCategoryOpen] = useState<boolean>(false)
@@ -60,14 +65,15 @@ export function AddItemContent() {
             accept: { "image/png": [], "image/jpg": [], "image/jpeg": [] },
         });
 
-    const onSubmit = (values: AddItemValues) => {
+    const handleSubmit = (values: AddItemValues) => {
         console.log(values);
         toast.success(`Image uploaded successfully 🎉 ${values.image.name}`);
+        onSubmit(values)
     };
 
     return <div>
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="my-2 space-y-8">
+            <form onSubmit={form.handleSubmit(handleSubmit)} className="my-2 space-y-8">
                 <div className="space-y-4">
                     <FormField
                         name="availability"

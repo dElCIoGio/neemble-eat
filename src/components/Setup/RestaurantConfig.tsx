@@ -11,16 +11,17 @@ import {RequiredInput} from "@/components/wrappers/requiredInput"
 import {Textarea} from "@/components/ui/textarea.tsx";
 import {PinIcon, PhoneIcon} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
-import {useSetupContext} from "@/context/setupContext.ts";
 import {useDropzone} from "react-dropzone";
-import { toast } from "sonner"
-
+import { useToast } from "@/hooks/use-toast"
 type RestaurantConfigValues = z.infer<typeof RestaurantConfigSchema>;
+import { ToastAction } from "@/components/ui/toast"
+
 
 export function RestaurantConfig() {
 
+	const { toast } = useToast()
+
 	const [preview, setPreview] = useState<string | ArrayBuffer | null>("");
-	const {nextTab} = useSetupContext()
 
 	const form = useForm<RestaurantConfigValues>({
 		resolver: zodResolver(RestaurantConfigSchema),
@@ -30,22 +31,21 @@ export function RestaurantConfig() {
 			address: "",
 			phoneNumber: "",
 			restaurantName: "",
-			description: ""
+			description: "",
+			numberOfTables: 1
 		}
 	})
 
 	function onSubmit(data: RestaurantConfigValues) {
-		console.log(data.image)
-		toast.success(`Image uploaded successfully 🎉 ${data.image.name}`, {
-			description: `Your image was uploaded successfully!`,
-			action: {
-				label: "View Image",
-				onClick: () => {
-					window.open(URL.createObjectURL(data.image))
-				}
-			}
-		});
-		nextTab()
+		console.log(data)
+
+		toast({
+			title: "Scheduled: Catch up ",
+			description: "Friday, February 10, 2023 at 5:57 PM",
+			action: (
+				<ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+			),
+		})
 		// Got to finish setting up the submit function nd direct the user to the next tab
 	}
 
@@ -62,9 +62,7 @@ export function RestaurantConfig() {
 				console.log(error);
 				setPreview(null)
 				form.resetField("image")
-
 			}
-
 		}, [form]
 	);
 
@@ -75,10 +73,6 @@ export function RestaurantConfig() {
 			maxSize: RESTAURANT_BANNER_MAX_IMAGE_SIZE * MB,
 			accept: { "image/png": [], "image/jpg": [], "image/jpeg": [] },
 		});
-
-
-
-
 
 	return (
 		<div>
@@ -147,7 +141,7 @@ export function RestaurantConfig() {
 									<FormMessage>
 										{fileRejections.length !== 0 && (
 											<p>
-												A imagem deve conter no maximo {MAX_IMAGE_SIZE}MB e ser dos tipos, jpg, ou
+												A imagem deve conter no máximo {MAX_IMAGE_SIZE}MB e ser dos formatos, jpg, ou
 												jpeg.
 											</p>
 										)}
@@ -205,6 +199,29 @@ export function RestaurantConfig() {
 								</FormItem>
 							)}/>
 						<FormField
+							name="numberOfTables"
+							control={form.control}
+							render={({field: {value, onChange, ...fieldProps}}) => (
+								<FormItem>
+									<div className="flex items-center">
+										<FormLabel className="w-fit text-nowrap">
+											Número de mesas: &nbsp;
+										</FormLabel>
+										<FormControl>
+											<Input
+												{...fieldProps}
+												type="number"
+												value={value}
+												className={`max-w-[100px] placeholder:text-zinc-300`}
+												onChange={(e) => onChange(Number(e.target.value))}
+												placeholder="0-30"/>
+										</FormControl>
+									</div>
+
+									<FormMessage/>
+								</FormItem>
+							)}/>
+						<FormField
 							name="description"
 							control={form.control}
 							render={({field}) => (
@@ -221,10 +238,6 @@ export function RestaurantConfig() {
 					</div>
 
 					<div className="mt-8 space-x-4">
-						<Button disabled
-								type={"button"}>
-							Cancelar
-						</Button>
 						<Button type={"submit"}>
 							Continuar
 						</Button>

@@ -2,14 +2,13 @@ import {API, handleError} from "@/api/utils";
 import axios from "axios";
 import {OrderJson} from "@/schema"
 import {useQuery} from "@tanstack/react-query";
-import {MINUTE, SECOND} from "@/lib/constants.ts";
 import {useEffect} from "react";
 
 interface Props {
 	sessionID: string | null
 }
 
-const GET_SESSION_ORDERS_STALETIME = 2 * MINUTE + 30 * SECOND
+const GET_SESSION_ORDERS_STALETIME = 0
 
 export async function getAllSessionOrders({sessionID}: Props): Promise<OrderJson[]> {
 	try {

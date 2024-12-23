@@ -4,7 +4,7 @@ import {URL_PATH_PREFIX} from "@/lib/constants.ts";
 import {Button} from "@/components/ui/button.tsx";
 import {SignUpForm} from "@/components/SignUp/SignUpForm.tsx";
 import {useState} from "react";
-import {UserJson} from "@/schema.ts";
+import {Roles, UserJson} from "@/schema.ts";
 
 export function SignUp() {
 
@@ -66,7 +66,7 @@ export function SignUp() {
 						Crie uma conta gratuita
 					</h2>
 				</div>
-				<SignUpForm submitAction={handleSubmit} handleTabChange={handleTabChange} tab={tab}/>
+				<SignUpForm submitAction={handleSubmit} handleTabChange={handleTabChange} tab={tab} role={Roles.Administrator}/>
 				<div className={"absolute bottom-8 flex items-center justify-center space-x-2"}>
 					<div
 						className={`h-1 w-16 rounded-full ${tab === "credentials" ? "bg-amethyst-300" : "bg-zinc-300"}`}/>

@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import {useGetInvitationToken} from "@/service/api/invitation-token.ts";
 import {SignUpForm} from "@/components/SignUp/SignUpForm.tsx";
 import {useState} from "react";
-import {UserJson} from "@/schema.ts";
+import {Roles, UserJson} from "@/schema.ts";
 import {useGetRestaurant} from "@/service/api/restaurant.ts";
 import {addUser} from "@/api/restaurant/manager.ts";
 import {deleteInvitationToken} from "@/api/invitation-token/managers.ts";
@@ -26,7 +26,7 @@ export function InvitationPage() {
     }
 
     if (isRestaurantLoading || isTokenLoading) {
-        return <div>Loading...</div>
+        return <div></div>
     }
 
     if (isError) {
@@ -38,8 +38,10 @@ export function InvitationPage() {
             {
                 token != undefined && restaurant != undefined &&
                 <div className="flex flex-col items-center justify-center w-full h-screen">
-                    <h1 className="my-4 w-[60%] text-center font-poppins-semibold text-lg">Você foi convidado(a) a acessar o restaurante {restaurant.name}</h1>
-                    <SignUpForm tab={tab} submitAction={handleSubmit} handleTabChange={setTab}/>
+                    <h1 className="my-4 w-[60%] text-center font-poppins-semibold text-lg">
+                        Você foi convidado(a) a acessar o restaurante {restaurant.name}
+                    </h1>
+                    <SignUpForm tab={tab} submitAction={handleSubmit} handleTabChange={setTab} role={Roles.Waitstaff}/>
                 </div>
             }
         </div>

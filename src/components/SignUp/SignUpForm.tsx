@@ -7,26 +7,29 @@ import {Button} from '@/components/ui/button';
 import {RegisterSchema} from "@/lib/zodSchema.ts";
 import {Required} from "@/components/ui/required.tsx";
 import {Eye, EyeClosed} from "lucide-react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {signUp} from '@/service/signIn'
 import {Tabs, TabsContent} from "@/components/ui/tabs.tsx";
-import {MemberRoleNames, Permissions, UserJson} from "@/schema.ts";
-
+import {Role, UserJson} from "@/schema.ts";
+import { FirebaseError } from '@firebase/util'
 
 interface SignUpFormValues {
 	tab: "credentials" | "person";
 	handleTabChange: (tab: "credentials" | "person") => void;
 	submitAction: (user: UserJson) => void
+	role: Role
 
 }
 
 type RegisterFormValues = z.infer<typeof RegisterSchema>;
 
-export function SignUpForm({tab, handleTabChange, submitAction}: SignUpFormValues) {
+export function SignUpForm({tab, handleTabChange, submitAction, role}: SignUpFormValues) {
 
 
 	const [passwordShowing, setPasswordShowing] = useState<boolean>(false)
 	const [confirmPasswordShowing, setConfirmPasswordShowing] = useState<boolean>(false)
+	const [error, setError] = useState<string | null>(null)
+
 
 	const form = useForm<RegisterFormValues>({
 		resolver: zodResolver(RegisterSchema),
@@ -41,6 +44,12 @@ export function SignUpForm({tab, handleTabChange, submitAction}: SignUpFormValue
 		}
 	});
 
+	useEffect(() => {
+		if (error != null){
+			setTimeout(() => setError(null), 4000);
+		}
+	}, [error]);
+
 	const onSubmit = (data: RegisterFormValues) => {
 		// FIREBASE ERRORS: https://firebase.google.com/docs/reference/node/firebase.auth.Error
 		signUp({
@@ -49,19 +58,17 @@ export function SignUpForm({tab, handleTabChange, submitAction}: SignUpFormValue
 			phoneNumber: data.phoneNumber,
 			email: data.email,
 			password: data.password,
-			role: {
-				name: MemberRoleNames.Waitstaff,
-				description: "",
-				permissions: [
-					{
-						permissions: [Permissions.View],
-						section: "*"
-					}
-				]
-			}
+			role: role
 		}).then((user) => {
 			submitAction(user)
-
+		}).catch((error) => {
+			if (error instanceof FirebaseError){
+				const message = error.message
+				if (message.includes("auth/email-already-in-use")){
+					console.error(message)
+					setError("O email selecionado já está em uso")
+				}
+			}
 		})
 	};
 
@@ -220,6 +227,9 @@ export function SignUpForm({tab, handleTabChange, submitAction}: SignUpFormValue
 					</div>
 				</Tabs>
 			</form>
+			<div className="text-red-500 text-sm italic font-poppins-semibold">
+				{error != null && error}
+			</div>
 		</Form>
 	);
 }
