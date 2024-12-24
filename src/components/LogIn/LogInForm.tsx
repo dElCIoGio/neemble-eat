@@ -97,7 +97,7 @@ export function LogInForm() {
 						           )}/>
 					</div>
 					<div className={"flex justify-end"}>
-						<Button type="button" variant={"link"} className={"p-0 m-0 text-xs"}>
+						<Button asChild type="button" variant={"link"} className={"p-0 m-0 text-xs"}>
 							<Link to={`${URL_PATH_PREFIX}/forgot-password`}>
 								Esqueci a palavra passe
 							</Link>
