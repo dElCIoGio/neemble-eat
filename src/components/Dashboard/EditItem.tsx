@@ -45,7 +45,7 @@ function EditItem() {
                     </DialogSheetTitle>
                     <DialogSheetDescription>{undefined}</DialogSheetDescription>
                 </DialogSheetHeader>
-                <div className="">
+                <div>
                     {
                         isDesktop?
                             <EditItemContent/>:
@@ -67,7 +67,8 @@ function EditItemContent(){
 
     const [preview, setPreview] = useState<string | ArrayBuffer | null>(
         item? item.imageURL != null? item.imageURL: null: null);
-    const [isAvailable, setIsAvailable] = useState<boolean>(true)
+    const [isAvailable, setIsAvailable] = useState<boolean>(item?
+        item.availability != undefined? item.availability : true : true)
     const [isCreateCategoryOpen, setIsCreateCategoryOpen] = useState<boolean>(false)
 
     const {restaurant} = useDashboardContext()
@@ -169,7 +170,7 @@ function EditItemContent(){
                                         <div className="w-28">
                                             <FormLabel
                                                 className={`${isAvailable ? "bg-amethyst-900 text-amethyst-600" : "bg-zinc-100 text-zinc-500"} rounded-md p-1 shadow-sm transition-all duration-150`}>
-                                                &nbsp;{isAvailable ? "Disponível" : "Indisponível"}&nbsp;
+                                                &nbsp;{isAvailable == true? "Disponível" : "Indisponível"}&nbsp;
                                             </FormLabel>
                                         </div>
 

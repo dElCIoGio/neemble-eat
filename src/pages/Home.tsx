@@ -70,7 +70,7 @@ export function Home() {
 					<div className="mt-8 mx-auto flex justify-center gap-4">
 						<Button asChild className="rounded-full px-6 shadow-lg bg-gradient-to-br hover:shadow-xl hover:-translate-y-1 from-black to-black hover:from-black hover:to-amethyst-300 transition-all duration-300">
 							<Link to={`${URL_PATH_PREFIX}/signup`} className="border-white">
-								Comece agora e ganhe 10% de desconto
+								Comece agora e ganhe 2 meses gratuitos
 							</Link>
 						</Button>
 					</div>

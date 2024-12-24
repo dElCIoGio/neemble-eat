@@ -177,17 +177,19 @@ export function getUpdateItemFormData(data: UpdateMenuItem, restaurantId: string
 	const formData = new FormData();
 
 	formData.append("restaurant_id", restaurantId)
-	if (data.name)
+	if (data.name != undefined)
 		formData.append('name', data.name);
-	if (data.availability)
-		formData.append('availability', data.availability? "True": "False");
-	if (data.price)
+	if (data.availability != undefined){
+		const availability: "True" | "False" = data.availability === true? "True": "False";
+		formData.append('availability', availability);
+	}
+	if (data.price != undefined)
 		formData.append('price', data.price.toString())
-	if (data.categoryID)
+	if (data.categoryID != undefined)
 		formData.append('categoryID', data.categoryID)
-	if (data.description)
+	if (data.description != undefined)
 		formData.append('description', data.description)
-	if (data.imageFile)
+	if (data.imageFile != undefined)
 		formData.append('imageFile', data.imageFile);
 
 	return formData;

@@ -1,6 +1,8 @@
 import {HeroSectionBadge} from "@/components/HomePage/HeroSectionBadge.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {ScreenDisplay} from "@/components/HomePage/ScreenDisplay.tsx";
+import {Link} from "react-router-dom";
+import {URL_PATH_PREFIX} from "@/lib/constants.ts";
 
 export function Hero() {
     return (
@@ -16,12 +18,14 @@ export function Hero() {
                     Automatize as operações do seu restaurante e promova uma experiência super dinâmica para os seus clientes.
                 </h2>
             </div>
-            <div className="space-x-3">
+            <div className="space-x-3 flex flex-col-reverse laptop:flex-row">
                 <Button variant="ghost" type="button">
                     Saiba mais
                 </Button>
-                <Button type="button">
-                    Começe agora
+                <Button asChild className="rounded-full px-6 shadow-lg bg-gradient-to-br hover:shadow-xl hover:-translate-y-1 from-black to-black hover:from-black hover:to-amethyst-300 transition-all duration-300">
+                    <Link to={`${URL_PATH_PREFIX}/signup`} className="border-white">
+                        Comece agora e ganhe 2 meses gratuitos
+                    </Link>
                 </Button>
             </div>
             <ScreenDisplay/>

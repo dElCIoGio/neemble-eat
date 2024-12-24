@@ -44,11 +44,11 @@ export const menuColumnsSchema = ({ onEdit, onDelete }: ItemActions): ColumnDef<
         cell: ({ row }) => (
             <div className="flex capitalize w-full mx-auto text-center">{
                 row.getValue("availability") ?
-                    <div className="mx-auto flex items-center space-x-1">
-                        <span className="rounded-full w-2 h-2 inline-block mr-2 bg-green-500 "/>
+                    <div className="mx-auto flex items-center space-x-1 text-green-800">
+                        <span className="rounded-full w-2 h-2 inline-block mr-2 bg-green-500"/>
                         Disponível
                     </div> :
-                    <div className="mx-auto flex items-center space-x-1">
+                    <div className="mx-auto flex items-center space-x-1 text-red-800">
                         <span className="rounded-full w-2 h-2 inline-block mr-2 bg-red-500"/>
                         Indisponível
                     </div>

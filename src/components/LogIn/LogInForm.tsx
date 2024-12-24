@@ -13,9 +13,8 @@ import {Button} from "@/components/ui/button.tsx";
 import {Eye, EyeClosed} from 'lucide-react'
 import {useState} from "react";
 import {z} from "zod"
-
 import {URL_PATH_PREFIX} from "@/lib/constants.ts";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {logIn} from "@/service/firebase/logIn.ts";
 
 
@@ -98,7 +97,11 @@ export function LogInForm() {
 						           )}/>
 					</div>
 					<div className={"flex justify-end"}>
-						<Button variant={"link"} className={"p-0 m-0 text-xs"}>Esqueci a palavra passe</Button>
+						<Button type="button" variant={"link"} className={"p-0 m-0 text-xs"}>
+							<Link to={`${URL_PATH_PREFIX}/forgot-password`}>
+								Esqueci a palavra passe
+							</Link>
+						</Button>
 					</div>
 					<div className={`text-red-500 italic text-xs`}>
 						{error}

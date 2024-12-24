@@ -12,6 +12,7 @@ import {signUp} from '@/service/signIn'
 import {Tabs, TabsContent} from "@/components/ui/tabs.tsx";
 import {Role, UserJson} from "@/schema.ts";
 import { FirebaseError } from '@firebase/util'
+import {Spinner} from "@/components/ui/spinner.tsx";
 
 interface SignUpFormValues {
 	tab: "credentials" | "person";
@@ -214,9 +215,16 @@ export function SignUpForm({tab, handleTabChange, submitAction, role}: SignUpFor
 									Continuar
 								</Button>:
 								<div className={"space-y-2"}>
-									<Button type={tab == "person"? "submit": "button"} className={"w-full bg-amethyst-400 hover:bg-amethyst-300"}>
-										Registar
-									</Button>
+									{
+										form.formState.isSubmitting?
+											<Button type={tab == "person"? "submit": "button"} disabled className={"w-full bg-amethyst-400 hover:bg-amethyst-300"}>
+												<Spinner/> Aguarde
+											</Button>:
+											<Button type={tab == "person"? "submit": "button"} className={"w-full bg-amethyst-400 hover:bg-amethyst-300"}>
+												Registar
+											</Button>
+									}
+
 									<Button className={"w-full"} type={"button"} variant={"ghost"} onClick={() => handleTabChange("credentials")}>
 										Voltar
 									</Button>

@@ -3,7 +3,7 @@ import {Button} from "@/components/ui/button.tsx";
 export function Cta() {
     return (
         <div className="my-28 flex flex-col items-center space-y-8">
-            <h1 className="text-center text-3xl font-poppins-semibold w-[60%]">
+            <h1 className="text-center text-3xl font-poppins-semibold  w-[80%] laptop:w-[60%]">
                 Leve seu atendimento ao próximo nível com nosso sistema de pedidos via QR Code.
             </h1>
             <p className="text-zinc-500 text-center w-[50%]">

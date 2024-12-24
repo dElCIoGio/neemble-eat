@@ -6,13 +6,18 @@ import {Roles, UserJson} from "@/schema.ts";
 import {useGetRestaurant} from "@/service/api/restaurant.ts";
 import {addUser} from "@/api/restaurant/manager.ts";
 import {deleteInvitationToken} from "@/api/invitation-token/managers.ts";
+import {Success} from "@/components/Invitation/Success.tsx";
 
 export function InvitationPage() {
+
+
 
     const {tokenId} = useParams() as unknown as {tokenId: string};
     const [tab, setTab] = useState<"credentials" | "person">("credentials")
     const {data: token, isError, isLoading: isTokenLoading} = useGetInvitationToken({tokenId})
     const {data: restaurant, isLoading: isRestaurantLoading} = useGetRestaurant({restaurantId:token?.restaurant_id})
+    const [accountCreated, setAccountCreated] = useState<boolean>(false)
+
 
     function handleSubmit(user: UserJson){
         if (token) {
@@ -21,9 +26,13 @@ export function InvitationPage() {
                 userID: user.id,
             }).then(() => {
                 deleteInvitationToken({tokenId})
+                setAccountCreated(true)
             })
         }
     }
+
+    if (accountCreated)
+        return <Success/>
 
     if (isRestaurantLoading || isTokenLoading) {
         return <div></div>
@@ -32,6 +41,8 @@ export function InvitationPage() {
     if (isError) {
         return <div>Link expirado</div>
     }
+
+
 
     return (
         <div>

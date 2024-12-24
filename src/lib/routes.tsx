@@ -16,6 +16,7 @@ import {Test} from "@/pages/Test.tsx";
 import {InvitationPage} from "@/pages/InvitationPage.tsx";
 import {HomePage} from "@/pages/HomePage.tsx";
 import {Test2} from "@/pages/Test2.tsx";
+import {ForgotPassword} from "@/pages/ForgotPassword.tsx";
 
 export const ROUTES: Route[] = [
 	{
@@ -98,6 +99,11 @@ export const ROUTES: Route[] = [
 	{
 		path: "/mytest",
 		element: <Test2/>,
+		requiresAuth: false
+	},
+	{
+		path: "/forgot-password",
+		element: <ForgotPassword/>,
 		requiresAuth: false
 	}
 
