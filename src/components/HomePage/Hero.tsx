@@ -18,8 +18,8 @@ export function Hero() {
                     Automatize as operações do seu restaurante e promova uma experiência super dinâmica para os seus clientes.
                 </h2>
             </div>
-            <div className="space-x-3 flex flex-col-reverse laptop:flex-row">
-                <Button variant="ghost" type="button">
+            <div className="space-x-3 flex flex-col-reverse laptop:flex-row items-center gap-3">
+                <Button variant="ghost" className="rounded-full w-fit" type="button">
                     Saiba mais
                 </Button>
                 <Button asChild className="rounded-full px-6 shadow-lg bg-gradient-to-br hover:shadow-xl hover:-translate-y-1 from-black to-black hover:from-black hover:to-amethyst-300 transition-all duration-300">
