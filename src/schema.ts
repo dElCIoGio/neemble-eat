@@ -19,6 +19,16 @@ export enum MemberRoleNames {
 	Bartender = "Bartender",
 	Accountant = "Accountant"
 }
+
+export enum MemberRoleTranslation {
+	Administrator = "Administrador",
+	Manager = "Gerente",
+	Chef = "Chef",
+	Waitstaff = "Garçon",
+	Bartender = "Barman",
+	Accountant = "Contabilista",
+}
+
 export enum Permissions {
 	View = "view",
 	Delete = "delete",

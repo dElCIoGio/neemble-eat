@@ -1,5 +1,5 @@
 import {Row} from "@tanstack/react-table";
-import {MemberRoleNames, Permissions, Role, Roles, Sections} from "@/schema.ts";
+import {MemberRoleNames, MemberRoleTranslation, Permissions, Role, Roles, Sections} from "@/schema.ts";
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 import {UserColumnSchemaProps} from "@/lib/DataTableColumnSchema/UsersColumnsSchema.tsx";
 import {useState} from "react";
@@ -45,7 +45,7 @@ export function RoleSelectionCell({row, onRoleChange}:RoleSelectionCellProps) {
                             {
                                 roles.map((r, index) =>
                                     <SelectItem value={r.name} key={index} className={`${r.name == role.name && "text-french_gray-300 font-poppins-semibold"}`}>
-                                        {r.name}
+                                        {MemberRoleTranslation[r.name]}
                                     </SelectItem>
                                 )
                             }

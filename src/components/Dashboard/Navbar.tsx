@@ -7,6 +7,7 @@ import Time from "@/components/Dashboard/Time.tsx";
 import {logout} from "@/service/firebase/signOut.ts";
 import {URL_PATH_PREFIX} from "@/lib/constants.ts";
 import {useNavigate} from "react-router-dom";
+import {MemberRoleTranslation} from "@/schema.ts";
 
 
 export function Navbar() {
@@ -28,8 +29,8 @@ export function Navbar() {
 			</div>
 
 			<div className="flex space-x-2 items-center">
-				<span className="hidden laptop:block bg-zinc-200 text-zinc-600 font-poppins-semibold rounded-full px-2 py-0.5 text-xs">
-					{user.role.name}
+				<span className="hidden laptop:block prevent-select bg-zinc-200 text-zinc-600 font-poppins-semibold rounded-full px-2 py-0.5 text-xs">
+					{MemberRoleTranslation[user.role.name]}
 				</span>
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
@@ -45,7 +46,6 @@ export function Navbar() {
 							}}>
 								Terminar Sessão
 							</Button>
-
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
