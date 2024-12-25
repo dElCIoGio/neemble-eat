@@ -49,7 +49,7 @@ export function AddItemContent({onSubmit}: AddItemProps) {
                 form.setValue("image", acceptedFiles[0]);
                 form.clearErrors("image");
             } catch (error) {
-                console.log(error);
+                console.error(error);
                 setPreview(null);
                 form.resetField("image");
             }
@@ -66,7 +66,6 @@ export function AddItemContent({onSubmit}: AddItemProps) {
         });
 
     const handleSubmit = (values: AddItemValues) => {
-        console.log(values);
         toast.success(`Image uploaded successfully 🎉 ${values.image.name}`);
         onSubmit(values)
     };

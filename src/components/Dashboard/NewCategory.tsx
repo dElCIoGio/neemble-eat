@@ -38,7 +38,7 @@ export function NewCategory({isOpened, setIsOpened}: NewCategoryProps & { setIsO
                         setIsOpened(false);
                     }
                 ).catch((error) => {
-                    console.log(error)
+                    console.error(error)
                     setIsLoading(false)
                 })
             }

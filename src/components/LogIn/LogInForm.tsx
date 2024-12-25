@@ -38,7 +38,6 @@ export function LogInForm() {
 		logIn(email, password)
 			.then((user) => {
 				const userID = user.uid
-				console.log(userID)
 				navigate(`${URL_PATH_PREFIX}/user/${userID}`)
 			}).catch(() => {
 				setError("Houve um problema ao iniciar sessão. Tente novamente ou troque a sua palavra passe")

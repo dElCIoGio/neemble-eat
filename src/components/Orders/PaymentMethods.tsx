@@ -27,7 +27,7 @@ PaymentMethods.Confirm = function Confirm() {
 					                             await refreshOrders()
 				                             }
 			                             } catch (error) {
-				                             console.log(error)
+				                             console.error(error)
 			                             }
 		                             }
 	                             }

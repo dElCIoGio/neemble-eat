@@ -5,7 +5,6 @@ import Cart from "@/pages/Cart";
 import {Orders} from "@/pages/Orders";
 import {LogIn} from "@/pages/LogIn";
 import {SignUp} from "@/pages/SignUp";
-
 import {URL_PATH_PREFIX} from "@/lib/constants";
 import AuthError from "@/pages/AuthError.tsx";
 import Setup from "@/pages/Setup.tsx";
@@ -112,6 +111,4 @@ export const ROUTES: Route[] = [
 		element: <ComingSoonPage/>,
 		requiresAuth: false
 	}
-
-
 ]

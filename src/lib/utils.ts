@@ -227,8 +227,6 @@ export function copyToClipboard(text: string) {
 }
 
 export function hasPermission(user: UserJson, section: Sections,  permission: Permissions): boolean {
-	console.log("Role")
-	console.log(user.role)
 	for (const s of user.role.permissions){
 		if (s.section === section || s.section == "*"){
 			return s.permissions.includes(permission);

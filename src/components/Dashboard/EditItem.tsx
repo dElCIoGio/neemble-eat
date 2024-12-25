@@ -86,7 +86,6 @@ function EditItemContent(){
     })
 
     const setCategory = (categoryID: string) => {
-        console.log(categoryID)
         form.setValue("categoryID", categoryID)
     }
 
@@ -99,7 +98,7 @@ function EditItemContent(){
                 form.setValue("image", acceptedFiles[0]);
                 form.clearErrors("image");
             } catch (error) {
-                console.log(error);
+                console.error(error);
                 setPreview(null);
                 form.resetField("image");
             }
@@ -135,8 +134,6 @@ function EditItemContent(){
 
         if (image != undefined)
             update.imageFile = image;
-
-        console.log(update)
 
         if (Object.keys(update).length > 0)
             updateItem({updates: update, menuItemId: item.id, restaurantId: restaurant.id}).then((newCategory) => {

@@ -1,4 +1,4 @@
-import {API, protocol} from "@/api/utils"
+import {API} from "@/api/utils"
 import {AxiosError, AxiosRequestConfig, AxiosResponse} from "axios";
 
 export class ApiMethods {
@@ -17,7 +17,6 @@ export class ApiMethods {
     }
 
     public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-        console.log(protocol)
         try {
             const response = await API.get<T>(url, config);
             return this.handleResponse(response);

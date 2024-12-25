@@ -113,7 +113,7 @@ Item.Image = function Image(){
                 form.setValue("image", acceptedFiles[0]);
                 form.clearErrors("image");
             } catch (error) {
-                console.log(error);
+                console.error(error);
                 setPreview(null);
                 form.resetField("image");
             }

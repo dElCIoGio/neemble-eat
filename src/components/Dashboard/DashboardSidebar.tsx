@@ -55,11 +55,10 @@ export function DashboardSidebar() {
 						return (
 							<SidebarMenuItem className="cursor-pointer " key={tag}>
 								<SidebarMenuButton
-									disabled={!isPermitted}
 									className={`transition-all duration-100 ${tag === currentPage ?
 										`hover:bg-amethyst-800 bg-amethyst-900 focus:bg-amethyst-800 text-amethyst-300 hover:text-amethyst-300 font-poppins-semibold transition-all duration-200` :
 										"text-zinc-400"} ${!isPermitted ? "cursor-not-allowed" : ""}`}
-									onClick={!isPermitted? () => handlePageChange(tag): () => {}}
+									onClick={isPermitted? () => handlePageChange(tag): () => {}}
 									asChild>
 									<div>
 										<TabIcon/>
