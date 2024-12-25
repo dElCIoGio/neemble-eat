@@ -17,6 +17,7 @@ import {InvitationPage} from "@/pages/InvitationPage.tsx";
 import {HomePage} from "@/pages/HomePage.tsx";
 import {Test2} from "@/pages/Test2.tsx";
 import {ForgotPassword} from "@/pages/ForgotPassword.tsx";
+import ComingSoonPage from "@/pages/ComingSoon.tsx";
 
 export const ROUTES: Route[] = [
 	{
@@ -55,7 +56,7 @@ export const ROUTES: Route[] = [
 		requiresAuth: false
 	},
 	{
-		path: `${URL_PATH_PREFIX}/`,
+		path: `${URL_PATH_PREFIX}/home-page`,
 		element: <HomePage/>,
 		requiresAuth: false
 	},
@@ -104,6 +105,11 @@ export const ROUTES: Route[] = [
 	{
 		path: "/forgot-password",
 		element: <ForgotPassword/>,
+		requiresAuth: false
+	},
+	{
+		path: "/",
+		element: <ComingSoonPage/>,
 		requiresAuth: false
 	}
 
