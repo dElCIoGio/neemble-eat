@@ -47,14 +47,19 @@ export function DashboardSidebar() {
 			        {DashboardSidebarTabs.map(({icon, tag, title}) => {
 						const TabIcon = icon
 
+						const isPermitted: boolean = hasPermission(user, tag as Sections, Permissions.View);
+
+						if (!isPermitted)
+							return null;
+
 						return (
 							<SidebarMenuItem className="cursor-pointer " key={tag}>
 								<SidebarMenuButton
-									disabled={!hasPermission(user, tag as Sections, Permissions.View)}
+									disabled={!isPermitted}
 									className={`transition-all duration-100 ${tag === currentPage ?
-										"hover:bg-amethyst-800 bg-amethyst-900 focus:bg-amethyst-800 text-amethyst-300 hover:text-amethyst-300 font-poppins-semibold transition-all duration-200" :
-										"text-zinc-400"} `}
-									onClick={() => handlePageChange(tag)}
+										`hover:bg-amethyst-800 bg-amethyst-900 focus:bg-amethyst-800 text-amethyst-300 hover:text-amethyst-300 font-poppins-semibold transition-all duration-200` :
+										"text-zinc-400"} ${!isPermitted ? "cursor-not-allowed" : ""}`}
+									onClick={!isPermitted? () => handlePageChange(tag): () => {}}
 									asChild>
 									<div>
 										<TabIcon/>

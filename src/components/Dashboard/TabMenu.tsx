@@ -8,21 +8,22 @@ import {Plus} from "lucide-react"
 import {Button} from "@/components/ui/button.tsx";
 import {EditMenuContext} from "@/context/editMenuContext.ts";
 import {menuToItemsList} from "@/lib/menuToItemsList.ts";
-import {MenuItem} from "@/schema.ts";
+import {MenuItem, Permissions, Sections} from "@/schema.ts";
 import {ItemsDisplay} from "@/components/Dashboard/ItemsDisplay.tsx";
 import {Separator} from "@/components/ui/separator.tsx";
+import {hasPermission} from "@/lib/utils.ts";
 
 
 export function TabMenu() {
 
 	document.title = "Menu";
 
-	const {restaurant} = useDashboardContext()
+	const {restaurant, user} = useDashboardContext()
+	const canAdd: boolean = hasPermission(user, Sections.menu, Permissions.Create)
 
 	const [menuSelected, ] = useState<string>(restaurant.menus[0])
 
 	const {data: menu, isLoading: isMenuLoading, addCategory, updateItem, addItem} = useGetMenu({menuId: menuSelected})
-	console.log(menu)
 
 	const [items, setItems] = useState<Array<MenuItem>>([]);
 
@@ -51,6 +52,7 @@ export function TabMenu() {
 					<div className="mb-8">
 						<AddItem>
 							<Button
+								disabled={!canAdd}
 								variant={"outline"}
 								className="shadow-sm">
 								<Plus/> Adicionar Item

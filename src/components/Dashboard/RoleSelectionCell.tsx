@@ -1,9 +1,11 @@
 import {Row} from "@tanstack/react-table";
-import {MemberRoleNames, Role, Roles} from "@/schema.ts";
+import {MemberRoleNames, Permissions, Role, Roles, Sections} from "@/schema.ts";
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 import {UserColumnSchemaProps} from "@/lib/DataTableColumnSchema/UsersColumnsSchema.tsx";
 import {useState} from "react";
 import {Button} from "@/components/ui/button.tsx";
+import {useDashboardContext} from "@/context/dashboardContext.ts";
+import {hasPermission} from "@/lib/utils.ts";
 
 
 interface RoleSelectionCellProps {
@@ -11,27 +13,30 @@ interface RoleSelectionCellProps {
     onRoleChange: (user: UserColumnSchemaProps, newRole: MemberRoleNames) => void;
 }
 
+const roles = [
+    Roles.Administrator,
+    Roles.Manager,
+    Roles.Chef,
+    Roles.Waitstaff,
+    Roles.Bartender,
+    Roles.Accountant
+]
+
 export function RoleSelectionCell({row, onRoleChange}:RoleSelectionCellProps) {
 
+    const {user} = useDashboardContext()
+
+    const canEdit: boolean = hasPermission(user, Sections.staff, Permissions.Update)
 
     const isLoggedUser: boolean = row.original.loggedUser
     const [role, setRole] = useState<Role>(row.getValue("role"))
 
     const [selectedRoleName, setSelectedRoleName] = useState<MemberRoleNames>(role.name)
 
-    const roles = [
-        Roles.Administrator,
-        Roles.Manager,
-        Roles.Chef,
-        Roles.Waitstaff,
-        Roles.Bartender,
-        Roles.Accountant
-    ]
-
     return (
         (
             <div className="flex space-x-4">
-                <Select defaultValue={role.name} disabled={isLoggedUser} value={selectedRoleName} onValueChange={(name) => setSelectedRoleName(name as MemberRoleNames)}>
+                <Select defaultValue={role.name} disabled={isLoggedUser || !canEdit} value={selectedRoleName} onValueChange={(name) => setSelectedRoleName(name as MemberRoleNames)}>
                     <SelectTrigger>
                         <SelectValue placeholder={`${role.name}`}/>
                     </SelectTrigger>

@@ -20,29 +20,37 @@ export function Navbar() {
 			<div className="flex items-center space-x-4">
 				<SidebarTrigger/>
 				<div className="text-xs">
-					<h1 className="font-poppins-semibold">Ola, {user.firstName}!</h1>
+					<h1 className="font-poppins-semibold">
+						Ola, {user.firstName}!
+					</h1>
 					<Time/>
 				</div>
 			</div>
 
-            <DropdownMenu>
-	            <DropdownMenuTrigger asChild>
-		            <Button variant={"ghost"} className="focus:ring-0">
-			            <EllipsisVertical/>
-		            </Button>
-	            </DropdownMenuTrigger>
-                <DropdownMenuContent className="mx-2">
-	                <DropdownMenuItem asChild className="bg-red-500 focus:bg-red-600 focus:text-white text-white">
-						<Button onClick={() => {
-							logout().then()
-							navigate(`${URL_PATH_PREFIX}/`, {replace: true})
-						}}>
-							Terminar Sessão
+			<div className="flex space-x-2 items-center">
+				<span className="hidden laptop:block bg-zinc-200 text-zinc-600 font-poppins-semibold rounded-full px-2 py-0.5 text-xs">
+					{user.role.name}
+				</span>
+				<DropdownMenu>
+					<DropdownMenuTrigger asChild>
+						<Button variant={"ghost"} className="focus:ring-0">
+							<EllipsisVertical/>
 						</Button>
+					</DropdownMenuTrigger>
+					<DropdownMenuContent className="mx-2">
+						<DropdownMenuItem asChild className="bg-red-500 focus:bg-red-600 focus:text-white text-white">
+							<Button onClick={() => {
+								logout().then()
+								navigate(`${URL_PATH_PREFIX}/`, {replace: true})
+							}}>
+								Terminar Sessão
+							</Button>
 
-	                </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
+						</DropdownMenuItem>
+					</DropdownMenuContent>
+				</DropdownMenu>
+			</div>
+
         </div>
 	);
 }

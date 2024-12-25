@@ -1,9 +1,8 @@
 import {MemberRoleNames, Role} from "@/schema.ts";
 import {ColumnDef} from "@tanstack/react-table";
-import {Button} from "@/components/ui/button.tsx";
-import {Trash} from "@phosphor-icons/react"
 import {Phone, At, User} from "@phosphor-icons/react"
 import {RoleSelectionCell} from "@/components/Dashboard/RoleSelectionCell.tsx";
+import {UsersColumnActions} from "@/components/Dashboard/UsersColumnActions.tsx";
 
 
 export type UserColumnSchemaProps = {
@@ -89,18 +88,6 @@ export const userColumnSchema = (
     {
         id: "actions",
         enableHiding: false,
-        cell: ({row}) => {
-
-            const isLoggedUser: boolean = row.original.loggedUser
-
-            if (isLoggedUser)
-                return <div></div>
-
-            return (
-                <Button size="icon" onClick={() => onDelete(row.original)} variant="ghost" className="hover:text-red-400">
-                    <Trash className="text-zinc-500"/>
-                </Button>
-            )
-        }
+        cell: ({row}) => <UsersColumnActions row={row} onDelete={onDelete}/>
     }
 ]

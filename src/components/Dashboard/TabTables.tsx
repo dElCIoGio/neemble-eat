@@ -1,7 +1,7 @@
 import {TypographyH2, TypographyMuted} from "@/components/ui/Typography";
 import {useGetAllTables} from "@/service/api/table";
 import {useDashboardContext} from "@/context/dashboardContext";
-import {Info, Plus, Minus} from "lucide-react"
+import {Info, Minus, Plus} from "lucide-react"
 import {Button} from "@/components/ui/button.tsx";
 import {useMediaQuery} from "@/hooks/use-media-query.ts";
 import {DESKTOP} from "@/lib/constants.ts";
@@ -10,6 +10,8 @@ import {TablesTabContext} from "@/context/tablesTabContext.ts";
 import {useState} from "react";
 import {addTable, removeTable} from "@/api/restaurant/manager.ts";
 import {Spinner} from "@/components/ui/spinner.tsx";
+import {hasPermission} from "@/lib/utils.ts";
+import {Permissions, Sections} from "@/schema.ts";
 
 
 const MAXIMUM_TABLES = 20
@@ -17,6 +19,10 @@ const MAXIMUM_TABLES = 20
 export function TabTables() {
 
     window.document.title = "Neemble Eat - Mesas"
+
+    const {user} = useDashboardContext()
+
+    const canEdit: boolean = hasPermission(user, Sections.tables, Permissions.Update)
 
     const [isAdding, setIsAdding] = useState<boolean>(false)
     const [isReducing, setIsReducing] = useState<boolean>(false)
@@ -78,7 +84,7 @@ export function TabTables() {
 
                 </div>
                 <div className="flex laptop:items-center flex-col laptop:flex-row gap-2 mb-4">
-                    <Button disabled={isReducing || tables.length == 0 || isAdding} variant="secondary" className="hover:bg-zinc-200 border border-zinc-200" onClick={() => {
+                    <Button disabled={isReducing || tables.length == 0 || isAdding || !canEdit} variant="secondary" className="hover:bg-zinc-200 border border-zinc-200" onClick={() => {
                         const last = tables.at(-1)
                         if(last != undefined)
                             handleRemoveTable(last.id)
@@ -90,7 +96,7 @@ export function TabTables() {
                         }
                         Remover uma mesa
                     </Button>
-                    <Button disabled={isAdding || isReducing || tables.length == MAXIMUM_TABLES} variant="secondary" className="hover:bg-zinc-200 border border-zinc-200" onClick={handleAddTable}>
+                    <Button disabled={isAdding || isReducing || tables.length == MAXIMUM_TABLES || !canEdit} variant="secondary" className="hover:bg-zinc-200 border border-zinc-200" onClick={handleAddTable}>
                         {
                             isAdding?
                                 <Spinner size="sm" className="bg-zinc-600 dark:bg-white" />:
