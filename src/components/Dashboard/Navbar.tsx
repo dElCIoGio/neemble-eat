@@ -27,7 +27,6 @@ export function Navbar() {
 					<Time/>
 				</div>
 			</div>
-
 			<div className="flex space-x-2 items-center">
 				<span className="hidden laptop:block prevent-select bg-zinc-200 text-zinc-600 font-poppins-semibold rounded-full px-2 py-0.5 text-xs">
 					{MemberRoleTranslation[user.role.name]}
@@ -50,7 +49,6 @@ export function Navbar() {
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</div>
-
         </div>
 	);
 }

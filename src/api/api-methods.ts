@@ -30,7 +30,7 @@ export class ApiMethods {
         }
     }
 
-    public async post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+    public async post<T>(url: string, data?: Record<string, unknown> | FormData, config?: AxiosRequestConfig): Promise<T> {
         try {
             const response = await API.post<T>(url, data, config);
             return this.handleResponse(response);
