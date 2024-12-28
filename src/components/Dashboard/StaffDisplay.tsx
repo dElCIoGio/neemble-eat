@@ -7,15 +7,17 @@ import {
     getSortedRowModel,
     useReactTable
 } from "@tanstack/react-table";
-import {MemberRoleNames, UserJson} from "@/schema.ts";
+import {MemberRoleNames, Role, Roles, UserJson} from "@/schema.ts";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
 import {useDashboardContext} from "@/context/dashboardContext.ts";
+import {updateUser} from "@/api/user/manager.ts";
 
 interface StaffDisplayProps {
     users: UserJson[]
+    updateUserMutation: (user: UserJson) => void
 }
 
-export function StaffDisplay({users}: StaffDisplayProps) {
+export function StaffDisplay({users, updateUserMutation}: StaffDisplayProps) {
 
     const {user} = useDashboardContext()
 
@@ -24,8 +26,20 @@ export function StaffDisplay({users}: StaffDisplayProps) {
     }
 
     function handleRoleChance(user: UserColumnSchemaProps, newRole: MemberRoleNames) {
-        console.log(newRole)
-        console.log(user)
+        const role: Role = Roles[newRole]
+        const u = users.find((a) => a.id === user.id)
+        if (u)
+            updateUser({
+                ...u, role
+            }).then((updatedUser) => {
+                console.log({
+                    ...u, role
+                })
+                updateUserMutation(updatedUser)
+            }).catch((error) => {
+                console.log(error)
+            })
+
     }
 
     const columns = useMemo(() => userColumnSchema({onDelete: handleDelete, onRoleChange: handleRoleChance}), [])

@@ -31,3 +31,9 @@ export async function getUser(userId: string): Promise<UserJson> {
     const config = CONFIG.FETCH_USER()
     return await api.get<UserJson>(url, config)
 }
+
+export async function updateUser(user: UserJson): Promise<UserJson> {
+    const url = ENDPOINTS.UPDATE_USER(user.id)
+    const config = CONFIG.UPDATE_USER()
+    return await api.put<UserJson>(url, {...user}, config)
+}

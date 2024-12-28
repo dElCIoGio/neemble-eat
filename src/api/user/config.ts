@@ -15,5 +15,8 @@ export const CONFIG = {
     }),
     FETCH_USER_BY_UUID: (): AxiosRequestConfig => ({
         ...baseConfig
+    }),
+    UPDATE_USER: (): AxiosRequestConfig => ({
+        ...baseConfig
     })
 };

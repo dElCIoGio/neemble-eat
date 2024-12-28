@@ -8,7 +8,7 @@ import {AlignCenter} from "lucide-react"
 // import background from "@/../public/images/blackchef2.png";
 import panel from "@/../public/images/dashboard.png";
 import {QrCode, ChartNoAxesCombined, ChefHat} from "lucide-react"
-import logo from "@/../public/neemble-eat-logo.png";
+import logo from "../../public/neemble-eat-logo.png";
 
 export function Home() {
 

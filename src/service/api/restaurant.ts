@@ -16,7 +16,7 @@ import {
     getTopOrders,
     removeTable
 } from "@/api/restaurant/manager"
-import {OrderJson} from "@/schema.ts";
+import {OrderJson, UserJson} from "@/schema.ts";
 import filterLastXhOrders from "@/lib/filterLastXhOrders.ts";
 
 const GET_TOP_ORDERS_GCTime: number  = 1000 * 60 * 60 * 24;
@@ -149,9 +149,31 @@ export function useGetAllUsers(attr: GetAllUsers){
 
     const queryKey = ["useGetAllUsers", attr.restaurantId]
 
-    return useQuery({
+    const queryClient = useQueryClient();
+
+    function updateUser(user: UserJson){
+        queryClient.setQueryData(
+            queryKey,
+            (users: UserJson[]) => {
+                return users.map(u => {
+                    const isUserFound: boolean = u.id === user.id
+                    if (isUserFound)
+                        return user
+
+                    return u
+                })
+            }
+        )
+    }
+
+    const query = useQuery({
         queryKey,
         queryFn: () => getAllUsers(attr)
             .then(users => users)
     })
+
+    return {
+        ...query,
+        updateUser
+    }
 }

@@ -13,7 +13,7 @@ export function useGetMenu(attr: getMenuHookProps){
 
     const queryKey = ["GET menu", attr.menuId]
 
-    const {refetch, ...query} =  useQuery({
+    const { refetch, ...query } =  useQuery({
         queryKey,
         queryFn: () => getMenu({menuId: attr.menuId})
             .then(data => data),
@@ -25,7 +25,7 @@ export function useGetMenu(attr: getMenuHookProps){
     const queryClient = useQueryClient();
 
     function addCategory(newCategory: CategoryJson){
-        queryClient.setQueryData(["GET menu", attr.menuId],
+        queryClient.setQueryData(queryKey,
             (oldMenu: Menu) => {
             const categories = oldMenu.categories
             if (categories != undefined){

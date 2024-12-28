@@ -1,4 +1,4 @@
-import logo from "@/../public/neemble-eat-logo.png";
+import logo from "../../../public/neemble-eat-logo.png";
 import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet.tsx";
 import {AlignCenter} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -11,8 +11,8 @@ export function Header() {
     const isMobile = useIsMobile()
 
     return (
-        <nav className="pr-4 laptop:px-4 bg-opacity-50 flex justify-between items-center">
-            <img src={logo} className="max-w-36 p-0" alt=""/>
+        <nav className="pt-4 px-4 bg-opacity-50 flex justify-between items-center">
+            <img src={logo} className="max-w-28 p-0" alt=""/>
             {isMobile ? <Sheet>
                     <SheetTrigger asChild><AlignCenter/></SheetTrigger>
                     <SheetContent className="py-12">

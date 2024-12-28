@@ -9,7 +9,7 @@ export function TabStaff() {
     const {restaurant} = useDashboardContext()
     const emptyStaff = restaurant.users == undefined || restaurant.users?.length == 0
 
-    const {data: users} = useGetAllUsers({restaurantId: restaurant.id})
+    const {data: users, updateUser} = useGetAllUsers({restaurantId: restaurant.id})
 
     return (
         <div className="flex-1 flex flex-col">
@@ -31,7 +31,7 @@ export function TabStaff() {
                     <div>
                         {
                             users &&
-                            <StaffDisplay users={users}/>
+                            <StaffDisplay users={users} updateUserMutation={updateUser}/>
                         }
                     </div>
 

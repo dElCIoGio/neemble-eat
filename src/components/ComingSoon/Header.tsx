@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import logo from "@/../public/neemble-eat-logo.png"
+import logo from "../../../public/neemble-eat-logo.png"
 
 const Header = () => {
     return (
