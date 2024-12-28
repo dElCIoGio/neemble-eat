@@ -3,7 +3,7 @@ import axios, {AxiosError, AxiosRequestConfig} from "axios";
 const CloudRunUrl: string = import.meta.env.VITE_CLOUD_FASTAPI_URL
 const localhostUrl: string = import.meta.env.VITE_LOCAL_FASTAPI_URL
 
-export const online: boolean = false
+export const online: boolean = trueg
 
 export const baseConfig: AxiosRequestConfig = {
     headers: {
