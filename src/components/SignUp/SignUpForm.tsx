@@ -8,11 +8,11 @@ import {RegisterSchema} from "@/lib/zodSchema.ts";
 import {Required} from "@/components/ui/required.tsx";
 import {Eye, EyeClosed} from "lucide-react";
 import {useEffect, useState} from "react";
-import {signUp} from '@/service/signIn'
 import {Tabs, TabsContent} from "@/components/ui/tabs.tsx";
 import {Role, UserJson} from "@/schema.ts";
 import { FirebaseError } from '@firebase/util'
 import {Spinner} from "@/components/ui/spinner.tsx";
+import {signUp} from "@/service/signIn.ts";
 
 interface SignUpFormValues {
 	tab: "credentials" | "person";
@@ -80,7 +80,6 @@ export function SignUpForm({tab, handleTabChange, submitAction, role}: SignUpFor
 				<Tabs defaultValue="credentials" value={tab} className="w-[100%] tablet:w-[100%] laptop:w-[500px]">
 					<TabsContent value="person">
 						<div className={""}>
-
 							<div className="space-y-3">
 								<FormField
 									name="firstName"

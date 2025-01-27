@@ -13,7 +13,7 @@ export function useGetMenu(attr: getMenuHookProps){
 
     const queryKey = ["GET menu", attr.menuId]
 
-    const { refetch, ...query } =  useQuery({
+    const { refetch, ...query } = useQuery({
         queryKey,
         queryFn: () => getMenu({menuId: attr.menuId})
             .then(data => data),

@@ -1,15 +1,18 @@
 import { motion } from 'framer-motion'
 import {useState} from "react";
 import {Input} from "@/components/ui/input.tsx";
+import {registerNewLead} from "@/api/general/manager.ts";
 
 const MainContent = () => {
     const [email, setEmail] = useState('')
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        console.log('Email submitted:', email)
-        setEmail('')
-        alert('Obrigado por se inscrever!')
+        registerNewLead({email}).then(() => {
+            setEmail('')
+            alert('Obrigado por se inscrever, entrarémos em contacto em breve!')
+        })
+
     }
 
     return (

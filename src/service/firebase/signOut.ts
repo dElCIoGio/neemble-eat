@@ -1,7 +1,8 @@
 import {signOut} from "firebase/auth";
 import {auth} from "../firebase/firebase.ts";
 
-export const logout = async () => {
+export const logout = async (
+) => {
     try {
         await signOut(auth);
         console.log("Logged out successfully!");
