@@ -33,9 +33,9 @@ export function TabDashboard() {
 						             value="overview">
 							<CardsThree className="mr-2"/> Visão Geral
 						</TabsTrigger>
-						<TabsTrigger disabled={true} className="rounded-md prevent-select" onClick={() => setSection("analytics")}
+						<TabsTrigger className="rounded-md prevent-select" onClick={() => setSection("analytics")}
 						             value="analytics">
-							<ChartLine className="mr-2"/> Analítico (brevemente)
+							<ChartLine className="mr-2"/> Analítico
 						</TabsTrigger>
 					</TabsList>
 					<div>

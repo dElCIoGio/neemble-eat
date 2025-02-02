@@ -560,6 +560,13 @@ export interface Route {
 	requiresAuth: boolean,
 }
 
+
+export interface AnalyticsRevenue {
+	currentMonth: number,
+	previousMonth: number,
+}
+
+
 export type SetUpTab = "restaurant" | "tables" | "menu"
 
 export type DashboardPage = "dashboard" | "menu" | "settings"
