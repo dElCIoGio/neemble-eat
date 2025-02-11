@@ -3,7 +3,7 @@
 const ROUTER = "/restaurants"
 
 export const ENDPOINTS = {
-    GET_RESTAURANTS_TOP_ORDERS: (restaurantId: string) => `${ROUTER}/${restaurantId}/last-orders`,
+    GET_RESTAURANTS_TOP_ORDERS: (restaurantId: string) => `${ROUTER}/top-orders/${restaurantId}`,
     GET_RESTAURANT: (restaurantId: string) => `${ROUTER}/${restaurantId}`,
     GET_ALL_TABLES: (restaurantId: string) => `${ROUTER}/${restaurantId}/all-tables`,
     GET_ALL_ORDERS: (restaurantId: string) => `${ROUTER}/${restaurantId}/orders`,

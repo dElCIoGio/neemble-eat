@@ -1,10 +1,10 @@
 import {useDashboardContext} from "@/context/dashboardContext.ts";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
-import {useGetTopOrders} from "@/service/api/restaurant.ts";
 import {Ranking} from "@phosphor-icons/react";
 import {AnalyticBox} from "@/components/Dashboard/AnalyticBox.tsx";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
+import {useGetTopOrders} from "@/api/analytics/hooks.ts";
 
 
 

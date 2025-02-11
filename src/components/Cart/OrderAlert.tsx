@@ -14,12 +14,12 @@ import {Button} from "@/components/ui/button.tsx";
 
 export function OrderAlert() {
 
-	const {alertMessage, orderStatus, customerName, totalValue} = useCartContext()
+	const {alertMessage, orderStatus, customerName, totalValue, iSFetchingSession} = useCartContext()
 
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild className={`w-full pt-2`}>
-				<Button className={`w-full ${totalValue === 0 && "cursor-not-allowed bg-zinc-600"}`}>
+				<Button disabled={iSFetchingSession} className={`w-full ${totalValue === 0 && "cursor-not-allowed bg-zinc-600"}`}>
 					Confirmar
 				</Button>
 			</AlertDialogTrigger>

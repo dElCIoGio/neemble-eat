@@ -12,6 +12,7 @@ import {LoadingRestaurantMenu} from "@/components/RestaurantMenu/LoadingRestaura
 import {useParams, useSearchParams} from "react-router-dom";
 import {useGetMenu} from "@/service/api/menu.ts";
 import {useGetRestaurant} from "@/service/api/restaurant.ts";
+import FloatingCartButton from "@/components/RestaurantMenu/FloatingCartButton.tsx";
 
 function RestaurantMenu() {
 
@@ -79,6 +80,7 @@ function RestaurantMenu() {
 						</div>
 						<Categories/>
 						<Footer/>
+						<FloatingCartButton/>
 					</MenuContext.Provider> :
 					<div>
 					</div>

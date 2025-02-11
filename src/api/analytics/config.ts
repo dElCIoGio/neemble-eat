@@ -15,5 +15,8 @@ export const CONFIG = {
     GET_RESTAURANT_ORDER_COUNT_BY_DAY: (): AxiosRequestConfig => ({
         ...baseConfig,
     }),
+    GET_RESTAURANTS_TOP_ORDERS: (): AxiosRequestConfig => ({
+        ...baseConfig,
+    }),
 
 }

@@ -2,13 +2,11 @@ import {API, handleError} from "@/api/utils";
 import axios from "axios";
 import {OrderJson} from "@/schema"
 import {useQuery} from "@tanstack/react-query";
-import {useEffect} from "react";
 
 interface Props {
 	sessionID: string | null
 }
 
-const GET_SESSION_ORDERS_STALETIME = 0
 
 export async function getAllSessionOrders({sessionID}: Props): Promise<OrderJson[]> {
 	try {
@@ -30,18 +28,11 @@ export function useGetSessionOders(attr: Props) {
 
 	const key = getQueryKey(attr.sessionID ? attr.sessionID : "")
 
-	const {data, isLoading, error, isFetching, isStale, refetch} = useQuery({
+	const {data, isLoading, error, isFetching, refetch} = useQuery({
 		queryKey: key,
 		queryFn: () => getAllSessionOrders(attr).then(data => data),
 		enabled: attr.sessionID != null,
-		staleTime: GET_SESSION_ORDERS_STALETIME,
 	})
-
-	useEffect(() => {
-		if (isStale)
-			refetch()
-	}, [isStale]);
-
 
 	return {
 		orders: data,

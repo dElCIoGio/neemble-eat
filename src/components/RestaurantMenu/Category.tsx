@@ -9,6 +9,7 @@ interface props {
 
 }
 
+
 export function Category({category, selectItem}: props) {
 	return (
 		<div className={`mt-8 px-4`}>

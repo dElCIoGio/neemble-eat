@@ -11,6 +11,7 @@ interface CartContextProps {
 	totalValue: number;
 	orderConfirmed: boolean;
 	setOrderConfirmed: React.Dispatch<React.SetStateAction<boolean>>;
+	iSFetchingSession: boolean;
 
 	findCartItemIndexByID: (id: string) => number;
 	incrementProduct: (index: number) => (CartItem | null);

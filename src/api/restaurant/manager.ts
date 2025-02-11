@@ -29,7 +29,6 @@ export async function getTopOrders({restaurantId}: GetTopOrdersProps): Promise<[
     return await api.get(url, config)
 }
 
-
 export async function getAllTables({restaurantId}: GetAllTablesProps): Promise<TableJson[]>{
     const url = ENDPOINTS.GET_ALL_TABLES(restaurantId)
     const config = CONFIG.GET_ALL_TABLES()

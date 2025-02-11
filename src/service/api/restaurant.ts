@@ -67,7 +67,6 @@ export function useGetAllOrders(attr: GetAllOrdersProps){
         })
     }
 
-
     function updateOrderStatus(orderId: string, newStatus: string) {
         queryClient.setQueryData(['getAllOrders', attr.restaurantID], (oldOrders: OrderJson[] = []) => {
             return oldOrders.map(order =>

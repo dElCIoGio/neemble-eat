@@ -1,16 +1,19 @@
 export interface GetRestaurantRevenueByMonthProps {
-    restaurantId: string;
+    restaurantId: string | undefined;
 }
 
 export interface GetRestaurantRevenueByDayProps {
-    restaurantId: string;
+    restaurantId: string | undefined;
 }
 
 export interface GetRestaurantOrderCountByDayProps {
-    restaurantId: string;
+    restaurantId: string | undefined;
 }
 
 export interface GetRestaurantOrderCountByMonthProps {
-    restaurantId: string;
+    restaurantId: string | undefined;
 }
 
+export interface GetTopOrdersProps {
+    restaurantId: string;
+}

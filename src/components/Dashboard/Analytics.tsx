@@ -17,68 +17,88 @@ export function Analytics() {
 
 	const {restaurant} = useDashboardContext()
 
-	const {isLoading: isDayOrdersLoading, data: dayOrders} = useGetRestaurantOrderCountByDay({restaurantId: restaurant.id})
-	const {isLoading: isMonthOrdersLoading, data: monthOrders} = useGetRestaurantOrderCountByMonth({restaurantId: restaurant.id})
-	const {isLoading: isDayRevenueLoading, data: dayRevenue} = useGetRestaurantRevenueByDay({restaurantId: restaurant.id})
-	const {isLoading: isMonthRevenueLoading, data: monthRevenue} = useGetRestaurantRevenueByMonth({restaurantId: restaurant.id})
+	const {isLoading: isDayOrdersLoading, data: dayOrders} = useGetRestaurantOrderCountByDay({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
+	const {isLoading: isMonthOrdersLoading, data: monthOrders} = useGetRestaurantOrderCountByMonth({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
+	const {isLoading: isDayRevenueLoading, data: dayRevenue} = useGetRestaurantRevenueByDay({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
+	const {isLoading: isMonthRevenueLoading, data: monthRevenue} = useGetRestaurantRevenueByMonth({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
 
+
+
+	if (restaurant.orders?.length == 0) {
+		return <div className="flex flex-col items-center justify-center h-full">
+			<h1>
+				O seu restaurante não possui pedidos ainda
+			</h1>
+		</div>;
+	};
 
 	return (
-		<Loading Fallback={LoadingDashboardAnalytics} loadingParams={[isDayOrdersLoading, isMonthOrdersLoading, isDayRevenueLoading, isMonthRevenueLoading]}>
+		<div>
 			{
-				dayOrders && monthOrders && dayRevenue && monthRevenue &&
-					<div className="w-full space-y-4">
+				restaurant.orders?.length == 0 ?
+					<div className="flex flex-col items-center justify-center h-full">
+						<h1>
+						O seu restaurante não possui pedidos ainda
+						</h1>
+					</div>:
+					<Loading Fallback={LoadingDashboardAnalytics} loadingParams={[isDayOrdersLoading, isMonthOrdersLoading, isDayRevenueLoading, isMonthRevenueLoading]}>
+						{
+							dayOrders && monthOrders && dayRevenue && monthRevenue &&
+							<div className="w-full space-y-4">
 
-						<div className="grid grid-cols-4 gap-2">
-							<Card className="col-span-2 laptop:col-span-1">
-								<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-									<CardTitle className="text-sm font-medium">Ganhos</CardTitle>
-									<CurrencyCircleDollar className="h-4 w-4 text-muted-foreground"/>
-								</CardHeader>
-								<CardContent>
-									<div className="text-2xl font-bold">Kz {monthRevenue.currentMonth}</div>
-									<p className="text-xs text-muted-foreground">{monthRevenue.currentMonth == 0 ? "-100" : (monthRevenue.currentMonth / (monthRevenue.currentMonth + monthRevenue.previousMonth)) * 100}%
-										em relação ao mês passado</p>
-								</CardContent>
-							</Card>
-							<Card className="col-span-2 laptop:col-span-1">
-								<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-									<CardTitle className="text-sm font-medium">Pedidos</CardTitle>
-									<ShoppingBag className="h-4 w-4 text-muted-foreground"/>
-								</CardHeader>
-								<CardContent>
-									<div className="text-2xl font-bold">{monthOrders.currentMonth}</div>
-									<p className="text-xs text-muted-foreground">+15% em relação ao mês passado</p>
-								</CardContent>
-							</Card>
+								<div className="grid grid-cols-4 gap-2">
+									<Card className="col-span-2 laptop:col-span-1">
+										<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+											<CardTitle className="text-sm font-medium">Ganhos</CardTitle>
+											<CurrencyCircleDollar className="h-4 w-4 text-muted-foreground"/>
+										</CardHeader>
+										<CardContent>
+											<div className="text-2xl font-bold">Kz {monthRevenue.currentMonth}</div>
+											<p className="text-xs text-muted-foreground">{monthRevenue.currentMonth == 0 ? "-100" : (monthRevenue.currentMonth / (monthRevenue.currentMonth + monthRevenue.previousMonth)) * 100}%
+												em relação ao mês passado</p>
+										</CardContent>
+									</Card>
+									<Card className="col-span-2 laptop:col-span-1">
+										<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+											<CardTitle className="text-sm font-medium">Pedidos</CardTitle>
+											<ShoppingBag className="h-4 w-4 text-muted-foreground"/>
+										</CardHeader>
+										<CardContent>
+											<div className="text-2xl font-bold">{monthOrders.currentMonth}</div>
+											<p className="text-xs text-muted-foreground">+15% em relação ao mês passado</p>
+										</CardContent>
+									</Card>
 
-							<Card className="col-span-2 laptop:col-span-1">
-								<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-									<CardTitle className="text-sm font-medium">Ganhos</CardTitle>
-									<CurrencyCircleDollar className="h-4 w-4 text-muted-foreground"/>
-								</CardHeader>
-								<CardContent>
-									<div className="text-2xl font-bold">Kz {dayRevenue.today}</div>
-									<p className="text-xs text-muted-foreground">{dayRevenue.yesterday == 0 ? "-100" : (dayRevenue.today / (dayRevenue.today + dayRevenue.yesterday)) * 100}%
-										em relação ao mês passado</p>
-								</CardContent>
-							</Card>
-							<Card className="col-span-2 laptop:col-span-1">
-								<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-									<CardTitle className="text-sm font-medium">Pedidos</CardTitle>
-									<ShoppingBag className="h-4 w-4 text-muted-foreground"/>
-								</CardHeader>
-								<CardContent>
-									<div className="text-2xl font-bold">{dayOrders.today}</div>
-									<p className="text-xs text-muted-foreground">+15% em relação ao mês passado</p>
-								</CardContent>
-							</Card>
-						</div>
-						<TopOrdersTable maxNumber={10}/>
-					</div>
+									<Card className="col-span-2 laptop:col-span-1">
+										<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+											<CardTitle className="text-sm font-medium">Ganhos</CardTitle>
+											<CurrencyCircleDollar className="h-4 w-4 text-muted-foreground"/>
+										</CardHeader>
+										<CardContent>
+											<div className="text-2xl font-bold">Kz {dayRevenue.today}</div>
+											<p className="text-xs text-muted-foreground">{dayRevenue.yesterday == 0 ? "-100" : (dayRevenue.today / (dayRevenue.today + dayRevenue.yesterday)) * 100}%
+												em relação ao mês passado</p>
+										</CardContent>
+									</Card>
+									<Card className="col-span-2 laptop:col-span-1">
+										<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+											<CardTitle className="text-sm font-medium">Pedidos</CardTitle>
+											<ShoppingBag className="h-4 w-4 text-muted-foreground"/>
+										</CardHeader>
+										<CardContent>
+											<div className="text-2xl font-bold">{dayOrders.today}</div>
+											<p className="text-xs text-muted-foreground">+15% em relação ao mês passado</p>
+										</CardContent>
+									</Card>
+								</div>
+								<TopOrdersTable maxNumber={10}/>
+							</div>
+						}
+
+					</Loading>
+
 			}
-
-		</Loading>
+		</div>
 	);
 }
 

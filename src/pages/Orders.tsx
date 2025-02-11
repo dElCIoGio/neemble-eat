@@ -53,6 +53,7 @@ export function Orders() {
 		sessionID: session ? session.id : null
 	})
 
+
 	function handleGetBill() {
 		if (session == null) return;
 		closeSession({sessionID: session.id, status: "Billed"})

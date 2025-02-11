@@ -3,10 +3,6 @@ import axios from "axios";
 import {API, handleError} from "@/api/utils";
 import {useQuery, useMutation, useQueryClient} from "@tanstack/react-query";
 import {useEffect} from "react";
-import {MINUTE} from "@/lib/constants.ts";
-
-
-const GET_OPEN_SESSION_STALETIME: number = 2 * MINUTE;
 
 
 interface Props {
@@ -54,8 +50,7 @@ export function useGetOpenSession({closeSession, restaurantID, tableNumber}: hoo
 		queryFn: () => getOpenSession({
 			tableNumber: tableNumber,
 			restaurantID: restaurantID
-		}).then(data => data),
-		staleTime: GET_OPEN_SESSION_STALETIME,
+		}).then(data => data)
 	})
 
 	useEffect(() => {
@@ -75,9 +70,12 @@ export function useGetOpenSession({closeSession, restaurantID, tableNumber}: hoo
 
 	return {
 		session: data,
+		refetch,
 		iSFetchingSession: isFetching,
 		isSessionLoading: isLoading,
 		sessionError: error,
-		...closeSession ? {closeSessionMutation: closeSessionMutation} : {}
+		...closeSession ? {
+			closeSessionMutation: closeSessionMutation
+		} : {}
 	}
 }

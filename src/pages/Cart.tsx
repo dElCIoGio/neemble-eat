@@ -36,10 +36,11 @@ export function Cart() {
 		findCartItemIndexByID,
 		incrementProduct,
 		deleteProduct,
-		decrementProduct
+		decrementProduct,
 	} = useCart()
 	const {
 		session,
+		iSFetchingSession
 	} = useGetOpenSession({
 		restaurantID: restaurantID,
 		tableNumber: tableNumber
@@ -91,7 +92,8 @@ export function Cart() {
 			findCartItemIndexByID,
 			incrementProduct,
 			deleteProduct,
-			decrementProduct
+			decrementProduct,
+			iSFetchingSession
 		}}>
 			<Layout>
 				<Background className={"bg-gray-100"}/>

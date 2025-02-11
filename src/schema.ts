@@ -258,7 +258,7 @@ export interface CategoryJson {
 
 
 export interface CategoryParsed {
-	created_time?: string
+	created_time?: string,
 	id: string,
 	name: string,
 	description?: string,
