@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Check } from "lucide-react"
 import { QrCode, BowlFood, ChartLine, MapPin } from "@phosphor-icons/react"
+import {NavLink} from "react-router-dom";
 
 
 const plans = [
@@ -240,8 +241,19 @@ export default function Pricing() {
                         Nossa equipe está pronta para ajudar você a escolher o melhor plano para seu restaurante.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button className="bg-purple-500 hover:bg-purple-400">Fale connosco</Button>
-                        <Button variant="outline">Ver Demonstração</Button>
+
+
+                        <Button className="bg-purple-500 hover:bg-purple-400">
+                            <NavLink to="../contact">
+                                Fale connosco
+                            </NavLink>
+                        </Button>
+
+                        <Button variant="outline">
+                            <NavLink to="../demo">
+                                Ver Demonstração
+                            </NavLink>
+                        </Button>
                     </div>
                 </div>
             </section>

@@ -13,6 +13,7 @@ import {ForgotPassword} from "@/pages/ForgotPassword.tsx";
 import ComingSoonPage from "@/pages/ComingSoon.tsx";
 import AboutUs from "@/pages/AboutUs.tsx";
 import Pricing from "@/pages/Pricing.tsx";
+import Demo from "@/pages/Demo.tsx";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
 
                     <Route index element={<HomePage/>}/>
                     <Route path="forgot-password" element={<ForgotPassword/>}/>
+                    <Route path="demo" element={<Demo/>}/>
 
                     <Route path="signup" element={<SignUp/>}/>
                     <Route path="contact" element={<ContactPage/>}/>

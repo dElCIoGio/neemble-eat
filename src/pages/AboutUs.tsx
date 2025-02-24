@@ -1,5 +1,6 @@
 import {Card} from "@/components/ui/card.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import {NavLink} from "react-router-dom";
 
 
 export default function AboutUs() {
@@ -190,11 +191,17 @@ export default function AboutUs() {
                         Junte-se a nós na missão de transformar a experiência gastronômica em Angola
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button className="bg-purple-600 hover:bg-purple-500 text-white px-8 py-6 text-lg">
-                            Agendar Demonstração
+                        <Button className="bg-purple-600 hover:bg-purple-500 text-white px-8 py-6 text-sm">
+                            <NavLink to="../demo">
+                                Agendar Demonstração
+                            </NavLink>
+
                         </Button>
-                        <Button variant="outline" className="px-8 py-6 text-lg">
-                            Conhecer Planos
+                        <Button asChild variant="outline" className="px-8 py-6 text-sm">
+                            <NavLink to="../price">
+                                Conhecer Planos
+                            </NavLink>
+
                         </Button>
                     </div>
                 </div>

@@ -97,7 +97,11 @@ export function Header() {
                                             </div>
 
                                             <div className="pt-4 mt-4 border-t">
-                                                <Button className="w-full bg-purple-600 hover:bg-purple-500 text-white">Agendar Demo</Button>
+                                                <Button className="w-full bg-purple-600 hover:bg-purple-500 text-white">
+                                                    <NavLink to="demo">
+                                                        Agendar Demo
+                                                    </NavLink>
+                                                </Button>
                                             </div>
                                         </div>
                                     </SheetContent>
@@ -189,7 +193,9 @@ export function Header() {
                                 Contacto
                             </NavLink>
                             <Button variant="secondary" size="sm" className="bg-zinc-800 text-xs text-white hover:bg-zinc-600">
-                                Agendar Demo
+                                <NavLink to="demo">
+                                    Agendar Demo
+                                </NavLink>
                             </Button>
                         </div>
                     </div>
