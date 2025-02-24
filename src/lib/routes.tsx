@@ -3,20 +3,14 @@ import RestaurantMenu from "@/pages/RestaurantMenu";
 import {LoadingRestaurantMenu} from "@/components/RestaurantMenu/LoadingRestaurantMenu";
 import Cart from "@/pages/Cart";
 import {Orders} from "@/pages/Orders";
-import {LogIn} from "@/pages/LogIn";
-import {SignUp} from "@/pages/SignUp";
 import {URL_PATH_PREFIX} from "@/lib/constants";
 import AuthError from "@/pages/AuthError.tsx";
 import Setup from "@/pages/Setup.tsx";
 import {Dashboard} from "@/pages/Dashboard.tsx";
 import {OrdersTracking} from "@/pages/OrdersTracking.tsx";
 import {SessionsTracking} from "@/pages/SessionsTracking.tsx";
-import {Test} from "@/pages/Test.tsx";
 import {InvitationPage} from "@/pages/InvitationPage.tsx";
-import {HomePage} from "@/pages/HomePage.tsx";
-import {Test2} from "@/pages/Test2.tsx";
-import {ForgotPassword} from "@/pages/ForgotPassword.tsx";
-import ComingSoonPage from "@/pages/ComingSoon.tsx";
+
 
 export const ROUTES: Route[] = [
 	{
@@ -45,21 +39,6 @@ export const ROUTES: Route[] = [
 		requiresAuth: false
 	},
 	{
-		path: `${URL_PATH_PREFIX}/login`,
-		element: <LogIn/>,
-		requiresAuth: false
-	},
-	{
-		path: `${URL_PATH_PREFIX}/signup`,
-		element: <SignUp/>,
-		requiresAuth: false
-	},
-	{
-		path: `${URL_PATH_PREFIX}/home-page`,
-		element: <HomePage/>,
-		requiresAuth: false
-	},
-	{
 		path: `${URL_PATH_PREFIX}/setup`,
 		element: <Setup/>,
 		requiresAuth: false
@@ -68,18 +47,6 @@ export const ROUTES: Route[] = [
 		path: `${URL_PATH_PREFIX}/user/:userID`,
 		element: <Dashboard/>,
 		requiresAuth: true
-	},
-	{
-		path: `/test`,
-		element: <Test/>,
-		requiresAuth: false
-	},
-	{
-		path: `/redirect`,
-		element:  <div>
-			Para aceder ao menu, por favor escolha uma mesa e faça scan do nosso QR Code.
-		</div>,
-		requiresAuth: false
 	},
 	{
 		path: `${URL_PATH_PREFIX}/orders-tracking/:restaurantID`,
@@ -94,21 +61,6 @@ export const ROUTES: Route[] = [
 	{
 		path: `${URL_PATH_PREFIX}/invite/:tokenId`,
 		element: <InvitationPage/>,
-		requiresAuth: false
-	},
-	{
-		path: "/mytest",
-		element: <Test2/>,
-		requiresAuth: false
-	},
-	{
-		path: "/forgot-password",
-		element: <ForgotPassword/>,
-		requiresAuth: false
-	},
-	{
-		path: "/",
-		element: <ComingSoonPage/>,
 		requiresAuth: false
 	}
 ]

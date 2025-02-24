@@ -13,8 +13,10 @@ export const EditMenuContext = createContext<EditMenuProps |  undefined>(undefin
 export function useEditMenuContext() {
 
     const context = useContext(EditMenuContext);
+
     if (!context) {
         throw new Error('useEditMenuContext must be used within a EditMenu.');
     }
+
     return context;
 }
