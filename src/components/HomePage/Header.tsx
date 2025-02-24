@@ -47,15 +47,15 @@ export function Header() {
                                             <div className="space-y-2">
                                                 <div className="text-sm font-medium text-gray-500 px-2">Soluções</div>
                                                 <div className="space-y-1">
-                                                    <Link to="#"
+                                                    <Link to="solutions/digital-menu"
                                                           className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Menu Digital
                                                     </Link>
-                                                    <Link to="#"
+                                                    <Link to="solutions/orders-management"
                                                           className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Gestão de Pedidos
                                                     </Link>
-                                                    <Link to="#"
+                                                    <Link to="solutions/analytics"
                                                           className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Análise de Dados
                                                     </Link>
