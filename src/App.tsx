@@ -25,11 +25,12 @@ function App() {
 		<div>
             <Router>
               <Routes>
+                  <Route path="signup" element={<SignUp/>}/>
+                  <Route path="/login" element={<LogIn/>}/>
+                  <Route path="/" element={<ComingSoonPage/>}/>
+                  <Route path="/home" element={<HomeLayout/>}>
 
-                  {/*<Route path="/" element={<ComingSoonPage/>}/>*/}
-                  <Route path="/" element={<HomeLayout/>}>
                     <Route index element={<HomePage/>}/>
-                      <Route path="/login" element={<LogIn/>}/>
                       <Route path="solutions">
                           <Route path="digital-menu" element={<DigitalMenu/>}/>
                           <Route path="orders-management" element={<OrderManagement/>}/>
@@ -39,7 +40,7 @@ function App() {
                       <Route path="forgot-password" element={<ForgotPassword/>}/>
                       <Route path="demo" element={<Demo/>}/>
 
-                      <Route path="signup" element={<SignUp/>}/>
+
                       <Route path="contact" element={<ContactPage/>}/>
                       <Route path="about-us" element={<AboutUs/>}/>
                       <Route path="price" element={<Pricing/>}/>
