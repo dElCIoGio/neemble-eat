@@ -25,11 +25,11 @@ function App() {
 		<div>
             <Router>
               <Routes>
-                  <Route path="/login" element={<LogIn/>}/>
-                  <Route path="/" element={<ComingSoonPage/>}/>
-                  <Route path="/home" element={<HomeLayout/>}>
 
+                  {/*<Route path="/" element={<ComingSoonPage/>}/>*/}
+                  <Route path="/" element={<HomeLayout/>}>
                     <Route index element={<HomePage/>}/>
+                      <Route path="/login" element={<LogIn/>}/>
                       <Route path="solutions">
                           <Route path="digital-menu" element={<DigitalMenu/>}/>
                           <Route path="orders-management" element={<OrderManagement/>}/>
