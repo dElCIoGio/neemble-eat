@@ -40,14 +40,13 @@ export function Hero() {
                         animate={{opacity: 1, scale: 1}}
                         transition={{duration: 0.8, delay: 0.4}}
                     >
-                        <Button className="bg-zinc-700 hover:bg-zinc-600 text-white px-8 py-6 text-lg rounded-md">
+                        <Button className="bg-zinc-700 hover:bg-zinc-600 text-white px-8 py-6 rounded-md">
                             Começar Gratuitamente
                         </Button>
-                        <Button variant="outline" className="px-8 py-6 text-lg">
+                        <Button variant="outline" className="px-8 py-6">
                             <NavLink to="demo">
                                 Ver Demonstração
                             </NavLink>
-
                         </Button>
                     </motion.div>
                 </motion.div>

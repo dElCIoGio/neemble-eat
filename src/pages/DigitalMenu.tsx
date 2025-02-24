@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Check, Smartphone, QrCode, Utensils, ImageIcon, Languages, Wifi, Clock } from "lucide-react"
+import {Link} from "react-router-dom";
 
 const features = [
     {
@@ -43,12 +44,11 @@ export default function DigitalMenu() {
 
     return (
         <div>
-
             <section className="relative bg-gray-50 pt-20 pb-28 overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="relative z-10">
-                            <Badge className="mb-4 bg-[#FF6B35] text-white">Menu Digital</Badge>
+                            <Badge className="mb-4 bg-purple-500 text-white">Menu Digital</Badge>
                             <h1 className="text-4xl md:text-5xl font-bold mb-6">
                                 Transforme seu cardápio em uma experiência digital incrível
                             </h1>
@@ -56,8 +56,13 @@ export default function DigitalMenu() {
                                 Menu digital interativo via QR code que encanta seus clientes e simplifica a gestão do seu restaurante.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <Button className="bg-[#FF6B35] hover:bg-[#FF5722] text-white">Começar Agora</Button>
-                                <Button variant="outline">Agendar Demonstração</Button>
+                                <Button className="bg-purple-500 hover:bg-purple-400 text-white">Começar Agora</Button>
+                                <Button variant="outline">
+                                    <Link to="../../demo">
+                                        Agendar Demonstração
+                                    </Link>
+
+                                </Button>
                             </div>
                         </div>
                         <div className="relative lg:h-[600px]">
@@ -73,7 +78,7 @@ export default function DigitalMenu() {
                                 </div>
                             </div>
                             {/* Decorative elements */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-[#FF6B35] to-[#FF5722] opacity-10 rounded-full blur-3xl" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-purple-500 to-purple-400 opacity-10 rounded-full blur-3xl" />
                         </div>
                     </div>
                 </div>
@@ -89,22 +94,22 @@ export default function DigitalMenu() {
 
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mx-auto mb-4">
-                                <QrCode className="w-8 h-8 text-[#FF6B35]" />
+                            <div className="w-16 h-16 rounded-full bg-purple-500 bg-opacity-10 flex items-center justify-center mx-auto mb-4">
+                                <QrCode className="w-8 h-8 text-purple-500" />
                             </div>
                             <h3 className="font-semibold mb-2">1. Cliente escaneia o QR code</h3>
                             <p className="text-gray-600">Código único em cada mesa leva ao cardápio digital</p>
                         </div>
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mx-auto mb-4">
-                                <Smartphone className="w-8 h-8 text-[#FF6B35]" />
+                            <div className="w-16 h-16 rounded-full bg-purple-500 bg-opacity-10 flex items-center justify-center mx-auto mb-4">
+                                <Smartphone className="w-8 h-8 text-purple-500" />
                             </div>
                             <h3 className="font-semibold mb-2">2. Acessa o menu interativo</h3>
                             <p className="text-gray-600">Visualiza fotos, descrições e preços atualizados</p>
                         </div>
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mx-auto mb-4">
-                                <Utensils className="w-8 h-8 text-[#FF6B35]" />
+                            <div className="w-16 h-16 rounded-full bg-purple-500 bg-opacity-10 flex items-center justify-center mx-auto mb-4">
+                                <Utensils className="w-8 h-8 text-purple-500" />
                             </div>
                             <h3 className="font-semibold mb-2">3. Faz o pedido</h3>
                             <p className="text-gray-600">Seleciona os itens e envia direto para a cozinha</p>
@@ -124,8 +129,8 @@ export default function DigitalMenu() {
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {features.map((feature) => (
                             <Card key={feature.title} className="p-6">
-                                <div className="w-12 h-12 rounded-lg bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mb-4">
-                                    <feature.icon className="w-6 h-6 text-[#FF6B35]" />
+                                <div className="w-12 h-12 rounded-lg bg-purple-500 bg-opacity-10 flex items-center justify-center mb-4">
+                                    <feature.icon className="w-6 h-6 text-purple-500" />
                                 </div>
                                 <h3 className="font-semibold mb-2">{feature.title}</h3>
                                 <p className="text-gray-600">{feature.description}</p>
@@ -173,7 +178,7 @@ export default function DigitalMenu() {
                                 />
                             </div>
                             {/* Decorative elements */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-[#FF6B35] to-[#FF5722] opacity-10 rounded-full blur-3xl" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-purple-500 to-purple-400 opacity-10 rounded-full blur-3xl" />
                         </div>
                     </div>
                 </div>
@@ -251,8 +256,12 @@ export default function DigitalMenu() {
                         Comece agora e transforme a experiência dos seus clientes com nosso menu digital.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button className="bg-[#FF6B35] hover:bg-[#FF5722] text-white">Começar Gratuitamente</Button>
-                        <Button variant="outline">Ver Demonstração</Button>
+                        <Button className="bg-purple-500 hover:bg-purple-400 text-white">Começar Gratuitamente</Button>
+                        <Button variant="outline">
+                            <Link to="../../demo">
+                                Agendar Demonstração
+                            </Link>
+                        </Button>
                     </div>
                     <p className="mt-4 text-sm text-gray-500">Teste grátis por 30 dias. Sem compromisso.</p>
                 </div>

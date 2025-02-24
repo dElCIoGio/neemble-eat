@@ -19,7 +19,7 @@ function HomeLayout() {
     return (
         <main>
             <Header/>
-            <div className="">
+            <div>
                 <Outlet/>
             </div>
             <Footer/>

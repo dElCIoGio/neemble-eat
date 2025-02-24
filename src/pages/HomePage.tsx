@@ -14,7 +14,7 @@ export function HomePage() {
     window.document.title = "Neemble Eat"
 
     return (
-        <div className="min-h-screen bg-white">
+        <div>
             <Hero/>
 
             {/* Trusted By Section */}

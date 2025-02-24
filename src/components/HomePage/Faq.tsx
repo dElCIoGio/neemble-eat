@@ -63,9 +63,19 @@ export function Faq() {
                 <h2 className="text-3xl font-bold text-center mb-12">Perguntas Frequentes</h2>
                 <Accordion type="single" collapsible>
                     {faq.map((item, i) => (
-                        <AccordionItem key={i} value={`item-${i}`}>
-                            <AccordionTrigger>{item.question}</AccordionTrigger>
-                            <AccordionContent>{item.answer}</AccordionContent>
+                        <AccordionItem className={`flex items-center justify-start ${i + 1 >= 10? "gap-4": "gap-6"}`} key={i} value={`item-${i}`}>
+                            <div className="font-poppins-semibold text-zinc-500">
+                                {i + 1}
+                            </div>
+                            <div>
+                                <AccordionTrigger>
+                                    <span className="mr-3">
+                                        {item.question}
+                                    </span>
+                                </AccordionTrigger>
+                                <AccordionContent>{item.answer}</AccordionContent>
+                            </div>
+
                         </AccordionItem>
                     ))}
                 </Accordion>

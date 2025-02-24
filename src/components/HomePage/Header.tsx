@@ -32,9 +32,9 @@ export function Header() {
             {/* Announcement Banner */}
             <div className="w-full bg-zinc-800 text-white text-center py-2 text-sm">
                 <span>Oferta Especial para Novos Restaurantes: </span>
-                <Link to="#" className="text-purple-300 hover:text-purple-100">
+                <span className="text-purple-300 hover:text-purple-100">
                     1 Mês Grátis
-                </Link>
+                </span>
             </div>
 
             <header className="border-b bg-white/70 backdrop-blur-sm">

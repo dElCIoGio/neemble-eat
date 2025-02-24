@@ -13,6 +13,7 @@ import {
     Settings,
     History,
 } from "lucide-react"
+import {Link} from "react-router-dom";
 
 
 const features = [
@@ -64,7 +65,7 @@ export default function OrderManagement() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="relative z-10">
-                            <Badge className="mb-4 bg-[#FF6B35] text-white">Gestão de Pedidos</Badge>
+                            <Badge className="mb-4 bg-purple-500 text-white">Gestão de Pedidos</Badge>
                             <h1 className="text-4xl md:text-5xl font-bold mb-6">
                                 Simplifique a gestão dos pedidos do seu restaurante
                             </h1>
@@ -73,7 +74,7 @@ export default function OrderManagement() {
                                 intuitiva.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <Button className="bg-[#FF6B35] hover:bg-[#FF5722] text-white">Começar Agora</Button>
+                                <Button className="bg-purple-500 hover:bg-purple-400 text-white">Começar Agora</Button>
                                 <Button variant="outline">Agendar Demonstração</Button>
                             </div>
                         </div>
@@ -88,7 +89,7 @@ export default function OrderManagement() {
                                 />
                             </div>
                             {/* Decorative elements */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-[#FF6B35] to-[#FF5722] opacity-10 rounded-full blur-3xl" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-purple-500 to-purple-400 opacity-10 rounded-full blur-3xl" />
                         </div>
                     </div>
                 </div>
@@ -100,7 +101,7 @@ export default function OrderManagement() {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         {stats.map((stat) => (
                             <div key={stat.number} className="text-center">
-                                <div className="text-4xl font-bold text-[#FF6B35] mb-2">{stat.number}</div>
+                                <div className="text-4xl font-bold text-purple-500 mb-2">{stat.number}</div>
                                 <div className="text-sm text-gray-600">{stat.label}</div>
                             </div>
                         ))}
@@ -161,8 +162,8 @@ export default function OrderManagement() {
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {features.map((feature) => (
                             <Card key={feature.title} className="p-6">
-                                <div className="w-12 h-12 rounded-lg bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mb-4">
-                                    <feature.icon className="w-6 h-6 text-[#FF6B35]" />
+                                <div className="w-12 h-12 rounded-lg bg-purple-500 bg-opacity-10 flex items-center justify-center mb-4">
+                                    <feature.icon className="w-6 h-6 text-purple-500" />
                                 </div>
                                 <h3 className="font-semibold mb-2">{feature.title}</h3>
                                 <p className="text-gray-600">{feature.description}</p>
@@ -182,29 +183,29 @@ export default function OrderManagement() {
 
                     <div className="grid md:grid-cols-4 gap-8">
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mx-auto mb-4">
-                                <Smartphone className="w-8 h-8 text-[#FF6B35]" />
+                            <div className="w-16 h-16 rounded-full bg-purple-500 bg-opacity-10 flex items-center justify-center mx-auto mb-4">
+                                <Smartphone className="w-8 h-8 text-purple-500" />
                             </div>
                             <h3 className="font-semibold mb-2">1. Recebimento do Pedido</h3>
                             <p className="text-gray-600">Cliente faz o pedido via QR code ou garçom</p>
                         </div>
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mx-auto mb-4">
-                                <Bell className="w-8 h-8 text-[#FF6B35]" />
+                            <div className="w-16 h-16 rounded-full bg-purple-500 bg-opacity-10 flex items-center justify-center mx-auto mb-4">
+                                <Bell className="w-8 h-8 text-purple-500" />
                             </div>
                             <h3 className="font-semibold mb-2">2. Notificação Instantânea</h3>
                             <p className="text-gray-600">Cozinha recebe alerta do novo pedido</p>
                         </div>
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mx-auto mb-4">
-                                <Utensils className="w-8 h-8 text-[#FF6B35]" />
+                            <div className="w-16 h-16 rounded-full bg-purple-500 bg-opacity-10 flex items-center justify-center mx-auto mb-4">
+                                <Utensils className="w-8 h-8 text-purple-500" />
                             </div>
                             <h3 className="font-semibold mb-2">3. Preparo</h3>
                             <p className="text-gray-600">Acompanhamento em tempo real do preparo</p>
                         </div>
                         <div className="text-center">
-                            <div className="w-16 h-16 rounded-full bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mx-auto mb-4">
-                                <Users className="w-8 h-8 text-[#FF6B35]" />
+                            <div className="w-16 h-16 rounded-full bg-purple-500 bg-opacity-10 flex items-center justify-center mx-auto mb-4">
+                                <Users className="w-8 h-8 text-purple-500" />
                             </div>
                             <h3 className="font-semibold mb-2">4. Entrega</h3>
                             <p className="text-gray-600">Garçom é notificado quando pedido está pronto</p>
@@ -304,8 +305,12 @@ export default function OrderManagement() {
                         Comece agora e veja a diferença que um sistema de gestão eficiente pode fazer.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button className="bg-[#FF6B35] hover:bg-[#FF5722] text-white">Começar Gratuitamente</Button>
-                        <Button variant="outline">Ver Demonstração</Button>
+                        <Button className="bg-purple-500 hover:bg-purple-400 text-white">Começar Gratuitamente</Button>
+                        <Button variant="outline">
+                            <Link to="../../demo">
+                                Agendar Demonstração
+                            </Link>
+                        </Button>
                     </div>
                     <p className="mt-4 text-sm text-gray-500">Teste grátis por 30 dias. Sem compromisso.</p>
                 </div>

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Check, BarChart2, DollarSign, Users, Clock, LineChart, Target, Zap, Share2 } from "lucide-react"
+import {Link} from "react-router-dom";
 
 
 const kpiCategories = [
@@ -67,14 +68,14 @@ export default function DataAnalysis() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="relative z-10">
-                            <Badge className="mb-4 bg-[#FF6B35] text-white">Análise de Dados</Badge>
+                            <Badge className="mb-4 bg-purple-500 text-white">Análise de Dados</Badge>
                             <h1 className="text-4xl md:text-5xl font-bold mb-6">Transforme dados em decisões inteligentes</h1>
                             <p className="text-xl text-gray-600 mb-8">
                                 Dashboard analítico completo com KPIs em tempo real para ajudar você a tomar as melhores decisões para
                                 seu restaurante.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <Button className="bg-[#FF6B35] hover:bg-[#FF5722] text-white">Começar Agora</Button>
+                                <Button className="bg-purple-500 hover:bg-purple-400 text-white">Começar Agora</Button>
                                 <Button variant="outline">Agendar Demonstração</Button>
                             </div>
                         </div>
@@ -89,7 +90,7 @@ export default function DataAnalysis() {
                                 />
                             </div>
                             {/* Decorative elements */}
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-[#FF6B35] to-[#FF5722] opacity-10 rounded-full blur-3xl" />
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-purple-500 to-purple-400 opacity-10 rounded-full blur-3xl" />
                         </div>
                     </div>
                 </div>
@@ -106,8 +107,8 @@ export default function DataAnalysis() {
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {kpiCategories.map((category) => (
                             <Card key={category.title} className="p-6">
-                                <div className="w-12 h-12 rounded-lg bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mb-4">
-                                    <category.icon className="w-6 h-6 text-[#FF6B35]" />
+                                <div className="w-12 h-12 rounded-lg bg-purple-500 bg-opacity-10 flex items-center justify-center mb-4">
+                                    <category.icon className="w-6 h-6 text-purple-500" />
                                 </div>
                                 <h3 className="font-semibold mb-4">{category.title}</h3>
                                 <ul className="space-y-2">
@@ -176,8 +177,8 @@ export default function DataAnalysis() {
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {features.map((feature) => (
                             <Card key={feature.title} className="p-6">
-                                <div className="w-12 h-12 rounded-lg bg-[#FF6B35] bg-opacity-10 flex items-center justify-center mb-4">
-                                    <feature.icon className="w-6 h-6 text-[#FF6B35]" />
+                                <div className="w-12 h-12 rounded-lg bg-purple-500 bg-opacity-10 flex items-center justify-center mb-4">
+                                    <feature.icon className="w-6 h-6 text-purple-500" />
                                 </div>
                                 <h3 className="font-semibold mb-2">{feature.title}</h3>
                                 <p className="text-sm text-gray-600">{feature.description}</p>
@@ -275,8 +276,12 @@ export default function DataAnalysis() {
                         Comece agora e descubra como a análise de dados pode transformar seu restaurante.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button className="bg-[#FF6B35] hover:bg-[#FF5722] text-white">Começar Gratuitamente</Button>
-                        <Button variant="outline">Ver Demonstração</Button>
+                        <Button className="bg-purple-500 hover:bg-purple-400 text-white">Começar Gratuitamente</Button>
+                            <Button variant="outline">
+                            <Link to="../../demo">
+                                Ver Demonstração
+                            </Link>
+                        </Button>
                     </div>
                     <p className="mt-4 text-sm text-gray-500">Teste grátis por 30 dias. Sem compromisso.</p>
                 </div>

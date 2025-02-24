@@ -64,7 +64,7 @@ function Pricing() {
                         <p className="text-gray-600 mb-4">Para redes de restaurantes</p>
                         <div className="text-3xl font-bold mb-6">Personalizado</div>
                         <Button variant="outline" className="w-full mb-6">
-                            Falar com Vendas
+                            Fale connosco
                         </Button>
                         <ul className="space-y-3">
                             <li className="flex items-center gap-2">
