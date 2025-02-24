@@ -1,5 +1,4 @@
 import {Hero} from "@/components/HomePage/Hero.tsx";
-import TrustedBy from "@/components/HomePage/TrustedBy.tsx";
 import {Features} from "@/components/HomePage/Features.tsx";
 import Benefits from "@/components/HomePage/Benefits.tsx";
 import Pricing from "@/components/HomePage/Pricing.tsx";
@@ -18,7 +17,7 @@ export function HomePage() {
             <Hero/>
 
             {/* Trusted By Section */}
-            <TrustedBy/>
+            {/*<TrustedBy/>*/}
 
             {/* Features Section */}
             <Features/>

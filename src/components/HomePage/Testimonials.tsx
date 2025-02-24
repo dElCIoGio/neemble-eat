@@ -12,7 +12,7 @@ export function Testimonials() {
 
                 {/* Featured Testimonial */}
                 <div className="grid md:grid-cols-2 gap-8 items-center mb-16">
-                    <div className="relative h-[400px] rounded-2xl overflow-hidden">
+                    <div className="relative hidden h-[400px] rounded-2xl overflow-hidden">
                         <img
                             src="/placeholder.svg?height=400&width=600"
                             alt="Restaurante Sabores de Angola"

@@ -2,6 +2,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {NavLink} from "react-router-dom";
 import {motion} from "framer-motion";
 
+
 export function Hero() {
     return (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
@@ -56,11 +57,11 @@ export function Hero() {
                     animate={{opacity: 1, y: 0}}
                     transition={{duration: 0.8, delay: 0.6}}
                 >
-                    <div className="relative w-full h-[500px]">
+                    <div className="relative w-full h-[500px] rounded-xl overflow-hidden">
                         <img
-                            src="/placeholder.svg?height=500&width=500"
+                            src="../../../public/chef-hero.jpg"
                             alt="Sistema Neemble Eat em ação"
-                            className="object-contain"
+                            className="object-cover w-full h-full"
                         />
                     </div>
                 </motion.div>

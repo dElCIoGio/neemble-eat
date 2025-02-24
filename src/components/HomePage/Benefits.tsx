@@ -31,7 +31,7 @@ function Benefits() {
                             </li>
                         </ul>
                     </div>
-                    <div className="relative h-[300px] md:h-auto">
+                    <div className="relative hidden h-[300px] md:h-auto">
                         <img
                             src="/placeholder.svg?height=400&width=600"
                             alt="Dashboard Neemble Eat"

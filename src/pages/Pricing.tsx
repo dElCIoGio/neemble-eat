@@ -133,10 +133,13 @@ export default function Pricing() {
                                 </div>
 
                                 <Button
-                                    className={`w-full mb-8 ${plan.popular ? "bg-purple-500 hover:bg-purple-400" : ""}`}
-                                    variant={plan.popular ? "default" : "outline"}
-                                >
-                                    {plan.price === "Personalizado" ? "Falar connosco" : "Começar Agora"}
+                                    className={`w-full mb-8 ${plan.popular ? "bg-purple-500 hover:bg-purple-400" : plan.name == "Empresarial"? "": ""} ${plan.name == "Empresarial"? "": ""}`}
+                                    variant={plan.popular ? "default" : plan.name == "Empresarial"? "default": "outline"} >
+                                    {
+                                        plan.price === "Personalizado" ?
+                                            "Falar connosco" :
+                                            "Começar Agora"
+                                    }
                                 </Button>
 
                                 <div className="space-y-4">
