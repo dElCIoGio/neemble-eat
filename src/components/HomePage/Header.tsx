@@ -9,12 +9,22 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { Badge } from "@/components/ui/badge"
-import {Link, NavLink} from "react-router-dom";
+import {Link, NavLink, useLocation} from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
+import {useEffect, useState} from "react";
 
 
 export function Header() {
+
+    const [isOpen, setIsOpen] = useState<boolean>(false)
+
+    const location = useLocation();
+
+    useEffect(() => {
+        setIsOpen(false)
+    }, [location]);
+
 
 
     return (
@@ -32,14 +42,14 @@ export function Header() {
                     <div className="flex justify-between items-center h-16">
                         <div className="flex items-center gap-8">
                             <div className="flex items-center gap-2">
-                                <Sheet>
+                                <Sheet open={isOpen} onOpenChange={setIsOpen}>
                                     <SheetTrigger asChild>
                                         <Button variant="ghost" size="icon" className="md:hidden">
                                             <Menu className="h-6 w-6"/>
                                             <span className="sr-only">Abrir menu</span>
                                         </Button>
                                     </SheetTrigger>
-                                    <SheetContent side="left" className="w-[300px] bg-white/70 backdrop-blur-sm">
+                                    <SheetContent side="left" className="w-[300px]">
                                         <SheetHeader>
                                             <SheetTitle>Neemble Eat</SheetTitle>
                                         </SheetHeader>
