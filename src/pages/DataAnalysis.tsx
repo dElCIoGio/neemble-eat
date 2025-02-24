@@ -56,6 +56,10 @@ const features = [
 ]
 
 export default function DataAnalysis() {
+
+    document.title = "Análise de dados | Neemble Eat"
+
+
     return (
         <div>
 

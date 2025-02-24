@@ -9,6 +9,10 @@ import {  } from "lucide-react"
 
 
 export default function ContactPage() {
+
+    document.title = "Contacto | Neemble Eat"
+
+
     return (
         <div className="min-h-screen bg-white">
 

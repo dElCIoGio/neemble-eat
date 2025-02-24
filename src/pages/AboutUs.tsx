@@ -4,6 +4,9 @@ import {NavLink} from "react-router-dom";
 
 
 export default function AboutUs() {
+
+    document.title = "Sobre | Neemble Eat"
+
     return (
         <div className="bg-white">
             <section className="pt-20 pb-16 md:pt-28 md:pb-24 bg-gradient-to-b from-purple-100 to-white">

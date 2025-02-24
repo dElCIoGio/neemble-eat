@@ -37,6 +37,10 @@ const features = [
 ]
 
 export default function DigitalMenu() {
+
+    document.title = "Menu digital | Neemble Eat"
+
+
     return (
         <div>
 

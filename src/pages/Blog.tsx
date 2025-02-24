@@ -41,6 +41,10 @@ const articles = [
 
 
 export default function BlogPage() {
+
+    document.title = "Blog | Neemble Eat"
+
+
     const featuredArticle = articles.find((article) => article.featured)
     const regularArticles = articles.filter((article) => !article.featured)
 
