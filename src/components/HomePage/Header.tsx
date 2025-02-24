@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Badge } from "@/components/ui/badge"
 import {Link, NavLink} from "react-router-dom";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Menu } from "lucide-react"
+
 // import {useIsMobile} from "@/hooks/use-mobile.tsx";
 
 export function Header() {
@@ -30,9 +33,80 @@ export function Header() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         <div className="flex items-center gap-8">
-                            <NavLink to="" className="font-bold text-xl">
-                                Neemble Eat
-                            </NavLink>
+                            <div className="flex items-center gap-2">
+                                <Sheet>
+                                    <SheetTrigger asChild>
+                                        <Button variant="ghost" size="icon" className="md:hidden">
+                                            <Menu className="h-6 w-6" />
+                                            <span className="sr-only">Abrir menu</span>
+                                        </Button>
+                                    </SheetTrigger>
+                                    <SheetContent side="left" className="w-[300px]">
+                                        <SheetHeader>
+                                            <SheetTitle>Neemble Eat</SheetTitle>
+                                        </SheetHeader>
+                                        <div className="mt-6 space-y-4">
+                                            <div className="space-y-2">
+                                                <div className="text-sm font-medium text-gray-500 px-2">Soluções</div>
+                                                <div className="space-y-1">
+                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                        Menu Digital
+                                                    </Link>
+                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                        Gestão de Pedidos
+                                                    </Link>
+                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                        Análise de Dados
+                                                    </Link>
+                                                </div>
+                                            </div>
+
+                                            <Link to="price" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                Preços
+                                            </Link>
+
+                                            <div className="space-y-2">
+                                                <div className="text-sm font-medium text-gray-500 px-2">Recursos</div>
+                                                <div className="space-y-1">
+                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                        Sistema QR Code
+                                                        <Badge className="ml-2 bg-emerald-100 text-emerald-700">POPULAR</Badge>
+                                                    </Link>
+                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                        Dashboard da Cozinha
+                                                    </Link>
+                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                        Relatórios Analíticos
+                                                    </Link>
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-2">
+                                                <div className="text-sm font-medium text-gray-500 px-2">Links Rápidos</div>
+                                                <div className="space-y-1">
+                                                    <NavLink to="blog" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                        Blog
+                                                    </NavLink>
+                                                    <NavLink to="about-us" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                        Sobre Nós
+                                                    </NavLink>
+                                                    <NavLink to="contact" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                        Contato
+                                                    </NavLink>
+                                                </div>
+                                            </div>
+
+                                            <div className="pt-4 mt-4 border-t">
+                                                <Button className="w-full bg-purple-600 hover:bg-purple-500 text-white">Agendar Demo</Button>
+                                            </div>
+                                        </div>
+                                    </SheetContent>
+                                </Sheet>
+                                <NavLink to="" className="font-bold text-xl">
+                                    Neemble Eat
+                                </NavLink>
+                            </div>
+
                             <NavigationMenu className="hidden md:flex">
                                 <NavigationMenuList>
                                     <NavigationMenuItem>
@@ -114,7 +188,7 @@ export function Header() {
                             <NavLink to="contact" className="hidden md:block text-gray-600 hover:text-gray-900">
                                 Contacto
                             </NavLink>
-                            <Button variant="secondary" className="bg-zinc-800 text-white hover:bg-zinc-600">
+                            <Button variant="secondary" size="sm" className="bg-zinc-800 text-xs text-white hover:bg-zinc-600">
                                 Agendar Demo
                             </Button>
                         </div>
