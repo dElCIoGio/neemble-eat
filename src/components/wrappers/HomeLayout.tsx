@@ -10,12 +10,16 @@ function HomeLayout() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        document.body.style.overflowX = "hidden";
+        return () => {
+            document.body.style.overflowX = "";
+        };
     }, [location]);
 
     return (
         <main>
             <Header/>
-            <div>
+            <div className="">
                 <Outlet/>
             </div>
             <Footer/>
