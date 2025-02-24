@@ -58,35 +58,19 @@ const faq: {
 
 export function Faq() {
     return (
-        <div className="">
-            <div className="text-center ">
-                <h1 className="font-semibold text-amethyst-400 text-lg">
-                    FAQ
-                </h1>
-                <h2 className="text-3xl font-poppins-semibold my-4 text-zinc-800">
-                    Perguntas frequentes
-                </h2>
-                <p>
-
-                </p>
-            </div>
-            <div className="flex justify-center mb-8">
-                <Accordion type="single" className="w-[80%]" collapsible>
-                    {
-                        faq.map(({question, answer}, index) => (
-                            <AccordionItem value={`item-${index}`} key={index}>
-                                <AccordionTrigger className="text-left">
-                                    {index + 1}. {question}
-                                </AccordionTrigger>
-                                <AccordionContent className="text-zinc-500">
-                                    {answer}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))
-                    }
+        <section className="py-24 bg-gray-50">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 className="text-3xl font-bold text-center mb-12">Perguntas Frequentes</h2>
+                <Accordion type="single" collapsible>
+                    {faq.map((item, i) => (
+                        <AccordionItem key={i} value={`item-${i}`}>
+                            <AccordionTrigger>{item.question}</AccordionTrigger>
+                            <AccordionContent>{item.answer}</AccordionContent>
+                        </AccordionItem>
+                    ))}
                 </Accordion>
             </div>
-        </div>
+        </section>
     );
 }
 

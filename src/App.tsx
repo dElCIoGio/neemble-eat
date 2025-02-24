@@ -14,6 +14,9 @@ import ComingSoonPage from "@/pages/ComingSoon.tsx";
 import AboutUs from "@/pages/AboutUs.tsx";
 import Pricing from "@/pages/Pricing.tsx";
 import Demo from "@/pages/Demo.tsx";
+import DataAnalysis from "@/pages/DataAnalysis.tsx";
+import OrderManagement from "@/pages/OrdersManagement.tsx";
+import DigitalMenu from "@/pages/DigitalMenu.tsx";
 
 
 function App() {
@@ -27,17 +30,23 @@ function App() {
                   <Route path="/home" element={<HomeLayout/>}>
 
                     <Route index element={<HomePage/>}/>
-                    <Route path="forgot-password" element={<ForgotPassword/>}/>
-                    <Route path="demo" element={<Demo/>}/>
+                      <Route path="solutions">
+                          <Route path="digital-menu" element={<DigitalMenu/>}/>
+                          <Route path="orders-management" element={<OrderManagement/>}/>
+                          <Route path="analytics" element={<DataAnalysis/>}/>
 
-                    <Route path="signup" element={<SignUp/>}/>
-                    <Route path="contact" element={<ContactPage/>}/>
-                    <Route path="about-us" element={<AboutUs/>}/>
-                    <Route path="price" element={<Pricing/>}/>
-                    <Route path="blog">
-                        <Route index element={<Blog/>}/>
-                        <Route path="article/:id" element={<Article/>}/>
-                    </Route>
+                      </Route>
+                      <Route path="forgot-password" element={<ForgotPassword/>}/>
+                      <Route path="demo" element={<Demo/>}/>
+
+                      <Route path="signup" element={<SignUp/>}/>
+                      <Route path="contact" element={<ContactPage/>}/>
+                      <Route path="about-us" element={<AboutUs/>}/>
+                      <Route path="price" element={<Pricing/>}/>
+                      <Route path="blog">
+                            <Route index element={<Blog/>}/>
+                            <Route path="article/:id" element={<Article/>}/>
+                      </Route>
                 </Route>
 	              {
 		              ROUTES.map(route => <Route

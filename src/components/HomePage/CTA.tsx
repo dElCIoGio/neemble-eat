@@ -2,17 +2,22 @@ import {Button} from "@/components/ui/button.tsx";
 
 export function Cta() {
     return (
-        <div className="my-28 flex flex-col items-center space-y-8">
-            <h1 className="text-center text-3xl font-poppins-semibold  w-[80%] laptop:w-[60%]">
-                Leve seu atendimento ao próximo nível com nosso sistema de pedidos via QR Code.
-            </h1>
-            <p className="text-zinc-500 text-center w-[50%]">
-                Ofereça aos seus clientes um serviço moderno, rápido e eficiente, enquanto otimiza as operações do seu restaurante.
-            </p>
-            <Button className="bg-amethyst-500 hover:bg-amethyst-400">
-                Começe agora
-            </Button>
-        </div>
+        <section className="py-24">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6">Pronto para modernizar seu restaurante?</h2>
+                <p className="text-gray-600 mb-8">
+                    Junte-se a dezenas de restaurantes em Angola que já estão usando o Neemble Eat
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button className="bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-6 text-lg">
+                        Começar Gratuitamente
+                    </Button>
+                    <Button variant="outline" className="px-8 py-6 text-lg">
+                        Falar com Consultor
+                    </Button>
+                </div>
+            </div>
+        </section>
     );
 }
 

@@ -2,7 +2,16 @@ import {Header} from "@/components/HomePage/Header.tsx";
 import {Outlet} from "react-router-dom";
 import {Footer} from "@/components/HomePage/Footer.tsx";
 
+import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
+
 function HomeLayout() {
+    const location = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
+
     return (
         <main>
             <Header/>

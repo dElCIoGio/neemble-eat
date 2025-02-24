@@ -21,11 +21,11 @@ export function Footer() {
                     </div>
                     <div>
                         <h3 className="font-semibold mb-4">Produto</h3>
-                        <ul className="space-y-3 text-sm text-gray-500">
-                            <li>Menu Digital</li>
-                            <li>Gestão de Pedidos</li>
-                            <li>Analytics</li>
-                            <li>Preços</li>
+                        <ul className="flex flex-col items-start">
+                            <Button variant="link" className="p-0 text-sm text-gray-500"><Link to="solutions/digital-menu">Menu Digital</Link></Button>
+                            <Button variant="link" className="p-0 text-sm text-gray-500"><Link to="solutions/orders-management">Gestão de Pedidos</Link></Button>
+                            <Button variant="link" className="p-0 text-sm text-gray-500"><Link to="solutions/analytics">Analytics</Link></Button>
+                            <Button variant="link" className="p-0 text-sm text-gray-500"><Link to="price">Preços</Link></Button>
                         </ul>
                     </div>
                     <div>

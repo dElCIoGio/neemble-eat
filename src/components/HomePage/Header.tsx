@@ -13,14 +13,12 @@ import {Link, NavLink} from "react-router-dom";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
 
-// import {useIsMobile} from "@/hooks/use-mobile.tsx";
 
 export function Header() {
 
-    // const isMobile = useIsMobile()
 
     return (
-        <>
+        <nav className="sticky top-0 z-50 bg-white/60 backdrop-blur-sm">
             {/* Announcement Banner */}
             <div className="w-full bg-zinc-800 text-white text-center py-2 text-sm">
                 <span>Oferta Especial para Novos Restaurantes: </span>
@@ -29,7 +27,7 @@ export function Header() {
                 </Link>
             </div>
 
-            <header className="border-b">
+            <header className="border-b bg-white/70 backdrop-blur-sm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         <div className="flex items-center gap-8">
@@ -37,11 +35,11 @@ export function Header() {
                                 <Sheet>
                                     <SheetTrigger asChild>
                                         <Button variant="ghost" size="icon" className="md:hidden">
-                                            <Menu className="h-6 w-6" />
+                                            <Menu className="h-6 w-6"/>
                                             <span className="sr-only">Abrir menu</span>
                                         </Button>
                                     </SheetTrigger>
-                                    <SheetContent side="left" className="w-[300px]">
+                                    <SheetContent side="left" className="w-[300px] bg-white/70 backdrop-blur-sm">
                                         <SheetHeader>
                                             <SheetTitle>Neemble Eat</SheetTitle>
                                         </SheetHeader>
@@ -49,48 +47,60 @@ export function Header() {
                                             <div className="space-y-2">
                                                 <div className="text-sm font-medium text-gray-500 px-2">Soluções</div>
                                                 <div className="space-y-1">
-                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                    <Link to="#"
+                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Menu Digital
                                                     </Link>
-                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                    <Link to="#"
+                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Gestão de Pedidos
                                                     </Link>
-                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                    <Link to="#"
+                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Análise de Dados
                                                     </Link>
                                                 </div>
                                             </div>
 
-                                            <Link to="price" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                            <Link to="price"
+                                                  className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                 Preços
                                             </Link>
 
                                             <div className="space-y-2">
                                                 <div className="text-sm font-medium text-gray-500 px-2">Recursos</div>
                                                 <div className="space-y-1">
-                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                    <Link to="#"
+                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Sistema QR Code
-                                                        <Badge className="ml-2 bg-emerald-100 text-emerald-700">POPULAR</Badge>
+                                                        <Badge
+                                                            className="ml-2 bg-emerald-100 text-emerald-700">POPULAR</Badge>
                                                     </Link>
-                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                    <Link to="#"
+                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Dashboard da Cozinha
                                                     </Link>
-                                                    <Link to="#" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                    <Link to="#"
+                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Relatórios Analíticos
                                                     </Link>
                                                 </div>
                                             </div>
 
                                             <div className="space-y-2">
-                                                <div className="text-sm font-medium text-gray-500 px-2">Links Rápidos</div>
+                                                <div className="text-sm font-medium text-gray-500 px-2">Links Rápidos
+                                                </div>
                                                 <div className="space-y-1">
-                                                    <NavLink to="blog" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                    <NavLink to="blog"
+                                                             className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Blog
                                                     </NavLink>
-                                                    <NavLink to="about-us" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                    <NavLink to="about-us"
+                                                             className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Sobre Nós
                                                     </NavLink>
-                                                    <NavLink to="contact" className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                    <NavLink to="contact"
+                                                             className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
                                                         Contato
                                                     </NavLink>
                                                 </div>
@@ -114,26 +124,26 @@ export function Header() {
                             <NavigationMenu className="hidden md:flex">
                                 <NavigationMenuList>
                                     <NavigationMenuItem>
-                                        <NavigationMenuTrigger>Soluções</NavigationMenuTrigger>
+                                        <NavigationMenuTrigger className="bg-none">Soluções</NavigationMenuTrigger>
                                         <NavigationMenuContent>
-                                            <ul className="grid w-[200px] gap-2 p-4">
+                                            <ul className="grid w-[200px] gap-2 p-4 bg-white/70 backdrop-blur-sm rounded-md shadow-md">
                                                 <li>
                                                     <NavigationMenuLink asChild>
-                                                        <Link to="#" className="block p-2 hover:bg-gray-50 rounded-md">
+                                                        <Link to="solutions/digital-menu" className="block p-2 hover:bg-gray-50 rounded-md">
                                                             Menu Digital
                                                         </Link>
                                                     </NavigationMenuLink>
                                                 </li>
                                                 <li>
                                                     <NavigationMenuLink asChild>
-                                                        <Link to="#" className="block p-2 hover:bg-gray-50 rounded-md">
+                                                        <Link to="solutions/orders-management" className="block p-2 hover:bg-gray-50 rounded-md">
                                                             Gestão de Pedidos
                                                         </Link>
                                                     </NavigationMenuLink>
                                                 </li>
                                                 <li>
                                                     <NavigationMenuLink asChild>
-                                                        <Link to="#" className="block p-2 hover:bg-gray-50 rounded-md">
+                                                        <Link to="solutions/analytics" className="block p-2 hover:bg-gray-50 rounded-md">
                                                             Análise de Dados
                                                         </Link>
                                                     </NavigationMenuLink>
@@ -153,17 +163,18 @@ export function Header() {
 
                                     {/* Recursos */}
                                     <NavigationMenuItem>
-                                        <NavigationMenuTrigger>Recursos</NavigationMenuTrigger>
+                                        <NavigationMenuTrigger className="bg-none">Recursos</NavigationMenuTrigger>
                                         <NavigationMenuContent>
-                                            <ul className="grid w-[300px] gap-2 p-4">
+                                            <ul className="grid w-[300px] gap-2 p-4 bg-white/70 backdrop-blur-sm rounded-md shadow-md">
                                                 <li>
                                                     <NavigationMenuLink asChild>
-                                                        <Link
+                                                            <Link
                                                             to="#"
                                                             className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-md"
                                                         >
                                                             Sistema QR Code
-                                                            <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100">POPULAR</Badge>
+                                                            <Badge
+                                                                className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100">POPULAR</Badge>
                                                         </Link>
                                                     </NavigationMenuLink>
                                                 </li>
@@ -192,7 +203,8 @@ export function Header() {
                             <NavLink to="contact" className="hidden md:block text-gray-600 hover:text-gray-900">
                                 Contacto
                             </NavLink>
-                            <Button variant="secondary" size="sm" className="bg-zinc-800 text-xs text-white hover:bg-zinc-600">
+                            <Button variant="secondary" size="sm"
+                                    className="bg-zinc-800 text-xs text-white hover:bg-zinc-600">
                                 <NavLink to="demo">
                                     Agendar Demo
                                 </NavLink>
@@ -201,7 +213,7 @@ export function Header() {
                     </div>
                 </div>
             </header>
-        </>
+        </nav>
 
     );
 }

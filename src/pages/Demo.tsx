@@ -26,6 +26,9 @@ const benefits = [
 ]
 
 export default function Demo() {
+
+    document.title = "Demonstração | Neemble Eat"
+
     return (
         <div>
 
