@@ -60,7 +60,7 @@ export function Hero() {
                     <div className="relative w-full h-[500px] rounded-xl overflow-hidden">
                         <img
                             src="../../../public/chef-hero.jpg"
-                            alt="Sistema Neemble Eat em ação"
+                            alt="Aplicativo Neemble Eat em ação"
                             className="object-cover w-full h-full"
                         />
                     </div>
