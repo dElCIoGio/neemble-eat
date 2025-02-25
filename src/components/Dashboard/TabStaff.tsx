@@ -3,6 +3,7 @@ import {useDashboardContext} from "@/context/dashboardContext.ts";
 import {InviteStaff} from "@/components/Dashboard/InviteStaff.tsx";
 import {StaffDisplay} from "@/components/Dashboard/StaffDisplay.tsx";
 import {useGetAllUsers} from "@/service/api/restaurant.ts";
+import {Loader2} from "lucide-react";
 
 export function TabStaff() {
 
@@ -10,6 +11,12 @@ export function TabStaff() {
     const emptyStaff = restaurant.users == undefined || restaurant.users?.length == 0
 
     const {data: users, updateUser} = useGetAllUsers({restaurantId: restaurant.id})
+
+    if (users == undefined){
+        return <div className="flex justify-center items-center h-full">
+            <Loader2 className="animate-spin"/>
+        </div>
+    }
 
     return (
         <div className="flex-1 flex flex-col">

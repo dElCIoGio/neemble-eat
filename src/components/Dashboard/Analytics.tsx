@@ -7,7 +7,7 @@ import {
 } from "@/api/analytics/hooks.ts"
 import {useDashboardContext} from "@/context/dashboardContext.ts";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
-import { CircleDollarSignIcon as CurrencyCircleDollar, ShoppingBag } from "lucide-react"
+import {CircleDollarSignIcon as CurrencyCircleDollar, Loader2, ShoppingBag} from "lucide-react"
 import {TopOrdersTable} from "@/components/Dashboard/TopOrdersTable.tsx";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import LoadingDashboardAnalytics from "@/components/Loading/LoadingDashboardAnalytics.tsx";
@@ -23,6 +23,12 @@ export function Analytics() {
 	const {isLoading: isMonthRevenueLoading, data: monthRevenue} = useGetRestaurantRevenueByMonth({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
 
 
+
+	if (isDayOrdersLoading || isMonthOrdersLoading || isDayRevenueLoading || isMonthRevenueLoading){
+		return <div className="flex justify-center items-center h-full">
+			<Loader2 className="animate-spin"/>
+		</div>
+	}
 
 	if (restaurant.orders?.length == 0) {
 		return <div className="flex flex-col items-center justify-center h-full">

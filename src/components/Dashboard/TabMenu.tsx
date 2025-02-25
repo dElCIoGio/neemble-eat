@@ -4,7 +4,7 @@ import {useGetMenu} from "@/service/api/menu";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import {TypographyH2} from "@/components/ui/Typography.tsx";
 import AddItem from "@/components/Dashboard/AddItem.tsx";
-import {Plus} from "lucide-react"
+import {Loader2, Plus} from "lucide-react"
 import {Button} from "@/components/ui/button.tsx";
 import {EditMenuContext} from "@/context/editMenuContext.ts";
 import {menuToItemsList} from "@/lib/menuToItemsList.ts";
@@ -32,6 +32,12 @@ export function TabMenu() {
 			setItems(menuToItemsList(menu));
 		}
 	}, [menu]);
+
+	if (!menu){
+		return <div className="flex justify-center items-center h-full">
+			<Loader2 className="animate-spin"/>
+		</div>
+	}
 
 	return (
 		<div>

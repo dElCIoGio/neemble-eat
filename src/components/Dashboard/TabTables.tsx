@@ -31,7 +31,7 @@ export function TabTables() {
 
     const {restaurant} = useDashboardContext()
 
-    const {data: tables, removeTable: removeTableMutation, addTable: addTableMutation} = useGetAllTables({restaurantId: restaurant.id})
+    const {data: tables, removeTable: removeTableMutation, addTable: addTableMutation, isLoading} = useGetAllTables({restaurantId: restaurant.id})
 
 
     function handleRemoveTable(tableID: string){
@@ -60,14 +60,15 @@ export function TabTables() {
             })
     }
 
-    if(tables == undefined)
+    if(tables == undefined || isLoading)
         return <div>
             <Spinner size="lg" className="mx-auto"/>
         </div>
 
     return (
         <TablesTabContext.Provider value={
-        undefined}>
+        undefined
+        }>
             <div>
                 <div className="mb-8">
                     <TypographyH2>

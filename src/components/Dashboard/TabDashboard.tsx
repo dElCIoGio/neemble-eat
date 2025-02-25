@@ -12,7 +12,7 @@ export function TabDashboard() {
 	document.title = "Painel do Restaurante";
 
 	return (
-		<div>
+		<div className="flex flex-col h-full">
 			<div className="flex items-end space-x-2">
 				<TypographyH2>
 					Painel do Restaurante
@@ -26,9 +26,9 @@ export function TabDashboard() {
 				</div>
 
 			</div>
-			<div className="py-8">
-				<Tabs defaultValue="overview" className="">
-					<TabsList className="rounded-lg mb-2">
+			<div className="py-8 flex flex-col  flex-1">
+				<Tabs defaultValue="overview" className="flex flex-col flex-1 h-full ">
+					<TabsList className="rounded-lg mb-2 w-fit">
 						<TabsTrigger className="rounded-md prevent-select" onClick={() => setSection("overview")}
 						             value="overview">
 							<CardsThree className="mr-2"/> Visão Geral
@@ -38,11 +38,11 @@ export function TabDashboard() {
 							<ChartLine className="mr-2"/> Analítico
 						</TabsTrigger>
 					</TabsList>
-					<div>
+					<div className="h-full flex flex-1 flex-col ">
 						<TabsContent value="overview">
 							<Overview/>
 						</TabsContent>
-						<TabsContent value="analytics">
+						<TabsContent className="h-full flex-1" value="analytics">
 							<Analytics/>
 						</TabsContent>
 					</div>

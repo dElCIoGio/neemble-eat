@@ -117,6 +117,7 @@ export function Header() {
                                             </div>
 
                                             <div className="pt-4 mt-4 border-t">
+
                                                 <Button className="w-full bg-purple-600 hover:bg-purple-500 text-white">
                                                     <NavLink to="demo">
                                                         Agendar Demo
@@ -213,9 +214,10 @@ export function Header() {
                             <NavLink to="contact" className="hidden md:block text-gray-600 hover:text-gray-900">
                                 Contacto
                             </NavLink>
+
                             <Button variant="secondary" size="sm"
-                                    className="bg-zinc-800 text-xs text-white hover:bg-zinc-600">
-                                <NavLink to="demo">
+                                    className="w-fit h-fit bg-zinc-800 text-xs text-white hover:bg-zinc-600">
+                                <NavLink to="demo" className="px-2 py-2">
                                     Agendar Demo
                                 </NavLink>
                             </Button>

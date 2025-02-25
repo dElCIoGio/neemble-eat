@@ -1,4 +1,3 @@
-"use client"
 
 import {TableJson} from "@/schema.ts";
 import {QRCodeCanvas} from "qrcode.react";
@@ -47,6 +46,8 @@ function TableQRCodeDisplay({table, index}: TableQrCodeCardProps) {
             title: text,
         })
     }
+
+
 
 
     return (
