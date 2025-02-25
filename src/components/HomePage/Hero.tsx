@@ -44,7 +44,7 @@ export function Hero() {
                         <Button className="bg-zinc-700 hover:bg-zinc-600 text-white px-8 py-6 rounded-md">
                             Começar Gratuitamente
                         </Button>
-                        <Button variant="outline" className="px-8 py-6">
+                        <Button asChild variant="outline" className="px-8 py-6">
                             <NavLink to="demo">
                                 Ver Demonstração
                             </NavLink>
@@ -59,7 +59,7 @@ export function Hero() {
                 >
                     <div className="relative w-full h-[500px] rounded-xl overflow-hidden">
                         <img
-                            src="../../../public/chef-hero.jpg"
+                            src="../../../public/chef-hero.png"
                             alt="Aplicativo Neemble Eat em ação"
                             className="object-cover w-full h-full"
                         />
