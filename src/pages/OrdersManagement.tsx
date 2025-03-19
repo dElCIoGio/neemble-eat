@@ -81,7 +81,7 @@ export default function OrderManagement() {
                         <div className="relative lg:h-[600px]">
                             <div className="relative z-10 bg-white rounded-xl shadow-xl ">
                                 <img
-                                    src="/public/order management.jpg"
+                                    src="/src/assets/order management.jpg"
                                     alt="Dashboard de Pedidos"
                                     width={600}
                                     height={500}

@@ -69,7 +69,7 @@ export default function DigitalMenu() {
                             <div className="relative z-10 bg-white rounded-3xl shadow-xl mx-auto max-w-[300px]">
                                 <div className="rounded-2xl overflow-hidden p-0">
                                     <img
-                                        src="/public/digital menu.jpg"
+                                        src="/src/assets/digital menu.jpg"
                                         alt="Menu Digital Preview"
                                         width={300}
                                         height={600}

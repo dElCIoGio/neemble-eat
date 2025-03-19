@@ -82,7 +82,7 @@ export default function DataAnalysis() {
                         <div className="relative lg:h-[600px]">
                             <div className="relative z-10 bg-white rounded-xl shadow-xl p-6">
                                 <img
-                                    src="/public/analytics.jpg"
+                                    src="/src/assets/analytics.jpg"
                                     alt="Dashboard Analytics"
                                     width={600}
                                     height={500}
@@ -154,7 +154,7 @@ export default function DataAnalysis() {
                         <div className="relative">
                             <div className="relative z-10 bg-white rounded-xl shadow-xl ">
                                 <img
-                                    src="/public/images/blackchef.png"
+                                    src="/src/assets/blackchef.png"
                                     alt="Dashboard Interface"
                                     width={600}
                                     height={400}
