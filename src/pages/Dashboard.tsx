@@ -19,24 +19,7 @@ const exampleUser: UserJson = {
 	role: {
 		name: MemberRoleNames.Manager,
 		description: "Responsible for overseeing restaurant operations and staff.",
-		permissions: [
-			{
-				section: Sections.ordersTracking,
-				permissions: [Permissions.View, Permissions.Update],
-			},
-			{
-				section: Sections.tablesTracking,
-				permissions: [Permissions.View],
-			},
-			{
-				section: Sections.menu,
-				permissions: [Permissions.View, Permissions.Update],
-			},
-			{
-				section: Sections.staff,
-				permissions: [Permissions.View],
-			},
-			{
+		permissions: [{
 				section: Sections.All,
 				permissions: [Permissions.View, Permissions.Delete, Permissions.Update, Permissions.Create],
 			},
