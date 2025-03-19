@@ -82,7 +82,7 @@ export default function DataAnalysis() {
                         <div className="relative lg:h-[600px]">
                             <div className="relative z-10 bg-white rounded-xl shadow-xl p-6">
                                 <img
-                                    src="/placeholder.svg?height=500&width=600"
+                                    src="/public/analytics.jpg"
                                     alt="Dashboard Analytics"
                                     width={600}
                                     height={500}
@@ -152,9 +152,9 @@ export default function DataAnalysis() {
                             </ul>
                         </div>
                         <div className="relative">
-                            <div className="relative z-10 bg-white rounded-xl shadow-xl p-6">
+                            <div className="relative z-10 bg-white rounded-xl shadow-xl ">
                                 <img
-                                    src="/placeholder.svg?height=400&width=600"
+                                    src="/public/images/blackchef.png"
                                     alt="Dashboard Interface"
                                     width={600}
                                     height={400}
@@ -249,7 +249,7 @@ export default function DataAnalysis() {
             <section className="py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="max-w-3xl mx-auto text-center">
-                        <div className="flex justify-center mb-8">
+                        <div className="flex justify-center mb-8 hidden">
                             <img
                                 src="/placeholder.svg?height=100&width=100"
                                 alt="Cliente"
@@ -263,7 +263,7 @@ export default function DataAnalysis() {
                             cardápio, aumentando nossa margem de lucro em 25%."
                         </blockquote>
                         <div className="font-semibold">Pedro Costa</div>
-                        <div className="text-gray-600">Proprietário, Restaurante Vista Mar</div>
+                        <div className="text-gray-600 hidden">Proprietário, Restaurante Vista Mar</div>
                     </div>
                 </div>
             </section>

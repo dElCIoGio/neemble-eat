@@ -66,14 +66,14 @@ export default function DigitalMenu() {
                             </div>
                         </div>
                         <div className="relative lg:h-[600px]">
-                            <div className="relative z-10 bg-white rounded-3xl shadow-xl p-2 mx-auto max-w-[300px]">
-                                <div className="rounded-2xl overflow-hidden">
+                            <div className="relative z-10 bg-white rounded-3xl shadow-xl mx-auto max-w-[300px]">
+                                <div className="rounded-2xl overflow-hidden p-0">
                                     <img
-                                        src="/placeholder.svg?height=600&width=300"
+                                        src="/public/digital menu.jpg"
                                         alt="Menu Digital Preview"
                                         width={300}
                                         height={600}
-                                        className="w-full"
+                                        className="w-full object-cover"
                                     />
                                 </div>
                             </div>

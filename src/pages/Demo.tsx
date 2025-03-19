@@ -220,12 +220,12 @@ export default function Demo() {
                         {/* Testimonial */}
                         <div className="mt-12 p-6 bg-white rounded-xl">
                             <div className="flex items-center gap-4 mb-4">
-                                <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                                <div className="relative w-12 h-12 rounded-full overflow-hidden hidden">
                                     <img src="/placeholder.svg?height=100&width=100" alt="Cliente"  className="object-cover" />
                                 </div>
                                 <div>
                                     <div className="font-semibold">João Silva</div>
-                                    <div className="text-sm text-gray-600">Restaurante Sabores de Angola</div>
+                                    <div className="text-sm text-gray-600"></div>
                                 </div>
                             </div>
                             <blockquote className="text-gray-600">
