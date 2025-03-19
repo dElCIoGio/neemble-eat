@@ -173,7 +173,7 @@ export function Header() {
                                     </NavigationMenuItem>
 
                                     {/* Recursos */}
-                                    <NavigationMenuItem>
+                                    <NavigationMenuItem className="hidden">
                                         <NavigationMenuTrigger className="bg-none">Recursos</NavigationMenuTrigger>
                                         <NavigationMenuContent>
                                             <ul className="grid w-[300px] gap-2 p-4 bg-white/70 backdrop-blur-sm rounded-md shadow-md">
@@ -213,6 +213,10 @@ export function Header() {
                         <div className="flex items-center space-x-4 md:space-x-8">
                             <NavLink to="contact" className="hidden md:block text-gray-600 hover:text-gray-900">
                                 Contacto
+                            </NavLink>
+
+                            <NavLink to="/login" className="hidden md:block text-gray-600 hover:text-gray-900">
+                                Log In
                             </NavLink>
 
                             <Button variant="secondary" size="sm"

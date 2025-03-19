@@ -10,6 +10,8 @@ import {Success} from "@/components/Invitation/Success.tsx";
 
 export function InvitationPage() {
 
+    document.title = "Convite | Neemble Eat"
+
 
 
     const {tokenId} = useParams() as unknown as {tokenId: string};

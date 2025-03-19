@@ -1,5 +1,6 @@
 import {Card} from "@/components/ui/card.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import {Link} from "react-router-dom";
 
 function Pricing() {
     return (
@@ -12,7 +13,9 @@ function Pricing() {
                         <h3 className="text-xl font-bold mb-2">Básico</h3>
                         <p className="text-gray-600 mb-4">Para restaurantes pequenos</p>
                         <div className="text-3xl font-bold mb-6">20.000 Kz/mês</div>
-                        <Button className="w-full mb-6">Começar Agora</Button>
+                        <Link to="demo">
+                            <Button className="w-full mb-6">Começar Agora</Button>
+                        </Link>
                         <ul className="space-y-3">
                             <li className="flex items-center gap-2">
                                 <div
@@ -34,7 +37,10 @@ function Pricing() {
                         <h3 className="text-xl font-bold mb-2">Profissional</h3>
                         <p className="text-gray-600 mb-4">Mais popular</p>
                         <div className="text-3xl font-bold mb-6">35.000 Kz/mês</div>
-                        <Button className="w-full mb-6 bg-purple-600 hover:bg-purple-500">Começar Agora</Button>
+                        <Link to="demo">
+                            <Button className="w-full mb-6 bg-purple-600 hover:bg-purple-500">Começar Agora</Button>
+
+                        </Link>
                         <ul className="space-y-3">
                             <li className="flex items-center gap-2">
                                 <div
@@ -63,9 +69,12 @@ function Pricing() {
                         <h3 className="text-xl font-bold mb-2">Empresarial</h3>
                         <p className="text-gray-600 mb-4">Para redes de restaurantes</p>
                         <div className="text-3xl font-bold mb-6">Personalizado</div>
-                        <Button variant="outline" className="w-full mb-6">
-                            Fale connosco
-                        </Button>
+                        <Link to="demo">
+                            <Button variant="outline" className="w-full mb-6">
+                                Fale connosco
+                            </Button>
+                        </Link>
+
                         <ul className="space-y-3">
                             <li className="flex items-center gap-2">
                                 <div

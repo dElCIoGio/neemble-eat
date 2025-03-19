@@ -15,14 +15,13 @@ import {useState} from "react";
 import {z} from "zod"
 import {URL_PATH_PREFIX} from "@/lib/constants.ts";
 import {Link, useNavigate} from "react-router-dom";
-import {logIn} from "@/service/firebase/logIn.ts";
 
 
 export function LogInForm() {
 
 	const navigate = useNavigate();
 	const [passwordShowing, setPasswordShowing] = useState<boolean>(false)
-	const [error, setError] = useState<null | string>(null)
+	const [error, ] = useState<null | string>(null)
 
 	const form = useForm({
 		resolver: zodResolver(LogInSchema),
@@ -33,15 +32,17 @@ export function LogInForm() {
 	})
 
 	const onSubmit = (data: z.infer<typeof LogInSchema>) => {
-		const email: string = data.email
-		const password: string = data.password
-		logIn(email, password)
-			.then((user) => {
-				const userID = user.uid
-				navigate(`${URL_PATH_PREFIX}/user/${userID}`)
-			}).catch(() => {
-				setError("Houve um problema ao iniciar sessão. Tente novamente ou troque a sua palavra passe")
-		})
+		// const email: string = data.email
+		// const password: string = data.password
+		console.log(data)
+		navigate("/user/1234")
+		// logIn(email, password)
+		// 	.then((user) => {
+		// 		const userID = user.uid
+		// 		navigate(`${URL_PATH_PREFIX}/user/${userID}`)
+		// 	}).catch(() => {
+		// 		setError("Houve um problema ao iniciar sessão. Tente novamente ou troque a sua palavra passe")
+		// })
 	}
 
 

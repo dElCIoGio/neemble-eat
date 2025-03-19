@@ -1,10 +1,10 @@
 
-import {
-	useGetRestaurantOrderCountByDay,
-	useGetRestaurantOrderCountByMonth,
-	useGetRestaurantRevenueByDay,
-	useGetRestaurantRevenueByMonth
-} from "@/api/analytics/hooks.ts"
+// import {
+// 	useGetRestaurantOrderCountByDay,
+// 	useGetRestaurantOrderCountByMonth,
+// 	useGetRestaurantRevenueByDay,
+// 	useGetRestaurantRevenueByMonth
+// } from "@/api/analytics/hooks.ts"
 import {useDashboardContext} from "@/context/dashboardContext.ts";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {CircleDollarSignIcon as CurrencyCircleDollar, Loader2, ShoppingBag} from "lucide-react"
@@ -16,13 +16,36 @@ import LoadingDashboardAnalytics from "@/components/Loading/LoadingDashboardAnal
 export function Analytics() {
 
 	const {restaurant} = useDashboardContext()
+	//
+	// const {isLoading: isDayOrdersLoading, data: dayOrders} = useGetRestaurantOrderCountByDay({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
+	// const {isLoading: isMonthOrdersLoading, data: monthOrders} = useGetRestaurantOrderCountByMonth({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
+	// const {isLoading: isDayRevenueLoading, data: dayRevenue} = useGetRestaurantRevenueByDay({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
+	// const {isLoading: isMonthRevenueLoading, data: monthRevenue} = useGetRestaurantRevenueByMonth({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
 
-	const {isLoading: isDayOrdersLoading, data: dayOrders} = useGetRestaurantOrderCountByDay({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
-	const {isLoading: isMonthOrdersLoading, data: monthOrders} = useGetRestaurantOrderCountByMonth({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
-	const {isLoading: isDayRevenueLoading, data: dayRevenue} = useGetRestaurantRevenueByDay({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
-	const {isLoading: isMonthRevenueLoading, data: monthRevenue} = useGetRestaurantRevenueByMonth({restaurantId: restaurant.orders?.length == 0? undefined: restaurant.id})
+	const dayOrders = {
+		today: 120,
+		yesterday: 95,
+	};
 
+	const monthOrders = {
+		currentMonth: 3200,
+		previousMonth: 2850,
+	};
 
+	const dayRevenue = {
+		today: 15000, // in currency units, e.g., Kwanza or USD
+		yesterday: 12500,
+	};
+
+	const monthRevenue = {
+		currentMonth: 400000,
+		previousMonth: 370000,
+	};
+
+	const isMonthRevenueLoading = false;
+	const isDayRevenueLoading = false;
+	const isMonthOrdersLoading = false;
+	const isDayOrdersLoading = false;
 
 	if (isDayOrdersLoading || isMonthOrdersLoading || isDayRevenueLoading || isMonthRevenueLoading){
 		return <div className="flex justify-center items-center h-full">
@@ -60,7 +83,7 @@ export function Analytics() {
 										</CardHeader>
 										<CardContent>
 											<div className="text-2xl font-bold">Kz {monthRevenue.currentMonth}</div>
-											<p className="text-xs text-muted-foreground">{monthRevenue.currentMonth == 0 ? "-100" : (monthRevenue.currentMonth / (monthRevenue.currentMonth + monthRevenue.previousMonth)) * 100}%
+											<p className="text-xs text-muted-foreground">6.2%
 												em relação ao mês passado</p>
 										</CardContent>
 									</Card>
@@ -82,7 +105,8 @@ export function Analytics() {
 										</CardHeader>
 										<CardContent>
 											<div className="text-2xl font-bold">Kz {dayRevenue.today}</div>
-											<p className="text-xs text-muted-foreground">{dayRevenue.yesterday == 0 ? "-100" : (dayRevenue.today / (dayRevenue.today + dayRevenue.yesterday)) * 100}%
+											<p className="text-xs text-muted-foreground">
+												12%
 												em relação ao mês passado</p>
 										</CardContent>
 									</Card>
@@ -108,40 +132,3 @@ export function Analytics() {
 	);
 }
 
-// <div className="w-full space-y-4 grid grid-cols-1 gap-4 laptop:grid-cols-3 laptop:gap-3">
-// 	<div className="flex flex-col desktop:flex-row gap-4 col-span-full">
-// 		<AnalyticBox
-// 			title={"Ganhos"}
-// 			icon={Coins}>
-// 			<StatCardWithIcon
-// 				value={134000}
-// 				valueType={"currency"}
-// 				pillText={"2.75%"}
-// 				period="Novembro 2024 - Hoje"
-// 				trend="up"/>
-// 		</AnalyticBox>
-// 		<AnalyticBox
-// 			title="Media de clientes diarios"
-// 			icon={Users}>
-// 			<StatCardWithIcon
-// 				value={130}
-// 				pillText={"1.45%"}
-// 				period="Novembro 2024 - Hoje"
-// 				trend="up"/>
-// 		</AnalyticBox>
-// 		<AnalyticBox
-// 			title="Gasto medio por pedido"
-// 			icon={Receipt}>
-// 			<StatCardWithIcon
-// 				value={25000}
-// 				valueType={"currency"}
-// 				pillText={"3.14%"}
-// 				period="Dezembro 2024 - Outubro 2025"
-// 				trend="up"/>
-// 		</AnalyticBox>
-// 	</div>
-// 	<div className="col-span-full laptop:col-span-2">
-// 		<TopOrdersTable maxNumber={10}/>
-// 	</div>
-//
-// </div>

@@ -35,6 +35,8 @@ export enum Permissions {
 	Update = "update",
 	Create = "create"
 }
+
+
 export type SectionPermission = {
 	section: Sections,
 	permissions: Permissions[]
@@ -309,13 +311,6 @@ export interface Category {
 	items: Array<MenuItem>,
 }
 
-export interface CategoryCreate {
-	name: string,
-	description: string,
-	menuID?: string,
-	items: MenuItemCreate[]
-}
-
 export type MenuItem = {
 	id?: string,
 	created_time?: string,
@@ -326,6 +321,16 @@ export type MenuItem = {
 	price: number,
 	imageURL: string | null,
 }
+
+
+export interface CategoryCreate {
+	name: string,
+	description: string,
+	menuID?: string,
+	items: MenuItemCreate[]
+}
+
+
 
 export interface MenuItemCreate {
 	name: string;

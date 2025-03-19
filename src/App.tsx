@@ -1,7 +1,6 @@
 import './App.css'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {ROUTES} from "@/lib/routes";
-import {AuthVerification} from "@/service/firebase/AuthVerification.tsx";
 import HomeLayout from "@/components/wrappers/HomeLayout.tsx";
 import {HomePage} from "@/pages/HomePage.tsx";
 import ContactPage from "@/pages/Contact.tsx";
@@ -17,6 +16,7 @@ import Demo from "@/pages/Demo.tsx";
 import DataAnalysis from "@/pages/DataAnalysis.tsx";
 import OrderManagement from "@/pages/OrdersManagement.tsx";
 import DigitalMenu from "@/pages/DigitalMenu.tsx";
+import DemoForm from "@/components/Demo/DemoForm.tsx";
 
 
 function App() {
@@ -28,6 +28,8 @@ function App() {
                   <Route path="signup" element={<SignUp/>}/>
                   <Route path="/login" element={<LogIn/>}/>
                   <Route path="/" element={<ComingSoonPage/>}/>
+                  <Route path="/test" element={<DemoForm/>}/>
+
                   <Route path="/home" element={<HomeLayout/>}>
 
                     <Route index element={<HomePage/>}/>
@@ -54,9 +56,9 @@ function App() {
 			              key={route.path}
 			              element={
                           route.requiresAuth ?
-				              <AuthVerification>
+				              <div>
                                   {route.element}
-                              </AuthVerification> :
+                              </div> :
 				              route.element}
 			              path={route.path}/>
 		              )

@@ -16,6 +16,60 @@ import {Permissions, Sections} from "@/schema.ts";
 
 const MAXIMUM_TABLES = 20
 
+
+// const exampleTables: TableJson[] = [
+//     {
+//         id: "table-001",
+//         created_time: "2025-03-19T12:00:00Z",
+//         number: 1,
+//         currentSessionID: "session-101",
+//         sessionStatus: SessionStatus.Open,
+//         sessionOrders: ["order-001", "order-002"],
+//         restaurantID: "resto-98765",
+//         link: "https://example.com/table/1",
+//     },
+//     {
+//         id: "table-002",
+//         created_time: "2025-03-19T12:05:00Z",
+//         number: 2,
+//         currentSessionID: "session-102",
+//         sessionStatus: SessionStatus.Open,
+//         sessionOrders: ["order-003"],
+//         restaurantID: "resto-98765",
+//         link: "https://example.com/table/2",
+//     },
+//     {
+//         id: "table-003",
+//         created_time: "2025-03-19T12:10:00Z",
+//         number: 3,
+//         currentSessionID: "null",
+//         sessionStatus: SessionStatus.Billed,
+//         sessionOrders: [],
+//         restaurantID: "resto-98765",
+//         link: "https://example.com/table/3",
+//     },
+//     {
+//         id: "table-004",
+//         created_time: "2025-03-19T12:15:00Z",
+//         number: 4,
+//         currentSessionID: "null",
+//         sessionStatus: SessionStatus.Billed,
+//         sessionOrders: [],
+//         restaurantID: "resto-98765",
+//         link: "https://example.com/table/4",
+//     },
+//     {
+//         id: "table-005",
+//         created_time: "2025-03-19T12:20:00Z",
+//         number: 5,
+//         currentSessionID: "session-103",
+//         sessionStatus: SessionStatus.Open,
+//         sessionOrders: ["order-004", "order-005", "order-006"],
+//         restaurantID: "resto-98765",
+//         link: "https://example.com/table/5",
+//     },
+// ];
+
 export function TabTables() {
 
     window.document.title = "Neemble Eat - Mesas"

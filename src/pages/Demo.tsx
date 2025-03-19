@@ -25,9 +25,23 @@ const benefits = [
     },
 ]
 
+
 export default function Demo() {
 
     document.title = "Demonstração | Neemble Eat"
+
+    // const [data, setData] = useState({
+    //     restaurantName: "",
+    //     restaurantSize: "",
+    //     restaurantType: "",
+    //     name: "",
+    //     role: "",
+    //     email: "",
+    //     phone: "",
+    //     message: "",
+    //     demoTime: "",
+    // })
+
 
     return (
         <div>

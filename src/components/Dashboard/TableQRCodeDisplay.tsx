@@ -17,7 +17,6 @@ interface TableQrCodeCardProps {
 
 function TableQRCodeDisplay({table, index}: TableQrCodeCardProps) {
 
-
     const {restaurant} = useDashboardContext()
 
     const { toast } = useToast()

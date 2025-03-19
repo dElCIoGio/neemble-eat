@@ -1,10 +1,8 @@
-import {useDashboardContext} from "@/context/dashboardContext.ts";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {Ranking} from "@phosphor-icons/react";
 import {AnalyticBox} from "@/components/Dashboard/AnalyticBox.tsx";
 import {Loading} from "@/components/wrappers/Loading.tsx";
 import {Skeleton} from "@/components/ui/skeleton.tsx";
-import {useGetTopOrders} from "@/api/analytics/hooks.ts";
 
 
 
@@ -12,12 +10,29 @@ interface TopOrdersTableProps {
     maxNumber?: number;
 }
 
+
+const exampleOrders: [string, number][] = [
+    ["Frango Grelhado", 152],  // Most ordered item
+    ["Bife de Vaca", 134],
+    ["Pizza Vegetariana", 120],
+    ["Massa com Camarão", 105],
+    ["Salada Caesar", 98],
+    ["Prato de Sushi", 87],
+    ["Costelas de Churrasco", 79],
+    ["Sopa de Lagosta", 65],
+    ["Cheeseburger", 58],
+    ["Bolo de Chocolate Lava", 43],
+];
+
 export function TopOrdersTable({maxNumber}: TopOrdersTableProps = {maxNumber: 10}) {
 
-    const {restaurant} = useDashboardContext()
+    // const {restaurant} = useDashboardContext()
 
-    const {data: orders, isLoading, isFetching} = useGetTopOrders({restaurantId: restaurant.id})
+    // const {data: orders, isLoading, isFetching} = useGetTopOrders({restaurantId: restaurant.id})
 
+    const isLoading = false;
+    const isFetching = false;
+    const orders = exampleOrders;
 
     if (!isLoading && orders == undefined){
         return null
