@@ -17,7 +17,7 @@ export function TrackingCards({title, description, buttonText, buttonLink}: Trac
                 <p>
                     {description}
                 </p>
-                <Button className="bg-amethyst-300 w-fit hover:bg-amethyst-200 border border-amethyst-400 hover:border-amethyst-300 text-white"
+                <Button disabled className="bg-amethyst-300 w-fit hover:bg-amethyst-200 border border-amethyst-400 hover:border-amethyst-300 text-white"
                     onClick={() => openUrlInNewTab(buttonLink)}>
                     {buttonText}
                 </Button>
