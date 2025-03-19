@@ -189,7 +189,8 @@ export default function Demo() {
                     <div className="max-w-lg mx-auto">
                         {/* Video Preview */}
                         <div className="relative aspect-video mb-12 rounded-xl overflow-hidden bg-gray-100">
-                            <img src="/placeholder.svg?height=400&width=600" alt="Demo Preview" className="object-cover" />
+                            <img src="/public/WhatsApp Image 2025-03-19 at 18.02.34_f6a52a38.jpg" alt="Demo Preview"
+                                 className="object-cover absolute top-[-200px]" />
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <Button variant="ghost" size="icon" className="w-16 h-16 rounded-full">
                                     <PlayCircle className="w-16 h-16 text-white" />
