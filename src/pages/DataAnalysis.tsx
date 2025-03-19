@@ -3,7 +3,8 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Check, BarChart2, DollarSign, Users, Clock, LineChart, Target, Zap, Share2 } from "lucide-react"
 import {Link} from "react-router-dom";
-
+import img1 from "@/../public/analytics.jpg"
+import img2 from "@/../public/images/blackchef.png"
 
 const kpiCategories = [
     {
@@ -82,7 +83,7 @@ export default function DataAnalysis() {
                         <div className="relative lg:h-[600px]">
                             <div className="relative z-10 bg-white rounded-xl shadow-xl p-6">
                                 <img
-                                    src="/src/assets/analytics.jpg"
+                                    src={img1}
                                     alt="Dashboard Analytics"
                                     width={600}
                                     height={500}
@@ -154,7 +155,7 @@ export default function DataAnalysis() {
                         <div className="relative">
                             <div className="relative z-10 bg-white rounded-xl shadow-xl ">
                                 <img
-                                    src="/src/assets/blackchef.png"
+                                    src={img2}
                                     alt="Dashboard Interface"
                                     width={600}
                                     height={400}

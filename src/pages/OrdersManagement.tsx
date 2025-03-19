@@ -14,6 +14,7 @@ import {
     History,
 } from "lucide-react"
 import {Link} from "react-router-dom";
+import img1 from "@/../public/order management.jpg"
 
 
 const features = [
@@ -79,9 +80,9 @@ export default function OrderManagement() {
                             </div>
                         </div>
                         <div className="relative lg:h-[600px]">
-                            <div className="relative z-10 bg-white rounded-xl shadow-xl ">
+                            <div className="relative z-10 bg-white rounded-xl shadow-xl mt-0 lg:mt-16">
                                 <img
-                                    src="/src/assets/order management.jpg"
+                                    src={img1}
                                     alt="Dashboard de Pedidos"
                                     width={600}
                                     height={500}

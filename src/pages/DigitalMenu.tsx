@@ -3,6 +3,8 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Check, Smartphone, QrCode, Utensils, ImageIcon, Languages, Wifi, Clock } from "lucide-react"
 import {Link} from "react-router-dom";
+import img1 from "@/../public/digital menu.jpg";
+
 
 const features = [
     {
@@ -69,7 +71,7 @@ export default function DigitalMenu() {
                             <div className="relative z-10 bg-white rounded-3xl shadow-xl mx-auto max-w-[300px]">
                                 <div className="rounded-2xl overflow-hidden p-0">
                                     <img
-                                        src="/src/assets/digital menu.jpg"
+                                        src={img1}
                                         alt="Menu Digital Preview"
                                         width={300}
                                         height={600}
