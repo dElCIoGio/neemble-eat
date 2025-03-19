@@ -170,7 +170,7 @@ export default function DigitalMenu() {
                             </ul>
                         </div>
                         <div className="relative">
-                            <div className="relative z-10 bg-white rounded-3xl shadow-xl p-2">
+                            <div className="relative z-10 bg-white rounded-3xl shadow-xl p-2 hidden">
                                 <img
                                     src="/placeholder.svg?height=600&width=300"
                                     alt="Interface do Menu Digital"
@@ -191,7 +191,7 @@ export default function DigitalMenu() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="order-2 lg:order-1">
-                            <div className="relative">
+                            <div className="relative hidden">
                                 <img
                                     src="/placeholder.svg?height=600&width=800"
                                     alt="Dashboard do Menu Digital"
@@ -231,7 +231,7 @@ export default function DigitalMenu() {
             <section className="py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="max-w-3xl mx-auto text-center">
-                        <div className="flex justify-center mb-8">
+                        <div className="flex justify-center mb-8 hidden">
                             <img
                                 src="/placeholder.svg?height=100&width=100"
                                 alt="Cliente"
@@ -245,7 +245,7 @@ export default function DigitalMenu() {
                             operação ficou muito mais eficiente."
                         </blockquote>
                         <div className="font-semibold">Maria Santos</div>
-                        <div className="text-gray-600">Proprietária, Restaurante Mar à Vista</div>
+                        <div className="text-gray-600 hidden">Proprietária, Restaurante Mar à Vista</div>
                     </div>
                 </div>
             </section>
