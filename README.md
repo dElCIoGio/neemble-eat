@@ -5,7 +5,7 @@ Neemble Eat is a **QR code-based ordering system for restaurants in Luanda, Ango
 🚧 **This repository contains the frontend of Neemble Eat and is currently in development.** 🚧
 
 ## 🌐 Official URL
-🔗 [Neemble Eat](https://www.neemble.ao/home)
+🔗 [Neemble Eat](https://www.neemble-eat.ao/home)
 
 ---
 
@@ -68,4 +68,4 @@ We welcome contributions! To contribute:
 
 ## 📧 Contact & Support
 For inquiries or support, visit:  
-🔗 [Neemble Eat Official Website](https://www.neemble.ao/home)  
+🔗 [Neemble Eat Official Website](https://www.neemble-eat.ao/home)  
