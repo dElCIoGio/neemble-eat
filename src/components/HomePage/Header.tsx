@@ -53,77 +53,83 @@ export function Header() {
                                         <SheetHeader>
                                             <SheetTitle>Neemble Eat</SheetTitle>
                                         </SheetHeader>
-                                        <div className="mt-6 space-y-4">
-                                            <div className="space-y-2">
-                                                <div className="text-sm font-medium text-gray-500 px-2">Soluções</div>
-                                                <div className="space-y-1">
-                                                    <Link to="solutions/digital-menu"
-                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
-                                                        Menu Digital
-                                                    </Link>
-                                                    <Link to="solutions/orders-management"
-                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
-                                                        Gestão de Pedidos
-                                                    </Link>
-                                                    <Link to="solutions/analytics"
-                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
-                                                        Análise de Dados
-                                                    </Link>
+                                        <div className="mt-6  space-y-4 flex flex-col justify-between">
+                                            <div className="space-y-6">
+                                                <div className="space-y-2">
+                                                    <div className="text-sm font-medium text-gray-500 px-2">Soluções
+                                                    </div>
+                                                    <div className="space-y-1">
+                                                        <Link to="solutions/digital-menu"
+                                                              className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                            Menu Digital
+                                                        </Link>
+                                                        <Link to="solutions/orders-management"
+                                                              className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                            Gestão de Pedidos
+                                                        </Link>
+                                                        <Link to="solutions/analytics"
+                                                              className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                            Análise de Dados
+                                                        </Link>
+                                                    </div>
                                                 </div>
+
+                                                <Link to="price"
+                                                      className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                    Preços
+                                                </Link>
+
+                                                <div className="space-y-2 hidden">
+                                                    <div className="text-sm font-medium text-gray-500 px-2">Recursos
+                                                    </div>
+                                                    <div className="space-y-1">
+                                                        <Link to="#"
+                                                              className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                            Sistema QR Code
+                                                            <Badge
+                                                                className="ml-2 bg-emerald-100 text-emerald-700">POPULAR</Badge>
+                                                        </Link>
+                                                        <Link to="#"
+                                                              className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                            Dashboard da Cozinha
+                                                        </Link>
+                                                        <Link to="#"
+                                                              className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                            Relatórios Analíticos
+                                                        </Link>
+                                                    </div>
+                                                </div>
+
+                                                <div className="space-y-2">
+                                                    <div className="text-sm font-medium text-gray-500 px-2">Links
+                                                        Rápidos
+                                                    </div>
+                                                    <div className="space-y-1">
+                                                        <NavLink to="blog"
+                                                                 className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                            Blog
+                                                        </NavLink>
+                                                        <NavLink to="about-us"
+                                                                 className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                            Sobre Nós
+                                                        </NavLink>
+                                                        <NavLink to="contact"
+                                                                 className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
+                                                            Contato
+                                                        </NavLink>
+                                                    </div>
+                                                </div>
+
                                             </div>
 
-                                            <Link to="price"
-                                                  className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
-                                                Preços
-                                            </Link>
+                                            <div className="pt-4 space-y-2 mt-4 border-t">
 
-                                            <div className="space-y-2">
-                                                <div className="text-sm font-medium text-gray-500 px-2">Recursos</div>
-                                                <div className="space-y-1">
-                                                    <Link to="#"
-                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
-                                                        Sistema QR Code
-                                                        <Badge
-                                                            className="ml-2 bg-emerald-100 text-emerald-700">POPULAR</Badge>
-                                                    </Link>
-                                                    <Link to="#"
-                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
-                                                        Dashboard da Cozinha
-                                                    </Link>
-                                                    <Link to="#"
-                                                          className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
-                                                        Relatórios Analíticos
-                                                    </Link>
-                                                </div>
-                                            </div>
-
-                                            <div className="space-y-2">
-                                                <div className="text-sm font-medium text-gray-500 px-2">Links Rápidos
-                                                </div>
-                                                <div className="space-y-1">
-                                                    <NavLink to="blog"
-                                                             className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
-                                                        Blog
-                                                    </NavLink>
-                                                    <NavLink to="about-us"
-                                                             className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
-                                                        Sobre Nós
-                                                    </NavLink>
-                                                    <NavLink to="contact"
-                                                             className="block px-2 py-1 text-sm hover:bg-gray-100 rounded-md">
-                                                        Contato
-                                                    </NavLink>
-                                                </div>
-                                            </div>
-
-                                            <div className="pt-4 mt-4 border-t">
-
-                                                <Button className="w-full bg-purple-600 hover:bg-purple-500 text-white">
+                                                <Button variant="secondary" className="w-full">
                                                     <NavLink to="login">
                                                         Login
                                                     </NavLink>
                                                 </Button>
-                                                <Button className="w-full bg-purple-600 hover:bg-purple-500 text-white">
+                                                <Button className="w-full text-white">
                                                     <NavLink to="demo">
                                                         Agendar Demo
                                                     </NavLink>
@@ -145,21 +151,24 @@ export function Header() {
                                             <ul className="grid w-[200px] gap-2 p-4 bg-white/70 backdrop-blur-sm rounded-md shadow-md">
                                                 <li>
                                                     <NavigationMenuLink asChild>
-                                                        <Link to="solutions/digital-menu" className="block p-2 hover:bg-gray-50 rounded-md">
+                                                        <Link to="solutions/digital-menu"
+                                                              className="block p-2 hover:bg-gray-50 rounded-md">
                                                             Menu Digital
                                                         </Link>
                                                     </NavigationMenuLink>
                                                 </li>
                                                 <li>
                                                     <NavigationMenuLink asChild>
-                                                        <Link to="solutions/orders-management" className="block p-2 hover:bg-gray-50 rounded-md">
+                                                        <Link to="solutions/orders-management"
+                                                              className="block p-2 hover:bg-gray-50 rounded-md">
                                                             Gestão de Pedidos
                                                         </Link>
                                                     </NavigationMenuLink>
                                                 </li>
                                                 <li>
                                                     <NavigationMenuLink asChild>
-                                                        <Link to="solutions/analytics" className="block p-2 hover:bg-gray-50 rounded-md">
+                                                        <Link to="solutions/analytics"
+                                                              className="block p-2 hover:bg-gray-50 rounded-md">
                                                             Análise de Dados
                                                         </Link>
                                                     </NavigationMenuLink>
@@ -178,13 +187,13 @@ export function Header() {
                                     </NavigationMenuItem>
 
                                     {/* Recursos */}
-                                    <NavigationMenuItem>
+                                    <NavigationMenuItem className="hidden">
                                         <NavigationMenuTrigger className="bg-none">Recursos</NavigationMenuTrigger>
                                         <NavigationMenuContent>
                                             <ul className="grid w-[300px] gap-2 p-4 bg-white/70 backdrop-blur-sm rounded-md shadow-md">
                                                 <li>
                                                     <NavigationMenuLink asChild>
-                                                            <Link
+                                                    <Link
                                                             to="#"
                                                             className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-md"
                                                         >
@@ -215,10 +224,13 @@ export function Header() {
                             </NavigationMenu>
                         </div>
 
-                        <div className="flex items-center space-x-4 md:space-x-8">
-                            <NavLink to="contact" className="hidden md:block text-gray-600 hover:text-gray-900">
-                                Contacto
-                            </NavLink>
+                        <div className="flex items-center space-x-4 md:space-x-4">
+                            <Button variant="secondary" size="sm"
+                                    className="w-fit h-fit text-xs ">
+                                <NavLink to="login" className="px-2 py-2">
+                                    Login
+                                </NavLink>
+                            </Button>
 
                             <Button variant="secondary" size="sm"
                                     className="w-fit h-fit bg-zinc-800 text-xs text-white hover:bg-zinc-600">
