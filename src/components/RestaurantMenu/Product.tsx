@@ -21,6 +21,7 @@ import {
 	SheetTitle,
 	SheetTrigger
 } from "@/components/ui/sheet.tsx";
+import {toast} from "sonner";
 
 
 interface props {
@@ -99,6 +100,9 @@ export function Product({children, item}: props) {
 		showMessage()
 		setIsPopoverOpen(true)
 
+
+		toast("Pedido adicionado ao carrinho!")
+
 	}
 
 
@@ -125,10 +129,10 @@ export function Product({children, item}: props) {
 								</h1>
 								<div className='flex-grow'/>
 								<Popover open={isPopoverOpen} onOpenChange={(val) => setIsPopoverOpen(val)}>
-									<PopoverTrigger>
+									<PopoverTrigger className="hidden">
 										<CartIcon/>
 									</PopoverTrigger>
-									<PopoverContent className={"m-2"}>
+									<PopoverContent className={"m-2 hidden"}>
 										<CartPopoverContent cart={cart} productAdded={productAdded}/>
 									</PopoverContent>
 								</Popover>

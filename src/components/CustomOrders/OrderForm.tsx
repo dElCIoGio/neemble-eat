@@ -12,6 +12,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea"
 import {Order, OrderItem} from "@/components/CustomOrders/CounterOrders.tsx";
 
+
+
 // Produtos disponíveis no sistema
 const PRODUTOS = [
     { id: "1", nome: "Gambas ao Alho", preco: 8000 },

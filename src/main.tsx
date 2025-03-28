@@ -8,6 +8,7 @@ import {AuthProvider} from "@/context/AuthContext.tsx";
 import {Provider} from "react-redux";
 import {store} from "@/state/store.ts";
 import {Toaster} from "@/components/ui/toaster.tsx"
+import { Toaster as Sonner } from "@/components/ui/sonner"
 
 
 const queryClient = new QueryClient(
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')!).render(
 	      <AuthProvider>
 			  <Provider store={store}>
 				  <Toaster/>
+				  <Sonner/>
 				  <App/>
 			  </Provider>
 	      </AuthProvider>

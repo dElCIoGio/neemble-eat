@@ -16,7 +16,7 @@ export const CartPopoverContent = ({cart, productAdded}: PopUpButtonParams) => {
 	const navigate = useNavigate()
 
 	return (
-		<div>
+		<div className="hidden">
 			{
 				cart.length > 0 ?
 					<div>
@@ -51,8 +51,6 @@ export const CartPopoverContent = ({cart, productAdded}: PopUpButtonParams) => {
                         </p>
                     </div>
 			}
-
-
         </div>
 	);
 };
