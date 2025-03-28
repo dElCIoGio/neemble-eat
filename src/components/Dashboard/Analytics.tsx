@@ -55,29 +55,29 @@ export function Analytics() {
 								<div className="grid grid-cols-4 gap-2">
 									<Card className="col-span-2 laptop:col-span-1">
 										<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-											<CardTitle className="text-sm font-medium">Ganhos</CardTitle>
+											<CardTitle className="text-sm font-medium">Ganhos diários</CardTitle>
 											<CurrencyCircleDollar className="h-4 w-4 text-muted-foreground"/>
 										</CardHeader>
 										<CardContent>
 											<div className="text-2xl font-bold">Kz {monthRevenue.currentMonth}</div>
 											<p className="text-xs text-muted-foreground">{monthRevenue.currentMonth == 0 ? "-100" : (monthRevenue.currentMonth / (monthRevenue.currentMonth + monthRevenue.previousMonth)) * 100}%
-												em relação ao mês passado</p>
+												em relação ao último dia de trabalho</p>
 										</CardContent>
 									</Card>
 									<Card className="col-span-2 laptop:col-span-1">
 										<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-											<CardTitle className="text-sm font-medium">Pedidos</CardTitle>
+											<CardTitle className="text-sm font-medium">Pedidos diários</CardTitle>
 											<ShoppingBag className="h-4 w-4 text-muted-foreground"/>
 										</CardHeader>
 										<CardContent>
 											<div className="text-2xl font-bold">{monthOrders.currentMonth}</div>
-											<p className="text-xs text-muted-foreground">+15% em relação ao mês passado</p>
+											<p className="text-xs text-muted-foreground">+15% em relação ao último dia de trabalho</p>
 										</CardContent>
 									</Card>
 
 									<Card className="col-span-2 laptop:col-span-1">
 										<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-											<CardTitle className="text-sm font-medium">Ganhos</CardTitle>
+											<CardTitle className="text-sm font-medium">Ganhos mensais</CardTitle>
 											<CurrencyCircleDollar className="h-4 w-4 text-muted-foreground"/>
 										</CardHeader>
 										<CardContent>
@@ -88,7 +88,7 @@ export function Analytics() {
 									</Card>
 									<Card className="col-span-2 laptop:col-span-1">
 										<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-											<CardTitle className="text-sm font-medium">Pedidos</CardTitle>
+											<CardTitle className="text-sm font-medium">Pedidos mensais</CardTitle>
 											<ShoppingBag className="h-4 w-4 text-muted-foreground"/>
 										</CardHeader>
 										<CardContent>

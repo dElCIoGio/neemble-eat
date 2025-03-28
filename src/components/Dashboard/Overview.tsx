@@ -19,7 +19,7 @@ export function Overview() {
 				buttonLink={`${URL_PATH_PREFIX}/orders-tracking/${restaurant.id}`}/>
 			<TrackingCards
 				title={"Mesas do restaurante"}
-				description={"Acompanhe em tempo real a atividade em cada mesa do seu restaurante. Clique no botão abaixo para acesssar a sau tela de gerenciamento das mesas."}
+				description={"Acompanhe em tempo real a atividade em cada mesa do seu restaurante. Clique no botão abaixo para acesssar a sua tela de gerenciamento das mesas."}
 				buttonText={"Abrir Mesas"}
 				buttonLink={`${URL_PATH_PREFIX}/tables-tracking/${restaurant.id}`}/>
 			<Card className="p-4 col-span-full bg-zinc-950 text-white space-y-3 flex flex-col justify-between">
