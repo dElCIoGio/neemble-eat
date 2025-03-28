@@ -22,8 +22,10 @@ import filterLastXhOrders from "@/lib/filterLastXhOrders.ts";
 const GET_TOP_ORDERS_GCTime: number  = 1000 * 60 * 60 * 24;
 const GET_TOP_ORDERS_STALETIME: number = HOUR * 2;
 
-const GET_RESTAURANT_STALETIME: number = HOUR * 24
-const GET_RESTAURANT_CACHETIME: number = HOUR * 36
+// const GET_RESTAURANT_STALETIME: number = HOUR * 24
+// const GET_RESTAURANT_CACHETIME: number = HOUR * 36
+const GET_RESTAURANT_STALETIME: number = MINUTE * 5
+const GET_RESTAURANT_CACHETIME: number = MINUTE * 7
 
 const GET_ALL_ORDERS_STALETIME: number = HOUR
 const GET_ALL_ORDERS_CACHETIME: number = HOUR

@@ -1,12 +1,14 @@
 import {API, handleError} from "@/api/utils"
 import axios from "axios";
 import {useQuery} from "@tanstack/react-query";
-import {HOUR} from "@/lib/constants.ts";
+import { MINUTE} from "@/lib/constants.ts";
 import {UserJson} from "@/schema.ts";
 
 
-const GET_USER_BY_UUID_STALETIME = 5 * HOUR
-const GET_USER_BY_UUID_GCTIME = 10 * HOUR
+// const GET_USER_BY_UUID_STALETIME = 5 * HOUR
+// const GET_USER_BY_UUID_GCTIME = 10 * HOUR
+const GET_USER_BY_UUID_STALETIME = 2 * MINUTE
+const GET_USER_BY_UUID_GCTIME = 4 * MINUTE
 
 export async function fetchUserByUUID(uuid: string): Promise<UserJson> {
     try{
