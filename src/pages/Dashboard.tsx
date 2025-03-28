@@ -20,6 +20,8 @@ export function Dashboard() {
 	const {data: user, isFetching: isUserFetching} = useFetchUserByUUID(userID);
 	const {isLoading: isRestaurantLoading, data: restaurant} = useGetRestaurant({restaurantId: user? user.restaurantID: undefined})
 
+	console.log(user)
+
 	function selectPage(page: DashboardPage) {
 		setCurrentPage(page)
 	}

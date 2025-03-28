@@ -25,11 +25,7 @@ export function useFetchUserByUUID(uuid: string) {
     const {data, isLoading, isFetching} = useQuery({
         queryKey: ['fetchUserByUUID', uuid],
         queryFn: () => fetchUserByUUID(uuid)
-            .then(data => data)
-            .catch(error => {
-                console.error('Error fetching user:', error);
-                throw error;
-            }),
+            .then(data => data),
         staleTime: GET_USER_BY_UUID_STALETIME,
         gcTime: GET_USER_BY_UUID_GCTIME,
     });

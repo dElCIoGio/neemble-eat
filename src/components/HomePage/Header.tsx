@@ -119,6 +119,11 @@ export function Header() {
                                             <div className="pt-4 mt-4 border-t">
 
                                                 <Button className="w-full bg-purple-600 hover:bg-purple-500 text-white">
+                                                    <NavLink to="login">
+                                                        Login
+                                                    </NavLink>
+                                                </Button>
+                                                <Button className="w-full bg-purple-600 hover:bg-purple-500 text-white">
                                                     <NavLink to="demo">
                                                         Agendar Demo
                                                     </NavLink>
