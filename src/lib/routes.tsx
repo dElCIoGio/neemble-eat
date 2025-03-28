@@ -8,8 +8,8 @@ import AuthError from "@/pages/AuthError.tsx";
 import Setup from "@/pages/Setup.tsx";
 import {Dashboard} from "@/pages/Dashboard.tsx";
 import {OrdersTracking} from "@/pages/OrdersTracking.tsx";
-import {SessionsTracking} from "@/pages/SessionsTracking.tsx";
 import {InvitationPage} from "@/pages/InvitationPage.tsx";
+import TablesMapping from "@/pages/TablesMapping.tsx";
 
 
 export const ROUTES: Route[] = [
@@ -55,7 +55,7 @@ export const ROUTES: Route[] = [
 	},
 	{
 		path: `${URL_PATH_PREFIX}/tables-tracking/:restaurantID`,
-		element: <SessionsTracking/>,
+		element: <TablesMapping/>,
 		requiresAuth: false
 	},
 	{

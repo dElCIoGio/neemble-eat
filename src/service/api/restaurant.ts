@@ -31,8 +31,6 @@ const GET_ALL_ORDERS_STALETIME: number = HOUR
 const GET_ALL_ORDERS_CACHETIME: number = HOUR
 
 
-
-
 export function useGetTopOrders(attr: GetTopOrdersProps) {
 
     return useQuery({
