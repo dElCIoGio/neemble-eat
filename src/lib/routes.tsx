@@ -10,6 +10,7 @@ import {Dashboard} from "@/pages/Dashboard.tsx";
 import {OrdersTracking} from "@/pages/OrdersTracking.tsx";
 import {InvitationPage} from "@/pages/InvitationPage.tsx";
 import TablesMapping from "@/pages/TablesMapping.tsx";
+import {CustomOrders} from "@/pages/CustomOrders.tsx";
 
 
 export const ROUTES: Route[] = [
@@ -61,6 +62,11 @@ export const ROUTES: Route[] = [
 	{
 		path: `${URL_PATH_PREFIX}/invite/:tokenId`,
 		element: <InvitationPage/>,
+		requiresAuth: false
+	},
+	{
+		path: `${URL_PATH_PREFIX}/custom-order`,
+		element: <CustomOrders/>,
 		requiresAuth: false
 	}
 ]

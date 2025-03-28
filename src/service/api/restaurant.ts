@@ -24,8 +24,8 @@ const GET_TOP_ORDERS_STALETIME: number = HOUR * 2;
 
 // const GET_RESTAURANT_STALETIME: number = HOUR * 24
 // const GET_RESTAURANT_CACHETIME: number = HOUR * 36
-const GET_RESTAURANT_STALETIME: number = MINUTE * 5
-const GET_RESTAURANT_CACHETIME: number = MINUTE * 7
+// const GET_RESTAURANT_STALETIME: number = MINUTE * 5
+// const GET_RESTAURANT_CACHETIME: number = MINUTE * 7
 
 const GET_ALL_ORDERS_STALETIME: number = HOUR
 const GET_ALL_ORDERS_CACHETIME: number = HOUR
@@ -51,8 +51,6 @@ export function useGetRestaurant({restaurantId}: GetRestaurantProps) {
         queryFn: () => getRestaurant({restaurantId})
             .then(data => data),
         enabled: restaurantId != undefined,
-        staleTime: GET_RESTAURANT_STALETIME,
-        gcTime: GET_RESTAURANT_CACHETIME,
     })
 }
 
