@@ -67,8 +67,7 @@ export function DashboardSidebar() {
 								</SidebarMenuButton>
 							</SidebarMenuItem>
 						)
-					}
-			        )}
+					})}
 		        </SidebarMenu>
 	        </SidebarGroup>
 	      </SidebarContent>

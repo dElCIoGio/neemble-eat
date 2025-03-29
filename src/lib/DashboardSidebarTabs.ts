@@ -1,5 +1,5 @@
 import {FC} from "react";
-import {Icon, UsersThree, BookOpenText, CreditCard, Headset} from "@phosphor-icons/react";
+import {Icon, UsersThree, BookOpenText, CreditCard, Headset, BookmarkSimple, ChartLine} from "@phosphor-icons/react";
 import {TabDashboard} from "@/components/Dashboard/TabDashboard.tsx";
 import {Home, QrCode, Settings} from "lucide-react";
 import {TabMenu} from "@/components/Dashboard/TabMenu.tsx";
@@ -8,6 +8,8 @@ import {TabStaff} from "@/components/Dashboard/TabStaff.tsx";
 import {TabSettings} from "@/components/Dashboard/TabSettings.tsx";
 import {TabSubscription} from "@/components/Dashboard/TabSubscription.tsx";
 import {TabSupport} from "@/components/Dashboard/TabSupport.tsx";
+import TabReservations from "@/components/Dashboard/TabReservations.tsx";
+import TabAnalytics from "@/components/Dashboard/TabAnalytics.tsx";
 
 export const DashboardSidebarTabs: {
     tab: FC,
@@ -35,6 +37,20 @@ export const DashboardSidebarTabs: {
         title: "Mesas e QR Code",
         tag: "tables",
         icon: QrCode,
+        level: 3
+    },
+    {
+        tab: TabReservations,
+        title: "Reservas",
+        tag: "bookings",
+        icon: BookmarkSimple,
+        level: 3
+    },
+    {
+        tab: TabAnalytics,
+        title: "Performance",
+        tag: "analytics",
+        icon: ChartLine,
         level: 3
     },
     {
