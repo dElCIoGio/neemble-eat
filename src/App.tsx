@@ -17,6 +17,7 @@ import Demo from "@/pages/Demo.tsx";
 import DataAnalysis from "@/pages/DataAnalysis.tsx";
 import OrderManagement from "@/pages/OrdersManagement.tsx";
 import DigitalMenu from "@/pages/DigitalMenu.tsx";
+import OnboardingPage from "@/pages/onboarding.tsx";
 
 
 function App() {
@@ -29,8 +30,8 @@ function App() {
                   <Route path="/login" element={<LogIn/>}/>
                   <Route path="/early-access" element={<ComingSoonPage/>}/>
                   <Route path="/" element={<HomeLayout/>}>
-
-                    <Route index element={<HomePage/>}/>
+                      <Route path="onboarding" element={<OnboardingPage/>}/>
+                      <Route index element={<HomePage/>}/>
                       <Route path="solutions">
                           <Route path="digital-menu" element={<DigitalMenu/>}/>
                           <Route path="orders-management" element={<OrderManagement/>}/>
