@@ -251,6 +251,7 @@ const BackgroundVideo = () => {
             loop
             muted
             playsInline
+            preload="auto"
             className="w-full h-full object-cover pointer-events-none select-none"
         >
             <source src={IphoneZoomOut} type="video/mp4" />
