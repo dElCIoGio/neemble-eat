@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Check, BarChart2, DollarSign, Users, Clock, LineChart, Target, Zap, Share2 } from "lucide-react"
 import {Link} from "react-router-dom";
+import {DesktopAnalytics, DesktopMenu} from "@/assets";
 
 
 const kpiCategories = [
@@ -80,9 +81,9 @@ export default function DataAnalysis() {
                             </div>
                         </div>
                         <div className="relative lg:h-[600px]">
-                            <div className="relative z-10 bg-white rounded-xl shadow-xl p-6">
+                            <div className="relative z-10 bg-white rounded-xl shadow-xl">
                                 <img
-                                    src="/placeholder.svg?height=500&width=600"
+                                    src={DesktopAnalytics}
                                     alt="Dashboard Analytics"
                                     width={600}
                                     height={500}
@@ -152,9 +153,9 @@ export default function DataAnalysis() {
                             </ul>
                         </div>
                         <div className="relative">
-                            <div className="relative z-10 bg-white rounded-xl shadow-xl p-6">
+                            <div className="relative z-10 bg-white rounded-xl shadow-xl">
                                 <img
-                                    src="/placeholder.svg?height=400&width=600"
+                                    src={DesktopMenu}
                                     alt="Dashboard Interface"
                                     width={600}
                                     height={400}
@@ -249,7 +250,7 @@ export default function DataAnalysis() {
             <section className="py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="max-w-3xl mx-auto text-center">
-                        <div className="flex justify-center mb-8">
+                        <div className="flex justify-center hidden mb-8">
                             <img
                                 src="/placeholder.svg?height=100&width=100"
                                 alt="Cliente"
@@ -263,7 +264,7 @@ export default function DataAnalysis() {
                             cardápio, aumentando nossa margem de lucro em 25%."
                         </blockquote>
                         <div className="font-semibold">Pedro Costa</div>
-                        <div className="text-gray-600">Proprietário, Restaurante Vista Mar</div>
+                        <div className="text-gray-600">Proprietário</div>
                     </div>
                 </div>
             </section>

@@ -69,7 +69,7 @@ export function Testimonials() {
                     ].map((testimonial, index) => (
                         <div key={index} className="bg-white p-6 rounded-xl">
                             <div className="flex items-center gap-4 mb-4">
-                                <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                                <div className="relative hidden w-12 h-12 rounded-full overflow-hidden">
                                     <img
                                         src={testimonial.image || "/placeholder.svg"}
                                         alt={testimonial.name}
@@ -82,7 +82,7 @@ export function Testimonials() {
                                     <div className="text-sm text-gray-600">{testimonial.company}</div>
                                 </div>
                             </div>
-                            <blockquote className="text-gray-600">"{testimonial.quote}"</blockquote>
+                            <blockquote className="text-gray-600 text-center">"{testimonial.quote}"</blockquote>
                         </div>
                     ))}
                 </div>
@@ -103,7 +103,7 @@ export function Testimonials() {
                 </div>
 
                 {/* Trust Badges */}
-                <div className="mt-16 text-center">
+                <div className="mt-16 text-center hidden">
                     <div className="text-sm font-medium text-gray-500 mb-4">Certificados e Parcerias</div>
                     <div className="flex justify-center gap-8">
                         {Array.from({length: 4}).map((_, i) => (

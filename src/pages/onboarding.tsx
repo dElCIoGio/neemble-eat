@@ -137,7 +137,6 @@ export default function OnboardingPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-white to-indigo-50 flex flex-col">
-
             <main className="flex-1 container mx-auto px-4 py-8">
                 <div className="max-w-4xl mx-auto">
                     {/* Progress indicator */}

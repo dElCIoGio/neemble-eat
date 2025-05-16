@@ -5,7 +5,7 @@ import {TypographyMuted} from "@/components/ui/Typography.tsx";
 import {ChevronLeft} from "lucide-react";
 import {Link} from "react-router-dom";
 import {FullImage} from "@/components/ui/FullImage.tsx";
-import image from '../../public/images/blackchef.png'
+import image from '@/assets/images/blackchef.png'
 
 export function LogIn() {
 

@@ -14,6 +14,7 @@ import {
     History,
 } from "lucide-react"
 import {Link} from "react-router-dom";
+import {DesktopAnalytics, DesktopOrders} from "@/assets";
 
 
 const features = [
@@ -79,9 +80,9 @@ export default function OrderManagement() {
                             </div>
                         </div>
                         <div className="relative lg:h-[600px]">
-                            <div className="relative z-10 bg-white rounded-xl shadow-xl p-6">
+                            <div className="relative z-10 bg-white rounded-xl shadow-xl px-3 rounded-md pb-3">
                                 <img
-                                    src="/placeholder.svg?height=500&width=600"
+                                    src={DesktopOrders}
                                     alt="Dashboard de Pedidos"
                                     width={600}
                                     height={500}
@@ -136,7 +137,7 @@ export default function OrderManagement() {
                                 ))}
                             </ul>
                         </div>
-                        <div className="relative">
+                        <div className="relative hidden">
                             <div className="relative z-10 bg-white rounded-xl shadow-xl p-6">
                                 <img
                                     src="/placeholder.svg?height=400&width=600"
@@ -221,7 +222,7 @@ export default function OrderManagement() {
                         <div className="order-2 lg:order-1">
                             <div className="relative">
                                 <img
-                                    src="/placeholder.svg?height=500&width=600"
+                                    src={DesktopAnalytics}
                                     alt="Analytics Dashboard"
                                     width={600}
                                     height={500}
@@ -278,7 +279,7 @@ export default function OrderManagement() {
                             <Card key={index} className="p-8">
                                 <blockquote className="text-lg text-gray-600 mb-6">"{testimonial.quote}"</blockquote>
                                 <div className="flex items-center gap-4">
-                                    <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                                    <div className="relative hidden w-12 h-12 rounded-full overflow-hidden">
                                         <img
                                             src="/placeholder.svg?height=100&width=100"
                                             alt={testimonial.author}

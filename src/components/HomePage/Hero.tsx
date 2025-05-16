@@ -1,8 +1,7 @@
 import {Button} from "@/components/ui/button.tsx";
 import {NavLink} from "react-router-dom";
 import {motion} from "framer-motion";
-import img from "@/../public/chef-hero.png"
-
+import {ChefHero} from "@/assets"
 
 export function Hero() {
     return (
@@ -60,7 +59,7 @@ export function Hero() {
                 >
                     <div className="relative w-full h-[500px] rounded-xl overflow-hidden">
                         <img
-                            src={img}
+                            src={ChefHero}
                             alt="Aplicativo Neemble Eat em ação"
                             className="object-cover w-full h-full"
                         />

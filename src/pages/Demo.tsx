@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Check, PlayCircle } from "lucide-react"
+import {IphoneZoomOut} from "@/assets";
 
 
 
@@ -175,7 +176,8 @@ export default function Demo() {
                     <div className="max-w-lg mx-auto">
                         {/* Video Preview */}
                         <div className="relative aspect-video mb-12 rounded-xl overflow-hidden bg-gray-100">
-                            <img src="/placeholder.svg?height=400&width=600" alt="Demo Preview" className="object-cover" />
+                            <BackgroundVideo/>
+                            <img src="/placeholder.svg?height=400&width=600" alt="Demo Preview" className="object-cover hidden" />
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <Button variant="ghost" size="icon" className="w-16 h-16 rounded-full">
                                     <PlayCircle className="w-16 h-16 text-white" />
@@ -206,7 +208,7 @@ export default function Demo() {
                         <div className="mt-12 p-6 bg-white rounded-xl">
                             <div className="flex items-center gap-4 mb-4">
                                 <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                                    <img src="/placeholder.svg?height=100&width=100" alt="Cliente"  className="object-cover" />
+                                    <img src="/placeholder.svg?height=100&width=100" alt="Cliente"  className="object-cover hidden" />
                                 </div>
                                 <div>
                                     <div className="font-semibold">João Silva</div>
@@ -241,3 +243,18 @@ export default function Demo() {
     )
 }
 
+
+const BackgroundVideo = () => {
+    return (
+        <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover pointer-events-none select-none"
+        >
+            <source src={IphoneZoomOut} type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+    );
+};

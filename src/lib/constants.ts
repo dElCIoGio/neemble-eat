@@ -1,5 +1,5 @@
 // Time Units
-import logo from "../../public/neemble-eat-logo.png"
+import logo from "../assets/images/neemble-eat-logo.png"
 
 
 export const SECOND = 1000

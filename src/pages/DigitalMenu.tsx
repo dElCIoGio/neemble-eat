@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Check, Smartphone, QrCode, Utensils, ImageIcon, Languages, Wifi, Clock } from "lucide-react"
 import {Link} from "react-router-dom";
+import {IphoneDarkBackground, MacBookDashboard, NeembleEatMenu} from "@/assets";
 
 const features = [
     {
@@ -69,7 +70,7 @@ export default function DigitalMenu() {
                             <div className="relative z-10 bg-white rounded-3xl shadow-xl p-2 mx-auto max-w-[300px]">
                                 <div className="rounded-2xl overflow-hidden">
                                     <img
-                                        src="/placeholder.svg?height=600&width=300"
+                                        src={NeembleEatMenu}
                                         alt="Menu Digital Preview"
                                         width={300}
                                         height={600}
@@ -170,7 +171,7 @@ export default function DigitalMenu() {
                         <div className="relative">
                             <div className="relative z-10 bg-white rounded-3xl shadow-xl p-2">
                                 <img
-                                    src="/placeholder.svg?height=600&width=300"
+                                    src={IphoneDarkBackground}
                                     alt="Interface do Menu Digital"
                                     width={300}
                                     height={600}
@@ -189,9 +190,9 @@ export default function DigitalMenu() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="order-2 lg:order-1">
-                            <div className="relative">
+                            <div className="relative p-1 rounded-3xl">
                                 <img
-                                    src="/placeholder.svg?height=600&width=800"
+                                    src={MacBookDashboard}
                                     alt="Dashboard do Menu Digital"
                                     width={800}
                                     height={600}
@@ -235,7 +236,7 @@ export default function DigitalMenu() {
                                 alt="Cliente"
                                 width={100}
                                 height={100}
-                                className="rounded-full"
+                                className="rounded-full hidden"
                             />
                         </div>
                         <blockquote className="text-2xl font-medium text-gray-900 mb-8">
@@ -243,7 +244,7 @@ export default function DigitalMenu() {
                             operação ficou muito mais eficiente."
                         </blockquote>
                         <div className="font-semibold">Maria Santos</div>
-                        <div className="text-gray-600">Proprietária, Restaurante Mar à Vista</div>
+                        <div className="text-gray-600">Proprietária</div>
                     </div>
                 </div>
             </section>
