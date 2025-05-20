@@ -148,9 +148,8 @@ function PrivacyPolicy() {
                 <h2 className="text-2xl font-semibold mb-4">11. Responsável pela Proteção de Dados (DPO)</h2>
                 <p className="mb-4">Designámos um Encarregado de Proteção de Dados (DPO), responsável por assegurar a conformidade com a lei e responder a qualquer solicitação relativa à privacidade:</p>
                 <ul className="list-disc pl-6 space-y-2">
-                    <li>Nome: Responsável Neemble Eat</li>
-                    <li>Email: privacidade@neembleeat.com</li>
-                    <li>Morada: A ser definida conforme sede jurídica da empresa</li>
+                    <li>Nome: Delcio Agostinho</li>
+                    <li>Email: agostinho@neemble-eat.com</li>
                 </ul>
             </section>
 
