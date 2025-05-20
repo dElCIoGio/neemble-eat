@@ -8,7 +8,7 @@ export function Footer() {
     return (
         <footer className="border-t py-16 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-12">
                     <div className="col-span-1">
                         <div className="flex items-center space-x-2 mb-6">
                             <span className="font-bold text-xl">Neemble Eat</span>
@@ -34,6 +34,13 @@ export function Footer() {
                             <Button variant="link" className="p-0 text-sm text-gray-500"><NavLink to="about-us">Sobre nós</NavLink></Button>
                             <Button variant="link" className="p-0 text-sm text-gray-500"><NavLink to="contact">Contato</NavLink></Button>
                             <Button variant="link" className="p-0 text-sm text-gray-500"><NavLink to="blog">Blog</NavLink></Button>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 className="font-semibold mb-4">Legal</h3>
+                        <ul className="flex flex-col items-start">
+                            <Button variant="link" className="p-0 text-sm text-gray-500"><Link to="/privacy-policy">Política de Privacidade</Link></Button>
+                            <Button variant="link" className="p-0 text-sm text-gray-500"><Link to="/cookies-policy">Política de Cookies</Link></Button>
                         </ul>
                     </div>
                     <div>

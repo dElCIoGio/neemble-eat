@@ -18,6 +18,8 @@ import DataAnalysis from "@/pages/DataAnalysis.tsx";
 import OrderManagement from "@/pages/OrdersManagement.tsx";
 import DigitalMenu from "@/pages/DigitalMenu.tsx";
 import OnboardingPage from "@/pages/onboarding.tsx";
+import PrivacyPolicy from "@/pages/PrivacyPolicy.tsx";
+import CookiesPolicy from "@/pages/CookiesPolicy.tsx";
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
                   <Route path="/login" element={<LogIn/>}/>
                   <Route path="/early-access" element={<ComingSoonPage/>}/>
                   <Route path="/" element={<HomeLayout/>}>
+                      <Route path="privacy-policy" element={<PrivacyPolicy/>}/>
+                      <Route path="cookies-policy" element={<CookiesPolicy/>}/>
                       <Route path="onboarding" element={<OnboardingPage/>}/>
                       <Route index element={<HomePage/>}/>
                       <Route path="solutions">
