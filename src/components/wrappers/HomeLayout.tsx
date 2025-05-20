@@ -4,6 +4,7 @@ import {Footer} from "@/components/HomePage/Footer.tsx";
 
 import {useEffect} from "react";
 import {useLocation} from "react-router-dom";
+import {CookieConsentDialog} from "@/components/HomePage/CookieConsentDialog.tsx";
 
 function HomeLayout() {
     const location = useLocation();
@@ -18,6 +19,7 @@ function HomeLayout() {
 
     return (
         <main>
+            <CookieConsentDialog/>
             <Header/>
             <div>
                 <Outlet/>
