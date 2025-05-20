@@ -33,7 +33,7 @@ function App() {
                   <Route path="/early-access" element={<ComingSoonPage/>}/>
                   <Route path="/" element={<HomeLayout/>}>
                       <Route path="privacy-policy" element={<PrivacyPolicy/>}/>
-                      <Route path="cookies-policy" element={<CookiesPolicy/>}/>
+                      <Route path="cookie-policy" element={<CookiesPolicy/>}/>
                       <Route path="onboarding" element={<OnboardingPage/>}/>
                       <Route index element={<HomePage/>}/>
                       <Route path="solutions">
